@@ -9,12 +9,9 @@
 <meta name="theme-color" content="#07080c">
 <title>AI Tools Hub</title>
 
-<!-- ══════════ STEP 1: Set your deployed Apps Script URL here ══════════ -->
 <script>
-  // PASTE YOUR APPS SCRIPT WEB APP URL BELOW (deploy as "anyone can access")
   var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxNfqbO5KjhgE1-rfpgHxC5mQ88BIC-SJ8GQOAkGtJFNevvajSzGUnCso1ptjK5G--z/exec";
 </script>
-<!-- ═══════════════════════════════════════════════════════════════════ -->
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -22,9 +19,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ═══════════════════════════════════════
-   DESIGN TOKENS
-═══════════════════════════════════════ */
 :root{
   --bg:#07080c;--s1:#0d0f16;--s2:#13151f;--s3:#1c1f2e;
   --bd:rgba(255,255,255,.07);--bd2:rgba(255,255,255,.13);
@@ -38,8 +32,6 @@
   --bs-border-color:rgba(255,255,255,.07);
   --bs-font-sans-serif:'Outfit',sans-serif;
 }
-
-/* ── GLOBAL ── */
 *,*::before,*::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;height:100%}
 body{width:100%;min-height:100%;overflow-x:hidden;overflow-y:auto;background:var(--bg);color:var(--txt);font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased}
@@ -54,7 +46,6 @@ a{color:inherit;text-decoration:none}
 ::-webkit-scrollbar-track{background:transparent}
 img{max-width:100%}
 
-/* ── ANIMATIONS ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -62,8 +53,10 @@ img{max-width:100%}
 @keyframes glow{0%,100%{box-shadow:0 0 18px rgba(232,164,48,.15)}50%{box-shadow:0 0 36px rgba(232,164,48,.35)}}
 @keyframes shimmer{from{background-position:-400px 0}to{background-position:400px 0}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes bioPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(232,164,48,.4)}50%{transform:scale(1.04);box-shadow:0 0 0 12px rgba(232,164,48,0)}}
+@keyframes bioSuccess{0%{transform:scale(1)}40%{transform:scale(1.15)}70%{transform:scale(.95)}100%{transform:scale(1)}}
+@keyframes bioFail{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
 
-/* ── UTILS ── */
 .loader{display:inline-block;width:15px;height:15px;border:2px solid rgba(232,164,48,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px;flex-shrink:0}
 .skel{background:linear-gradient(90deg,var(--s2) 25%,var(--s3) 50%,var(--s2) 75%);background-size:400px 100%;animation:shimmer 1.4s infinite;border-radius:10px}
 .orb{position:fixed;border-radius:50%;pointer-events:none;filter:blur(90px);z-index:0;opacity:.1}
@@ -72,7 +65,6 @@ img{max-width:100%}
 .page{position:relative;z-index:1}
 .gold-txt{background:linear-gradient(135deg,var(--gold),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-/* Bootstrap form dark theme */
 .form-control,.form-select{
   background-color:var(--s2);border:1px solid var(--bd);
   border-radius:12px;color:var(--txt);
@@ -94,16 +86,12 @@ img{max-width:100%}
 .form-select:focus{background-color:var(--s2);color:var(--m2);box-shadow:none;border-color:rgba(232,164,48,.4)}
 .form-select option{background-color:var(--s2);color:var(--txt)}
 
-/* ═══════════════════════════════════════
-   LOADING SCREEN
-═══════════════════════════════════════ */
+/* ── LOADING SCREEN ── */
 #loading-screen{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
 #loading-screen .logo{font-family:'Playfair Display',serif;font-size:26px;font-weight:800;background:linear-gradient(135deg,var(--gold),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 #loading-screen .sub{font-size:13px;color:var(--m1);font-weight:300}
 
-/* ═══════════════════════════════════════
-   AUTH
-═══════════════════════════════════════ */
+/* ── AUTH ── */
 .auth-panel{
   background:linear-gradient(160deg,#0d0f16,#131726);
   border-right:1px solid var(--bd);position:relative;overflow:hidden;
@@ -153,8 +141,65 @@ img{max-width:100%}
 .amsg.ok{color:var(--grn)}.amsg.inf{color:var(--gold)}
 
 /* ═══════════════════════════════════════
-   FORGOT PASSWORD
+   BIOMETRIC BUTTON & DIVIDER
 ═══════════════════════════════════════ */
+.bio-divider{display:flex;align-items:center;gap:10px;margin:.9rem 0}
+.bio-divider::before,.bio-divider::after{content:'';flex:1;height:1px;background:var(--bd)}
+.bio-divider span{font-size:12px;color:var(--m1);font-weight:500;white-space:nowrap}
+
+.btn-bio{
+  width:100%;padding:13px 16px;
+  background:var(--s2);border:1px solid var(--bd2);
+  border-radius:13px;color:var(--txt);font-size:15px;font-weight:600;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:border-color .2s,background .2s,transform .15s;
+  min-height:52px;cursor:pointer;position:relative;overflow:hidden;
+}
+.btn-bio:hover{border-color:rgba(232,164,48,.4);background:var(--s3)}
+.btn-bio:active{transform:scale(.98)}
+.btn-bio:disabled{opacity:.4;cursor:not-allowed}
+.btn-bio.scanning{border-color:rgba(232,164,48,.5);animation:bioPulse 1.4s ease-in-out infinite}
+.btn-bio.success{border-color:rgba(62,201,122,.6);background:rgba(62,201,122,.08);animation:bioSuccess .5s ease}
+.btn-bio.fail{border-color:rgba(232,85,85,.6);animation:bioFail .4s ease}
+
+.bio-icon{font-size:22px;line-height:1;flex-shrink:0;transition:transform .3s}
+.bio-label{font-size:14px}
+.bio-sub{font-size:11px;color:var(--m1);margin-top:2px}
+
+/* Quick-login biometric screen */
+#bio-quick{
+  position:fixed;inset:0;z-index:9998;
+  background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:0;padding:2rem;
+  animation:fadeIn .3s ease;
+}
+.bq-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,var(--gold),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:2rem}
+.bq-av{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--g2));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:#0a0a0a;margin-bottom:.75rem;flex-shrink:0}
+.bq-name{font-size:18px;font-weight:700;margin-bottom:.25rem}
+.bq-email{font-size:13px;color:var(--m1);margin-bottom:2.5rem}
+.bq-ring{
+  width:110px;height:110px;border-radius:50%;
+  border:2px solid rgba(232,164,48,.25);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:2.5rem;position:relative;cursor:pointer;
+  transition:border-color .3s;
+}
+.bq-ring::before{
+  content:'';position:absolute;inset:-6px;border-radius:50%;
+  border:1.5px solid rgba(232,164,48,.1);
+}
+.bq-ring.scanning{border-color:rgba(232,164,48,.7);animation:bioPulse 1.4s ease-in-out infinite}
+.bq-ring.success{border-color:rgba(62,201,122,.7)}
+.bq-ring.fail{border-color:rgba(232,85,85,.7);animation:bioFail .45s ease}
+.bq-icon{font-size:48px;line-height:1;user-select:none}
+.bq-status{font-size:14px;color:var(--m1);margin-bottom:2rem;min-height:20px;text-align:center;transition:color .2s}
+.bq-status.ok{color:var(--grn)}.bq-status.err{color:var(--red)}
+.bq-switch{background:transparent;border:none;color:var(--m1);font-size:13px;font-weight:500;padding:10px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.bq-switch:hover{color:var(--txt)}
+.bq-hint{font-size:11px;color:var(--m1);margin-top:1rem;text-align:center;opacity:.7}
+
+/* ── FORGOT PASSWORD ── */
 .forgot-box{width:100%;max-width:420px;animation:fadeUp .5s ease both}
 .back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--m2);font-size:14px;font-weight:500;border:none;background:transparent;padding:8px 0;margin-bottom:1.25rem;min-height:44px}
 .back-btn:hover{color:var(--txt)}
@@ -165,9 +210,7 @@ img{max-width:100%}
 .fp-line{flex:1;height:1px;background:var(--bd);transition:background .3s}
 .fp-line.done{background:var(--grn)}
 
-/* ═══════════════════════════════════════
-   TOPBAR
-═══════════════════════════════════════ */
+/* ── TOPBAR ── */
 .topbar{position:sticky;top:0;z-index:200;background:rgba(7,8,12,.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--bd);height:54px;padding:0 .875rem;display:flex;align-items:center;gap:8px}
 .tb-logo{font-family:'Playfair Display',serif;font-size:15px;font-weight:800;white-space:nowrap;flex-shrink:0;background:linear-gradient(135deg,var(--gold),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .tb-search-wrap{display:none;flex:1;position:relative;align-items:center}
@@ -187,35 +230,26 @@ img{max-width:100%}
 .credit-chip.low .cval{color:var(--red)}
 .cval{font-size:12px;font-weight:700;color:var(--gold)}
 
-/* ═══════════════════════════════════════
-   DESKTOP FILTER TOOLBAR
-═══════════════════════════════════════ */
+/* ── DESKTOP FILTER TOOLBAR ── */
 #desk-tb{display:none;align-items:center;gap:10px;padding:.6rem 1.75rem;flex-wrap:wrap;border-bottom:1px solid var(--bd);background:rgba(13,15,22,.85)}
 .dtlbl{font-size:11px;font-weight:700;color:var(--m1);text-transform:uppercase;letter-spacing:.9px;flex-shrink:0}
 #dt-chips{display:flex;gap:7px;flex-wrap:wrap;flex:1}
 .vbtn{padding:6px 11px;background:transparent;color:var(--m1);font-size:14px;border:none;transition:all .2s;min-height:36px}
 .vbtn.on{background:var(--s3);color:var(--gold)}
 
-/* ═══════════════════════════════════════
-   CATEGORY STRIP (mobile)
-═══════════════════════════════════════ */
+/* ── CATEGORY STRIP ── */
 .cat-strip{display:flex;gap:7px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:.6rem .875rem;border-bottom:1px solid var(--bd);background:rgba(13,15,22,.85);scrollbar-width:none;width:100%}
 .cat-strip::-webkit-scrollbar{display:none}
 .chip,.dt-chip{flex-shrink:0;padding:7px 14px;border-radius:100px;border:1px solid var(--bd);background:transparent;font-size:13px;font-weight:600;color:var(--m1);white-space:nowrap;transition:all .2s;min-height:36px;display:inline-flex;align-items:center}
 .chip.on,.chip:active,.dt-chip.on,.dt-chip:hover{border-color:var(--gold);color:var(--gold);background:var(--gdim)}
 
-/* ═══════════════════════════════════════
-   RESULTS BAR
-═══════════════════════════════════════ */
+/* ── RESULTS BAR ── */
 .rbar{padding:.5rem .875rem;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--m1);flex-wrap:wrap;gap:5px}
 .rbar strong{color:var(--txt)}
 
-/* ═══════════════════════════════════════
-   TOOL CARDS
-═══════════════════════════════════════ */
+/* ── TOOL CARDS ── */
 .cat-page-wrap{padding-bottom:var(--bnav-h);width:100%}
 .cat-body{padding:.625rem .5rem 1rem;width:100%}
-
 .tool-card{background:var(--s1);border:1px solid var(--bd);border-radius:15px;padding:.875rem;cursor:pointer;transition:border-color .25s,transform .18s;position:relative;overflow:hidden;animation:fadeUp .4s ease both;height:100%;min-width:0;display:flex;flex-direction:column;-webkit-tap-highlight-color:transparent}
 .tool-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s}
 .tool-card:active{transform:scale(.97)}
@@ -228,7 +262,6 @@ img{max-width:100%}
 .ftag.paid{background:var(--gdim);color:var(--gold);border:1px solid rgba(232,164,48,.15)}
 .arr{width:26px;height:26px;border-radius:50%;border:1px solid var(--bd);background:transparent;display:flex;align-items:center;justify-content:center;color:var(--m1);font-size:13px;flex-shrink:0;transition:all .25s}
 
-/* List view override */
 #grid.lv .tool-card{flex-direction:row;align-items:center;gap:10px;padding:.75rem .875rem;border-radius:12px}
 #grid.lv .tool-card .cbadge,
 #grid.lv .tool-card .cdesc,
@@ -238,17 +271,13 @@ img{max-width:100%}
 .empty-state{text-align:center;padding:60px 20px;animation:fadeIn .4s ease}
 .empty-ico{font-size:44px;margin-bottom:12px;opacity:.35}
 
-/* ═══════════════════════════════════════
-   BOTTOM NAV (mobile only)
-═══════════════════════════════════════ */
+/* ── BOTTOM NAV ── */
 #bnav{position:fixed;bottom:0;left:0;right:0;z-index:300;background:rgba(7,8,12,.98);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-top:1px solid var(--bd);display:grid;grid-template-columns:repeat(4,1fr);padding-bottom:var(--sab);height:var(--bnav-h)}
 .bnbtn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--m1);font-size:10px;font-weight:600;letter-spacing:.3px;padding:8px 0;border:none;background:transparent;transition:color .2s;min-height:44px;width:100%}
 .bnbtn .bi{font-size:20px;line-height:1}
 .bnbtn.on{color:var(--gold)}
 
-/* ═══════════════════════════════════════
-   MOBILE SEARCH
-═══════════════════════════════════════ */
+/* ── MOBILE SEARCH ── */
 #msearch{display:none;position:fixed;inset:0;z-index:600;background:var(--bg);flex-direction:column;padding-top:var(--sat)}
 #msearch.open{display:flex;animation:fadeIn .18s ease}
 .msh-head{display:flex;align-items:center;gap:10px;padding:.75rem .875rem;border-bottom:1px solid var(--bd)}
@@ -266,9 +295,7 @@ img{max-width:100%}
 .msh-meta{font-size:12px;color:var(--m1)}
 .msh-arr{color:var(--m1);font-size:18px;margin-left:auto;flex-shrink:0}
 
-/* ═══════════════════════════════════════
-   FILTER DRAWER
-═══════════════════════════════════════ */
+/* ── FILTER DRAWER ── */
 #fdrawer{display:none;position:fixed;inset:0;z-index:600}
 #fdrawer.open{display:block}
 .fd-bg{position:absolute;inset:0;background:rgba(0,0,0,.72)}
@@ -290,9 +317,7 @@ img{max-width:100%}
 .fd-clear{flex:1;padding:14px;background:var(--s2);border:1px solid var(--bd);border-radius:12px;color:var(--m2);font-size:15px;font-weight:600;min-height:52px}
 .fd-apply{flex:2;padding:14px;background:linear-gradient(135deg,var(--gold),var(--g2));border-radius:12px;color:#0a0a0a;font-size:15px;font-weight:700;min-height:52px;border:none}
 
-/* ═══════════════════════════════════════
-   MODAL
-═══════════════════════════════════════ */
+/* ── MODAL ── */
 #modal{display:none;position:fixed;inset:0;z-index:500;align-items:flex-end;justify-content:center}
 #modal.open{display:flex}
 .m-bg{position:absolute;inset:0;background:rgba(0,0,0,.78);backdrop-filter:blur(4px)}
@@ -320,9 +345,7 @@ img{max-width:100%}
 .btn-preview:hover{background:var(--gdim)}
 .btn-sec{width:100%;padding:13px;background:var(--s2);border:1px solid var(--bd);border-radius:13px;color:var(--m2);font-size:14px;font-weight:600;transition:all .2s;min-height:48px}
 
-/* ═══════════════════════════════════════
-   ADMIN PAGE
-═══════════════════════════════════════ */
+/* ── ADMIN ── */
 #admin-page{min-height:100vh;padding:.875rem .75rem var(--bnav-h);overflow-x:hidden;animation:fadeIn .35s ease}
 .adm-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:10px;flex-wrap:wrap}
 .adm-title{font-size:clamp(18px,5vw,28px);font-weight:800;background:linear-gradient(135deg,var(--gold),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -346,28 +369,16 @@ img{max-width:100%}
 .badge-c{display:inline-flex;align-items:center;justify-content:center;padding:3px 9px;border-radius:100px;font-size:11px;font-weight:700;background:var(--gdim);color:var(--gold);border:1px solid rgba(232,164,48,.2);white-space:nowrap}
 .badge-c.red{color:var(--red);border-color:rgba(232,85,85,.3);background:rgba(232,85,85,.08)}
 
-/* ═══════════════════════════════════════
-   TOAST
-═══════════════════════════════════════ */
+/* ── TOAST ── */
 #toast{position:fixed;bottom:calc(var(--bnav-h) + 8px);left:10px;right:10px;z-index:9999;background:var(--s2);border:1px solid var(--bd2);border-radius:13px;padding:.8rem 1rem;font-size:14px;font-weight:500;box-shadow:0 8px 30px rgba(0,0,0,.5);transition:all .3s ease;transform:translateY(20px);opacity:0;display:flex;align-items:center;gap:8px;pointer-events:none}
 #toast.show{transform:translateY(0);opacity:1}
 #toast.ok{border-color:rgba(62,201,122,.3)}
 #toast.err{border-color:rgba(232,85,85,.3)}
 
-/* ═══════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════ */
 .cat-footer{padding:.875rem 1.125rem;border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:4px}
-
-/* ═══════════════════════════════════════
-   OFFLINE BANNER
-═══════════════════════════════════════ */
 #offline-bar{display:none;position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--red);color:#fff;text-align:center;padding:8px;font-size:13px;font-weight:600}
 #offline-bar.show{display:block}
 
-/* ═══════════════════════════════════════
-   BOOTSTRAP md+ OVERRIDES (≥768px)
-═══════════════════════════════════════ */
 @media(min-width:768px){
   .topbar{height:60px;padding:0 1.75rem;gap:16px}
   .tb-logo{font-size:18px}
@@ -401,6 +412,7 @@ img{max-width:100%}
   #toast{bottom:20px;left:auto;right:1.5rem;width:300px}
   .orb1{width:320px;height:320px;top:-80px;right:-60px}
   .orb2{width:260px;height:260px;bottom:-50px;left:-40px}
+  #bio-quick{padding:3rem}
 }
 @media(max-width:360px){
   .tool-card{padding:.7rem}
@@ -410,7 +422,6 @@ img{max-width:100%}
 </head>
 <body>
 
-<!-- Offline bar -->
 <div id="offline-bar">⚠️ You're offline. Some features may not work.</div>
 
 <!-- Loading screen -->
@@ -422,6 +433,20 @@ img{max-width:100%}
 
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
+
+<!-- ══════════ BIOMETRIC QUICK LOGIN SCREEN ══════════ -->
+<div id="bio-quick" class="hidden">
+  <div class="bq-logo">⚡ AI Tools Hub</div>
+  <div class="bq-av" id="bq-av">U</div>
+  <div class="bq-name" id="bq-name">Welcome back</div>
+  <div class="bq-email" id="bq-email"></div>
+  <div class="bq-ring" id="bq-ring" onclick="triggerBio()">
+    <span class="bq-icon" id="bq-icon">🔒</span>
+  </div>
+  <div class="bq-status" id="bq-status">Tap to authenticate</div>
+  <button class="bq-switch" onclick="switchToPassword()">Use password instead</button>
+  <div class="bq-hint" id="bq-hint"></div>
+</div>
 
 <!-- ══════════ AUTH PAGE ══════════ -->
 <div id="auth-page" class="page hidden">
@@ -478,6 +503,19 @@ img{max-width:100%}
             </div>
             <button class="btn-submit" id="btn-si" onclick="doSignIn()">Sign In →</button>
             <div id="msg-si" class="amsg"></div>
+
+            <!-- BIOMETRIC SECTION (Sign In only) -->
+            <div id="bio-section" class="hidden">
+              <div class="bio-divider"><span>or</span></div>
+              <button class="btn-bio" id="btn-bio" onclick="startBioRegisterOrLogin()">
+                <span class="bio-icon" id="bio-icon-btn">🔒</span>
+                <div>
+                  <div class="bio-label" id="bio-label-txt">Use Biometrics</div>
+                  <div class="bio-sub" id="bio-sub-txt">Face ID · Touch ID · Fingerprint</div>
+                </div>
+              </button>
+              <div id="msg-bio" class="amsg" style="margin-top:6px"></div>
+            </div>
           </div>
 
           <!-- SIGN UP -->
@@ -556,7 +594,7 @@ img{max-width:100%}
 
 <!-- ══════════ FORGOT PASSWORD ══════════ -->
 <div id="forgot-page" class="page hidden">
-  <div class="d-flex align-items-center justify-content:center min-vh-100 px-3 py-5" style="justify-content:center">
+  <div class="d-flex align-items-center min-vh-100 px-3 py-5" style="justify-content:center">
     <div class="forgot-box">
       <button class="back-btn" onclick="backToAuth()"><i class="bi bi-arrow-left me-1"></i> Back to Sign In</button>
       <div class="fp-steps">
@@ -620,7 +658,6 @@ img{max-width:100%}
 
 <!-- ══════════ CATALOG PAGE ══════════ -->
 <div id="catalog-page" class="page hidden">
-
   <div class="topbar">
     <div class="tb-logo">⚡ AI Tools</div>
     <div class="tb-search-wrap">
@@ -639,7 +676,6 @@ img{max-width:100%}
     </div>
   </div>
 
-  <!-- Desktop filter toolbar -->
   <div id="desk-tb">
     <span class="dtlbl">Filter:</span>
     <div id="dt-chips"></div>
@@ -662,12 +698,10 @@ img{max-width:100%}
     </div>
   </div>
 
-  <!-- Mobile category strip -->
   <div class="cat-strip d-md-none" id="cat-strip">
     <button class="chip on" onclick="filterCat(this,'all')">All</button>
   </div>
 
-  <!-- Results bar -->
   <div class="rbar">
     <div id="res-count"><strong>—</strong> tools</div>
     <div class="d-flex gap-2 align-items-center mob-only">
@@ -693,7 +727,6 @@ img{max-width:100%}
       <span style="font-size:12px;color:var(--m1)">Made for students who build the future 🚀</span>
     </div>
   </div>
-
 </div>
 
 <!-- ══════════ ADMIN PAGE ══════════ -->
@@ -777,19 +810,8 @@ img{max-width:100%}
 <script>
 /* ══════════════════════════════════════════
    APPS SCRIPT BRIDGE
-   All google.script.run calls are replaced
-   with fetch() calls to APPS_SCRIPT_URL.
-   
-   HOW IT WORKS:
-   Each function sends ?action=functionName&params=JSON
-   The Apps Script doGet() reads these and routes.
-   
-   YOU NEED TO UPDATE YOUR Code.gs doGet() to handle
-   these URL parameters — see bottom of this file.
 ══════════════════════════════════════════ */
-
 function gsr(action, params) {
-  // Returns a Promise that resolves with the response data
   var url = APPS_SCRIPT_URL + '?action=' + encodeURIComponent(action) + '&p=' + encodeURIComponent(JSON.stringify(params || {}));
   return fetch(url, { mode: 'cors' })
     .then(function(r){ return r.json(); })
@@ -800,9 +822,142 @@ function gsr(action, params) {
 var $ = function(id){ return document.getElementById(id); };
 var allTools=[], fuse=null, currentEmail='', activeCat='all', activeView='grid', userCredits=0;
 
+/* ══════════════════════════════════════════
+   BIOMETRIC (WebAuthn) MODULE
+   ─────────────────────────────────────────
+   Storage keys (localStorage):
+     aih_bio_cred   → base64url credentialId for the stored passkey
+     aih_bio_email  → email tied to that passkey
+     aih_session    → full session (existing)
+   
+   Flow:
+   1. After first password sign-in, user sees "Enable Biometrics" button.
+   2. User clicks → WebAuthn registration creates a platform passkey.
+   3. credentialId is stored in localStorage (no server needed).
+   4. Next visit → bio-quick screen auto-shows, user taps the icon.
+   5. WebAuthn authentication verifies the passkey locally.
+   6. On success → session is restored from localStorage.
+══════════════════════════════════════════ */
+
+var BIO = {
+  CRED_KEY  : 'aih_bio_cred',
+  EMAIL_KEY : 'aih_bio_email',
+  RP_ID     : location.hostname || 'localhost',
+  RP_NAME   : 'AI Tools Hub',
+
+  isSupported: function() {
+    return !!(window.PublicKeyCredential &&
+              navigator.credentials &&
+              navigator.credentials.create &&
+              navigator.credentials.get);
+  },
+
+  /* Detect best icon for the platform */
+  icon: function() {
+    var ua = navigator.userAgent;
+    if (/iPhone|iPad|iPod/i.test(ua)) return '🫦';   /* Touch ID / Face ID */
+    if (/Android/i.test(ua))          return '👆';   /* Fingerprint */
+    if (/Windows/i.test(ua))          return '🪟';   /* Windows Hello */
+    if (/Mac/i.test(ua))              return '🫦';   /* Touch ID */
+    return '🔒';
+  },
+
+  hint: function() {
+    var ua = navigator.userAgent;
+    if (/iPhone|iPad/i.test(ua))  return 'Face ID or Touch ID';
+    if (/Android/i.test(ua))      return 'Fingerprint or Face Unlock';
+    if (/Windows/i.test(ua))      return 'Windows Hello (PIN / Face / Fingerprint)';
+    if (/Mac/i.test(ua))          return 'Touch ID';
+    return 'Device biometrics';
+  },
+
+  /* base64url helpers */
+  b64uEncode: function(buf) {
+    return btoa(String.fromCharCode.apply(null, new Uint8Array(buf)))
+      .replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'');
+  },
+  b64uDecode: function(str) {
+    str = str.replace(/-/g,'+').replace(/_/g,'/');
+    while (str.length % 4) str += '=';
+    var bin = atob(str), buf = new Uint8Array(bin.length);
+    for (var i=0;i<bin.length;i++) buf[i]=bin.charCodeAt(i);
+    return buf.buffer;
+  },
+
+  /* Random challenge */
+  challenge: function() {
+    var arr = new Uint8Array(32);
+    crypto.getRandomValues(arr);
+    return arr;
+  },
+
+  /* Register a new passkey for the signed-in user */
+  register: function(email) {
+    var self = this;
+    if (!this.isSupported()) return Promise.reject(new Error('WebAuthn not supported'));
+
+    var userId = new TextEncoder().encode(email);
+    var opts = {
+      publicKey: {
+        challenge          : self.challenge(),
+        rp                 : { id: self.RP_ID, name: self.RP_NAME },
+        user               : { id: userId, name: email, displayName: email.split('@')[0] },
+        pubKeyCredParams   : [{ type:'public-key', alg:-7 },{ type:'public-key', alg:-257 }],
+        authenticatorSelection: {
+          authenticatorAttachment : 'platform',
+          userVerification        : 'required',
+          residentKey             : 'preferred'
+        },
+        timeout  : 60000,
+        attestation: 'none'
+      }
+    };
+
+    return navigator.credentials.create(opts).then(function(cred) {
+      var credId = self.b64uEncode(cred.rawId);
+      localStorage.setItem(self.CRED_KEY,  credId);
+      localStorage.setItem(self.EMAIL_KEY, email);
+      return credId;
+    });
+  },
+
+  /* Authenticate with stored passkey */
+  authenticate: function() {
+    var self = this;
+    if (!this.isSupported()) return Promise.reject(new Error('WebAuthn not supported'));
+    var credId = localStorage.getItem(self.CRED_KEY);
+    if (!credId) return Promise.reject(new Error('No passkey registered'));
+
+    var opts = {
+      publicKey: {
+        challenge       : self.challenge(),
+        rpId            : self.RP_ID,
+        allowCredentials: [{ type:'public-key', id: self.b64uDecode(credId), transports:['internal'] }],
+        userVerification: 'required',
+        timeout         : 60000
+      }
+    };
+
+    return navigator.credentials.get(opts).then(function(assertion) {
+      /* We verify by checking the returned credentialId matches what we stored */
+      var returnedId = self.b64uEncode(assertion.rawId);
+      if (returnedId !== credId) throw new Error('Credential mismatch');
+      return localStorage.getItem(self.EMAIL_KEY);
+    });
+  },
+
+  hasCred: function() {
+    return !!(localStorage.getItem(this.CRED_KEY) && localStorage.getItem(this.EMAIL_KEY));
+  },
+
+  clearCred: function() {
+    localStorage.removeItem(this.CRED_KEY);
+    localStorage.removeItem(this.EMAIL_KEY);
+  }
+};
+
 /* ── INIT ── */
 window.addEventListener('DOMContentLoaded', function(){
-  // Online/offline detection
   function updateOnline(){
     $('offline-bar').classList.toggle('show', !navigator.onLine);
   }
@@ -810,7 +965,6 @@ window.addEventListener('DOMContentLoaded', function(){
   window.addEventListener('offline', updateOnline);
   updateOnline();
 
-  // Check if URL is still placeholder
   if (APPS_SCRIPT_URL.indexOf('YOUR_SCRIPT_ID_HERE') !== -1) {
     $('loading-screen').innerHTML = '<div style="text-align:center;padding:20px;max-width:380px">'
       + '<div style="font-size:40px;margin-bottom:16px">⚙️</div>'
@@ -820,29 +974,202 @@ window.addEventListener('DOMContentLoaded', function(){
     return;
   }
 
-  // Restore session from localStorage
+  hideLoading();
+
+  /* Check for saved session */
   var saved = localStorage.getItem('aih_session');
   if (saved) {
     try {
       var sess = JSON.parse(saved);
       if (sess.email && sess.credits != null) {
+        /* If biometrics is registered for this user, show bio quick screen */
+        if (BIO.isSupported() && BIO.hasCred() && localStorage.getItem(BIO.EMAIL_KEY) === sess.email) {
+          showBioQuick(sess);
+          return;
+        }
+        /* Otherwise restore session directly */
         currentEmail = sess.email;
-        userCredits = Number(sess.credits);
-        var fakeR = { isAdmin: sess.isAdmin, credits: userCredits };
-        hideLoading();
-        initCatalog(fakeR);
+        userCredits  = Number(sess.credits);
+        initCatalog({ isAdmin: sess.isAdmin, credits: userCredits });
         return;
       }
     } catch(e) {}
   }
-  hideLoading();
+
+  /* No session — show auth */
   $('auth-page').classList.remove('hidden');
+  initBioButton();
 });
 
 function hideLoading(){
   $('loading-screen').style.opacity = '0';
   $('loading-screen').style.transition = 'opacity .3s';
   setTimeout(function(){ $('loading-screen').style.display = 'none'; }, 320);
+}
+
+/* ── BIOMETRIC QUICK SCREEN ── */
+function showBioQuick(sess) {
+  var email = sess.email;
+  $('bq-av').textContent    = email.charAt(0).toUpperCase();
+  $('bq-name').textContent  = email.split('@')[0];
+  $('bq-email').textContent = email;
+  $('bq-icon').textContent  = BIO.icon();
+  $('bq-hint').textContent  = BIO.hint();
+  $('bio-quick').classList.remove('hidden');
+
+  /* Auto-trigger after short delay */
+  setTimeout(function(){ triggerBio(sess); }, 600);
+}
+
+function triggerBio(sess) {
+  var ring = $('bq-ring'), status = $('bq-status');
+  ring.className = 'bq-ring scanning';
+  status.textContent = 'Verifying…';
+  status.className = 'bq-status';
+
+  var savedSess = sess || (function(){
+    try{ return JSON.parse(localStorage.getItem('aih_session')||'{}'); }catch(e){ return {}; }
+  })();
+
+  BIO.authenticate()
+    .then(function(email) {
+      ring.className = 'bq-ring success';
+      status.textContent = 'Authenticated!';
+      status.className   = 'bq-status ok';
+      $('bq-icon').textContent = '✅';
+
+      setTimeout(function(){
+        $('bio-quick').classList.add('hidden');
+        currentEmail = savedSess.email || email;
+        userCredits  = Number(savedSess.credits) || 0;
+        initCatalog({ isAdmin: savedSess.isAdmin, credits: userCredits });
+      }, 700);
+    })
+    .catch(function(err) {
+      ring.className = 'bq-ring fail';
+      status.textContent = 'Authentication failed. Try again.';
+      status.className   = 'bq-status err';
+      $('bq-icon').textContent = BIO.icon();
+      setTimeout(function(){ ring.className = 'bq-ring'; status.textContent='Tap to authenticate'; status.className='bq-status'; }, 2000);
+    });
+}
+
+function switchToPassword() {
+  $('bio-quick').classList.add('hidden');
+  $('auth-page').classList.remove('hidden');
+  var saved = localStorage.getItem('aih_session');
+  if (saved) {
+    try { $('si-email').value = JSON.parse(saved).email || ''; } catch(e) {}
+  }
+  initBioButton();
+}
+
+/* ── BIOMETRIC BUTTON IN SIGN-IN FORM ── */
+function initBioButton() {
+  if (!BIO.isSupported()) return;
+  var sec = $('bio-section');
+  sec.classList.remove('hidden');
+  updateBioButtonState();
+}
+
+function updateBioButtonState() {
+  var hasCred = BIO.hasCred();
+  var icon    = BIO.icon();
+  $('bio-icon-btn').textContent = icon;
+  if (hasCred) {
+    $('bio-label-txt').textContent = 'Sign in with Biometrics';
+    $('bio-sub-txt').textContent   = BIO.hint();
+  } else {
+    $('bio-label-txt').textContent = 'Enable Biometric Login';
+    $('bio-sub-txt').textContent   = 'Register ' + BIO.hint() + ' for quick access';
+  }
+}
+
+function startBioRegisterOrLogin() {
+  if (!BIO.isSupported()) {
+    setMsg('msg-bio','Biometrics not supported on this device/browser.','err');
+    return;
+  }
+
+  if (BIO.hasCred()) {
+    /* Try to authenticate and restore session */
+    var saved = localStorage.getItem('aih_session');
+    var sess  = {};
+    try { sess = JSON.parse(saved||'{}'); } catch(e) {}
+
+    if (!sess.email) {
+      setMsg('msg-bio','Please sign in with password first to link biometrics.','inf');
+      return;
+    }
+
+    setBioBtn(true, '🔒', 'Verifying…');
+    BIO.authenticate()
+      .then(function() {
+        setBioBtn(false);
+        $('btn-bio').classList.add('success');
+        toast('Biometric sign-in successful! 🎉','ok');
+        setTimeout(function(){
+          $('btn-bio').classList.remove('success');
+          currentEmail = sess.email;
+          userCredits  = Number(sess.credits)||0;
+          initCatalog({ isAdmin: sess.isAdmin, credits: userCredits });
+        }, 600);
+      })
+      .catch(function(err) {
+        setBioBtn(false);
+        $('btn-bio').classList.add('fail');
+        setMsg('msg-bio','Biometric check failed. Use password instead.','err');
+        setTimeout(function(){ $('btn-bio').classList.remove('fail'); }, 800);
+      });
+  } else {
+    /* Need email to register */
+    var email = $('si-email').value.trim();
+    if (!email) {
+      setMsg('msg-bio','Enter your email above, then enable biometrics.','inf');
+      return;
+    }
+    /* Check session is valid for this email */
+    var savedStr = localStorage.getItem('aih_session');
+    var sess2    = {};
+    try { sess2 = JSON.parse(savedStr||'{}'); } catch(e) {}
+    if (!sess2.email || sess2.email.toLowerCase() !== email.toLowerCase()) {
+      setMsg('msg-bio','Sign in with your password first, then enable biometrics.','inf');
+      return;
+    }
+
+    setBioBtn(true, '🔒', 'Setting up…');
+    BIO.register(email)
+      .then(function() {
+        setBioBtn(false);
+        $('btn-bio').classList.add('success');
+        setMsg('msg-bio','Biometric login enabled! ✅','ok');
+        updateBioButtonState();
+        setTimeout(function(){ $('btn-bio').classList.remove('success'); }, 1000);
+      })
+      .catch(function(err) {
+        setBioBtn(false);
+        $('btn-bio').classList.add('fail');
+        var msg = err.name === 'NotAllowedError'
+          ? 'Permission denied. Allow biometrics in browser settings.'
+          : 'Could not set up biometrics: ' + (err.message||'Unknown error');
+        setMsg('msg-bio', msg, 'err');
+        setTimeout(function(){ $('btn-bio').classList.remove('fail'); }, 800);
+      });
+  }
+}
+
+function setBioBtn(loading, icon, label) {
+  var btn = $('btn-bio');
+  btn.disabled = loading;
+  if (loading) {
+    btn.classList.add('scanning');
+    $('bio-icon-btn').textContent = icon||'🔒';
+    $('bio-label-txt').textContent = label||'Processing…';
+    $('bio-sub-txt').textContent = '';
+  } else {
+    btn.classList.remove('scanning');
+    updateBioButtonState();
+  }
 }
 
 /* ── TOAST ── */
@@ -895,6 +1222,18 @@ function doSignIn(){
       if(r.success){
         currentEmail=email; userCredits=r.credits!=null?Number(r.credits):100;
         localStorage.setItem('aih_session',JSON.stringify({email:email,credits:userCredits,isAdmin:r.isAdmin}));
+        /* After successful password login, show bio registration option */
+        if(BIO.isSupported()){
+          initBioButton();
+          /* If not yet registered, prompt after short delay */
+          if(!BIO.hasCred()){
+            setTimeout(function(){
+              if($('bio-section')&&!$('bio-section').classList.contains('hidden')){
+                setMsg('msg-bio','Tip: Enable biometrics below for one-tap login next time! 👆','inf');
+              }
+            }, 800);
+          }
+        }
         initCatalog(r);
       } else {
         setMsg('msg-si','Invalid email or password.','err');
@@ -940,7 +1279,6 @@ function setCredits(n){
   userCredits=Number(n);
   $('cval').textContent=userCredits;
   $('credit-chip').classList.toggle('low',userCredits<=10);
-  // Persist updated credits
   var saved = localStorage.getItem('aih_session');
   if(saved){ try{ var s=JSON.parse(saved); s.credits=userCredits; localStorage.setItem('aih_session',JSON.stringify(s)); }catch(e){} }
 }
@@ -1075,7 +1413,7 @@ function launchTool(name,url){
       if(r.success)setCredits(r.credits);
       else if(r.message)toast(r.message,'err');
     })
-    .catch(function(){/* silent — tool already opened */});
+    .catch(function(){});
 }
 
 /* ── PREVIEW PPT ── */
@@ -1140,6 +1478,8 @@ function backToCatalog(){$('admin-page').classList.add('hidden');$('catalog-page
 /* ── LOGOUT ── */
 function doLogout(){
   currentEmail='';allTools=[];userCredits=0;
+  /* Clear bio quick-login too */
+  BIO.clearCred();
   localStorage.removeItem('aih_session');
   ['catalog-page','admin-page'].forEach(function(id){$(id).classList.add('hidden');});
   $('adminBtn').classList.add('hidden');
@@ -1147,6 +1487,7 @@ function doLogout(){
   $('auth-page').classList.remove('hidden');
   $('si-email').value='';$('si-pass').value='';
   switchTab('si');bnSet('bn-home');
+  initBioButton();
 }
 
 /* ── FORGOT PASSWORD ── */
@@ -1245,64 +1586,5 @@ function applyDrawer(){$('dt-free').value=$('fd-free').value;$('dt-sort').value=
 /* ── KEYBOARD ── */
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeMSearch();closeFDrawer();}});
 </script>
-
-<!--
-═══════════════════════════════════════════════════════════════
-  ⚙️  REQUIRED: Update your Code.gs doGet() function
-  
-  Replace your existing doGet() with this version so it handles
-  both the web app UI AND the JSON API calls from this file:
-  
-  function doGet(e) {
-    // If action param present → JSON API mode
-    if (e && e.parameter && e.parameter.action) {
-      var action = e.parameter.action;
-      var params = {};
-      try { params = JSON.parse(e.parameter.p || '{}'); } catch(ex) {}
-      
-      var result = {};
-      try {
-        if (action === 'validateUser')
-          result = validateUser(params.email, params.password);
-        else if (action === 'createAccount')
-          result = createAccount(params.email, params.password, params.name, params.mobile, params.institution, params.address, params.qualification);
-        else if (action === 'recordToolClick')
-          result = recordToolClick(params.email, params.toolName);
-        else if (action === 'getUserCredits')
-          result = getUserCredits(params.email);
-        else if (action === 'sendPasswordResetCode')
-          result = sendPasswordResetCode(params.email);
-        else if (action === 'verifyAndResetPassword')
-          result = verifyAndResetPassword(params.email, params.code, params.newPassword);
-        else if (action === 'getToolsFromSheet')
-          result = getToolsFromSheet();
-        else if (action === 'getAdminDashboardData')
-          result = getAdminDashboardData(params.adminEmail);
-        else
-          result = { error: 'Unknown action: ' + action };
-      } catch(ex) {
-        result = { error: ex.message };
-      }
-      
-      return ContentService
-        .createTextOutput(JSON.stringify(result))
-        .setMimeType(ContentService.MimeType.JSON);
-    }
-    
-    // Otherwise → serve the web app HTML
-    return HtmlService.createHtmlOutputFromFile("Index")
-      .setTitle("AI Tools Hub")
-      .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
-  }
-
-  DEPLOY STEPS:
-  1. Paste the doGet() above into Code.gs (replace existing one)
-  2. Click Deploy > New Deployment > Web App
-  3. Set "Who has access" to "Anyone"
-  4. Copy the deployment URL
-  5. Paste it as APPS_SCRIPT_URL at the top of this index.html
-  6. Push index.html to GitHub Pages — done! ✅
-═══════════════════════════════════════════════════════════════
--->
 </body>
 </html>
