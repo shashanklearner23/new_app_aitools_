@@ -1612,6 +1612,17 @@ if ('serviceWorker' in navigator) {
       .catch(function (err) { console.warn('[SW] Registration failed:', err); });
   });
 }
+  if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/new_app_aitools_/sw.js')
+      .then(function (reg) {
+        console.log('✅ SW registered:', reg.scope);
+      })
+      .catch(function (err) {
+        console.log('❌ SW failed:', err);
+      });
+  });
+}
 </script>
 
 </body>
