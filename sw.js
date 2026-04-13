@@ -10,7 +10,7 @@ var RUNTIME_CACHE = 'aih-runtime-v1';
 /* Files to pre-cache on install (app shell) */
 var PRECACHE_ASSETS = [
   './',
-  './index.html',
+  '/new_app_aitools_/index.html',
   './manifest.json',
   'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css',
   'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css',
