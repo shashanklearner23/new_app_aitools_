@@ -2,12 +2,12 @@
   "name": "AI Tools Hub",
   "short_name": "AI Tools",
   "description": "Your launchpad for the AI era — discover and launch the best AI tools for students.",
-  "start_url": "./index.html",
+  "start_url": "/new_app_aitools_/",
   "display": "standalone",
   "background_color": "#07080c",
   "theme_color": "#07080c",
   "orientation": "portrait-primary",
-  "scope": "./",
+  "scope": "/new_app_aitools_/",
   "icons": [
     {
       "src": "icons/icon-72.png",
