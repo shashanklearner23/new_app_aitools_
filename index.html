@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<base target="_top">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -378,7 +377,7 @@ img{max-width:100%}
 .adm-row{display:grid;padding:.75rem .8125rem;border-bottom:1px solid var(--bd);align-items:center;font-size:13px;gap:7px;transition:background .15s}
 .adm-row:last-child{border-bottom:none}
 .adm-row:hover{background:rgba(255,255,255,.02)}
-.th-tools,.tr-tools{grid-template-columns:36px 1fr 70px 70px}
+.th-tools,.tr-tools{grid-template-columns:36px 1fr 70px 60px}
 .th-users,.tr-users{grid-template-columns:36px 1fr 90px 80px}
 .rank{font-family:'Playfair Display',serif;font-weight:700;color:var(--m1);font-size:14px}
 .rank.t3{color:var(--gold)}
@@ -466,7 +465,7 @@ img{max-width:100%}
   .btn-launch,.btn-preview,.btn-sec{width:auto;min-height:auto;padding:12px 18px}
   .btn-launch{flex:1}
   #admin-page{padding:2rem 2rem 3rem;max-width:1200px;margin:0 auto;overflow-x:visible}
-  .th-tools,.tr-tools{grid-template-columns:40px 1fr 120px 100px 90px}
+  .th-tools,.tr-tools{grid-template-columns:40px 1fr 130px 90px 70px}
   .th-users,.tr-users{grid-template-columns:40px 1fr 160px 100px 110px}
   .row-name{white-space:normal}
   #toast{bottom:20px;left:auto;right:1.5rem;width:320px}
@@ -734,6 +733,7 @@ img{max-width:100%}
       <div class="uav" id="uav">U</div>
       <span class="uname" id="uname"></span>
       <button id="adminBtn" class="tbtn gold hidden" onclick="openAdmin()"><i class="bi bi-gear-fill"></i> Admin</button>
+      <button id="pwa-topbar-btn" class="tbtn hidden" onclick="triggerPWAInstall()" title="Install App"><i class="bi bi-download"></i> Install</button>
       <button class="tbtn" onclick="doLogout()">Logout</button>
     </div>
   </div>
@@ -1277,9 +1277,15 @@ var _admActiveTab='tools';
 
 function openAdmin(){
   $('catalog-page').classList.add('hidden');$('admin-page').classList.remove('hidden');
+  /* Deactivate bottom nav while on admin */
+  document.querySelectorAll('.bnbtn').forEach(function(b){b.classList.remove('on');});
   loadAdminData();
 }
-function backToCatalog(){$('admin-page').classList.add('hidden');$('catalog-page').classList.remove('hidden');}
+function backToCatalog(){
+  $('admin-page').classList.add('hidden');$('catalog-page').classList.remove('hidden');
+  document.querySelectorAll('.bnbtn').forEach(function(b){b.classList.remove('on');});
+  $('bn-home').classList.add('on');
+}
 
 function switchAdmTab(tab){
   _admActiveTab=tab;
@@ -1563,7 +1569,168 @@ function bnHome(){
 }
 </script>
 
-<!-- ══════════ PWA: Service Worker Registration + Install Prompt ══════════ -->
-<script src="/pwa-register.js" defer></script>
+<!-- ══════════ PWA: Service Worker Registration + Install Prompt (inlined) ══════════ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ── 1. Register Service Worker ── */
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js', { scope: '/' })
+        .then(function (reg) {
+          console.log('[PWA] SW registered, scope:', reg.scope);
+          reg.addEventListener('updatefound', function () {
+            var newSW = reg.installing;
+            if (!newSW) return;
+            newSW.addEventListener('statechange', function () {
+              if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+                showUpdateToast();
+              }
+            });
+          });
+        })
+        .catch(function (err) {
+          console.warn('[PWA] SW registration failed:', err);
+        });
+      var refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', function () {
+        if (!refreshing) { refreshing = true; window.location.reload(); }
+      });
+    });
+  }
+
+  /* ── 2. A2HS Install Prompt ── */
+  var deferredPrompt = null;
+
+  /* Show/hide the topbar Install button */
+  function showTopbarInstallBtn() {
+    var btn = document.getElementById('pwa-topbar-btn');
+    if (btn) btn.classList.remove('hidden');
+  }
+  function hideTopbarInstallBtn() {
+    var btn = document.getElementById('pwa-topbar-btn');
+    if (btn) btn.classList.add('hidden');
+  }
+
+  /* Global function called by the topbar Install button */
+  window.triggerPWAInstall = function () {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function (choice) {
+        console.log('[PWA] User choice:', choice.outcome);
+        deferredPrompt = null;
+        hideTopbarInstallBtn();
+      });
+    } else {
+      /* If prompt not available (already installed or not eligible), show guidance */
+      alert('To install: tap your browser\u2019s Share / menu button and choose \u201cAdd to Home Screen\u201d.');
+    }
+  };
+
+  /* Check if dismissed within 3 days */
+  var dismissed = localStorage.getItem('pwa_banner_dismissed');
+  var suppressBanner = dismissed && (Date.now() - parseInt(dismissed, 10)) < 3 * 24 * 60 * 60 * 1000;
+
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    deferredPrompt = e;
+    /* Always show the topbar button when installable */
+    showTopbarInstallBtn();
+    if (!suppressBanner) showInstallBanner();
+  });
+
+  window.addEventListener('appinstalled', function () {
+    console.log('[PWA] App installed \u2713');
+    hideInstallBanner();
+    hideTopbarInstallBtn();
+    deferredPrompt = null;
+    if (typeof toast === 'function') toast('\u2705 AI Tools Hub installed! Find it on your home screen.', 'ok');
+  });
+
+  /* ── Install Banner (bottom sheet) ── */
+  var installBanner = null;
+  function showInstallBanner() {
+    if (installBanner) return;
+    installBanner = document.createElement('div');
+    installBanner.id = 'pwa-install-banner';
+    installBanner.innerHTML =
+      '<div style="display:flex;align-items:center;gap:12px;flex:1;min-width:0">'
+      + '<span style="font-size:26px;flex-shrink:0">\u26a1</span>'
+      + '<div style="min-width:0">'
+      + '<div style="font-size:14px;font-weight:700;color:#eeeef5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Install AI Tools Hub</div>'
+      + '<div style="font-size:12px;color:#6b6d80;margin-top:2px">Add to home screen for instant access</div>'
+      + '</div></div>'
+      + '<div style="display:flex;gap:8px;flex-shrink:0">'
+      + '<button id="pwa-install-yes" style="padding:9px 16px;background:linear-gradient(135deg,#e8a430,#f5c842);border:none;border-radius:9px;color:#0a0a0a;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap">Install</button>'
+      + '<button id="pwa-install-no" style="padding:9px 12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:9px;color:#6b6d80;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap">\xd7</button>'
+      + '</div>';
+    Object.assign(installBanner.style, {
+      position:'fixed', bottom:'calc(var(--bnav-h,60px) + 10px)', left:'10px', right:'10px',
+      zIndex:'9990', background:'rgba(13,15,22,0.97)', border:'1px solid rgba(232,164,48,0.28)',
+      borderRadius:'14px', padding:'12px 14px', display:'flex', alignItems:'center', gap:'10px',
+      boxShadow:'0 8px 32px rgba(0,0,0,0.6)', backdropFilter:'blur(16px)',
+      animation:'fadeUp .35s ease both', maxWidth:'480px', margin:'0 auto',
+    });
+    document.body.appendChild(installBanner);
+    document.getElementById('pwa-install-yes').addEventListener('click', function () {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function (choice) {
+        if (choice.outcome === 'accepted') console.log('[PWA] User accepted install');
+        deferredPrompt = null;
+        hideInstallBanner();
+        hideTopbarInstallBtn();
+      });
+    });
+    document.getElementById('pwa-install-no').addEventListener('click', function () {
+      hideInstallBanner();
+      localStorage.setItem('pwa_banner_dismissed', String(Date.now()));
+    });
+  }
+
+  function hideInstallBanner() {
+    if (installBanner) {
+      installBanner.style.opacity = '0';
+      installBanner.style.transform = 'translateY(20px)';
+      installBanner.style.transition = 'opacity .25s,transform .25s';
+      setTimeout(function () {
+        if (installBanner && installBanner.parentNode) installBanner.parentNode.removeChild(installBanner);
+        installBanner = null;
+      }, 280);
+    }
+  }
+
+  /* ── 3. Update toast ── */
+  function showUpdateToast() {
+    var t = document.createElement('div');
+    t.innerHTML = '\ud83d\udd04 A new version is ready. <button id="pwa-update-btn" style="margin-left:8px;padding:4px 10px;background:#e8a430;border:none;border-radius:7px;color:#0a0a0a;font-size:12px;font-weight:700;cursor:pointer">Update</button>';
+    Object.assign(t.style, {
+      position:'fixed', bottom:'calc(var(--bnav-h,60px) + 60px)', left:'10px', right:'10px',
+      zIndex:'9991', background:'rgba(13,15,22,0.97)', border:'1px solid rgba(255,255,255,.12)',
+      borderRadius:'12px', padding:'12px 14px', fontSize:'14px', fontWeight:'500', color:'#eeeef5',
+      boxShadow:'0 8px 24px rgba(0,0,0,.5)', display:'flex', alignItems:'center',
+      animation:'fadeUp .3s ease', maxWidth:'480px', margin:'0 auto',
+    });
+    document.body.appendChild(t);
+    document.getElementById('pwa-update-btn').addEventListener('click', function () {
+      if (navigator.serviceWorker.controller) {
+        navigator.serviceWorker.controller.postMessage({ type: 'SKIP_WAITING' });
+      }
+      t.remove();
+    });
+    setTimeout(function () { if (t.parentNode) t.remove(); }, 12000);
+  }
+
+  /* ── 4. Standalone detection ── */
+  if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+    console.log('[PWA] Running in standalone mode');
+    document.documentElement.classList.add('pwa-standalone');
+    /* Already installed — no need to show install button */
+    hideTopbarInstallBtn();
+  }
+
+})();
+</script>
 </body>
 </html>
