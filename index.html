@@ -10,16 +10,16 @@
 <title>AI Tools Hub</title>
 
 <!-- ══════════ PWA META & ICONS ══════════ -->
-<link rel="manifest" href="/manifest.json">
+<link rel="manifest" href="manifest.json">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="AI Tools">
-<link rel="apple-touch-icon" href="/icons/icon-192.png">
-<link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152.png">
-<link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144.png">
-<link rel="apple-touch-icon" sizes="128x128" href="/icons/icon-128.png">
-<link rel="apple-touch-icon" sizes="96x96"   href="/icons/icon-96.png">
-<link rel="apple-touch-icon" sizes="72x72"   href="/icons/icon-72.png">
-<meta name="msapplication-TileImage" content="/icons/icon-144.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png">
+<link rel="apple-touch-icon" sizes="144x144" href="icons/icon-144.png">
+<link rel="apple-touch-icon" sizes="128x128" href="icons/icon-128.png">
+<link rel="apple-touch-icon" sizes="96x96"   href="icons/icon-96.png">
+<link rel="apple-touch-icon" sizes="72x72"   href="icons/icon-72.png">
+<meta name="msapplication-TileImage" content="icons/icon-144.png">
 <meta name="msapplication-TileColor" content="#07080c">
 <!-- ══════════ END PWA ══════════ -->
 
@@ -360,136 +360,87 @@ img{max-width:100%}
 .btn-sec{width:100%;padding:13px;background:var(--s2);border:1px solid var(--bd);border-radius:13px;color:var(--m2);font-size:14px;font-weight:600;transition:all .2s;min-height:48px}
 
 /* ═══════════════════════════════════════
-   ADMIN PAGE — FULL REBUILD
+   ADMIN PAGE
 ═══════════════════════════════════════ */
 #admin-page{min-height:100vh;padding:.875rem .75rem var(--bnav-h);overflow-x:hidden;animation:fadeIn .35s ease}
 .adm-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:10px;flex-wrap:wrap}
-.adm-title{font-size:clamp(18px,5vw,28px);font-weight:800;background:linear-gradient(135deg,var(--gold),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.adm-sub{font-size:11px;color:var(--m1);margin-top:2px}
-.stat-card{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:.875rem .75rem;min-width:0}
-.stat-ico{font-size:16px;margin-bottom:.4rem}
-.stat-lbl{font-size:10px;color:var(--m1);text-transform:uppercase;letter-spacing:.9px;font-weight:700;margin-bottom:4px}
-.stat-val{font-family:'Playfair Display',serif;font-size:clamp(22px,6vw,36px);font-weight:800;background:linear-gradient(135deg,var(--gold),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
-.sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:.625rem;margin-top:1.1rem}
-.sec-lbl{font-size:12px;font-weight:700;color:var(--m1);text-transform:uppercase;letter-spacing:.9px}
-.adm-table{background:var(--s1);border:1px solid var(--bd);border-radius:14px;overflow:hidden;margin-bottom:.5rem}
-.adm-thead{display:grid;padding:.625rem .8125rem;border-bottom:1px solid var(--bd);font-size:10px;color:var(--m1);text-transform:uppercase;letter-spacing:.9px;font-weight:700;background:var(--s2);gap:7px}
-.adm-row{display:grid;padding:.75rem .8125rem;border-bottom:1px solid var(--bd);align-items:center;font-size:13px;gap:7px;transition:background .15s}
-.adm-row:last-child{border-bottom:none}
-.adm-row:hover{background:rgba(255,255,255,.02)}
-.th-tools,.tr-tools{grid-template-columns:36px 1fr 70px 60px}
-.th-users,.tr-users{grid-template-columns:36px 1fr 90px 80px}
-.rank{font-family:'Playfair Display',serif;font-weight:700;color:var(--m1);font-size:14px}
-.rank.t3{color:var(--gold)}
-.row-name{font-weight:500;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.row-sub{font-size:11px;color:var(--m1);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.badge-c{display:inline-flex;align-items:center;justify-content:center;padding:3px 9px;border-radius:100px;font-size:11px;font-weight:700;background:var(--gdim);color:var(--gold);border:1px solid rgba(232,164,48,.2);white-space:nowrap}
-.badge-c.red{color:var(--red);border-color:rgba(232,85,85,.3);background:rgba(232,85,85,.08)}
-.badge-c.grn{color:var(--grn);border-color:rgba(62,201,122,.3);background:rgba(62,201,122,.08)}
-
-/* Admin Tabs */
-.adm-tabs{display:flex;gap:6px;background:var(--s2);border:1px solid var(--bd);border-radius:11px;padding:4px;margin-bottom:1rem}
-.adm-tab{flex:1;padding:9px 10px;border-radius:8px;border:none;background:transparent;color:var(--m1);font-size:12px;font-weight:600;transition:all .2s;cursor:pointer;white-space:nowrap}
-.adm-tab.on{background:var(--s3);color:var(--gold);border:1px solid rgba(232,164,48,.2)}
+.adm-title{font-size:20px;font-weight:800;letter-spacing:-.4px}
+.adm-sub{font-size:12px;color:var(--m1);margin-top:3px}
+.stat-card{background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:.875rem 1rem;display:flex;align-items:center;gap:12px;min-height:72px}
+.stat-ico{font-size:24px;flex-shrink:0}
+.stat-lbl{font-size:11px;color:var(--m1);font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px}
+.stat-val{font-size:22px;font-weight:800;line-height:1;background:linear-gradient(135deg,var(--gold),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.adm-tabs{display:flex;gap:6px;margin-bottom:1rem;border-bottom:1px solid var(--bd);padding-bottom:.5rem;overflow-x:auto;scrollbar-width:none}
+.adm-tabs::-webkit-scrollbar{display:none}
+.adm-tab{padding:8px 14px;background:transparent;border:1px solid var(--bd);border-radius:9px;color:var(--m1);font-size:13px;font-weight:600;white-space:nowrap;transition:all .2s;min-height:38px;display:flex;align-items:center;gap:5px}
+.adm-tab.on{background:var(--gold);border-color:var(--gold);color:#0a0a0a}
 .adm-panel{display:none}
 .adm-panel.on{display:block}
-
-/* Admin search */
-.adm-search-wrap{position:relative;margin-bottom:.75rem}
+.sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:.625rem;flex-wrap:wrap;gap:6px}
+.sec-lbl{font-size:14px;font-weight:700}
+.adm-search-wrap{position:relative;margin-bottom:.625rem}
 .adm-search-wrap .bi{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--m1);font-size:13px;pointer-events:none}
-.adm-search{width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:9px;padding:9px 12px 9px 32px;color:var(--txt);font-size:14px;outline:none;-webkit-appearance:none}
+.adm-search{width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:9px 10px 9px 32px;color:var(--txt);font-size:14px;outline:none;-webkit-appearance:none}
 .adm-search:focus{border-color:rgba(232,164,48,.4)}
 .adm-search::placeholder{color:var(--m1)}
+.adm-table{background:var(--s1);border:1px solid var(--bd);border-radius:14px;overflow:hidden;margin-bottom:1rem}
+.adm-thead{display:grid;padding:.6rem .875rem;background:rgba(255,255,255,.03);border-bottom:1px solid var(--bd);font-size:10px;font-weight:700;color:var(--m1);text-transform:uppercase;letter-spacing:.8px;gap:8px}
+.th-tools{grid-template-columns:28px 1fr 80px 60px 48px}
+.th-users{grid-template-columns:28px 1fr 90px 60px 80px}
+.adm-row{display:grid;padding:.7rem .875rem;border-bottom:1px solid var(--bd);font-size:13px;gap:8px;align-items:center;transition:background .15s}
+.adm-row:last-child{border-bottom:none}
+.adm-row:hover{background:rgba(255,255,255,.02)}
+.tr-tools{grid-template-columns:28px 1fr 80px 60px 48px}
+.tr-users{grid-template-columns:28px 1fr 90px 60px 80px}
+.rank{font-size:11px;font-weight:800;color:var(--m1);text-align:center}
+.rank.t3{color:var(--gold)}
+.row-name{font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row-sub{font-size:11px;color:var(--m1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px}
+.badge-c{font-size:11px;font-weight:700;background:rgba(232,164,48,.1);color:var(--gold);border:1px solid rgba(232,164,48,.2);border-radius:6px;padding:2px 7px;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap}
+.badge-c.red{background:rgba(232,85,85,.1);color:var(--red);border-color:rgba(232,85,85,.2)}
+.badge-c.grn{background:rgba(62,201,122,.1);color:var(--grn);border-color:rgba(62,201,122,.2)}
+.adm-act-btn{padding:5px 10px;background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:7px;color:var(--m2);font-size:12px;font-weight:600;white-space:nowrap;transition:all .2s;min-height:32px;display:inline-flex;align-items:center;gap:4px}
+.adm-act-btn:hover{border-color:rgba(232,164,48,.4);color:var(--gold)}
+.adm-act-btn.success{border-color:rgba(62,201,122,.3);color:var(--grn)}
+.credit-edit{display:none;align-items:center;gap:5px;margin-top:4px}
+.credit-edit input{width:65px;background:var(--s2);border:1px solid var(--bd);border-radius:6px;padding:4px 6px;color:var(--txt);font-size:13px;outline:none;text-align:center;-webkit-appearance:none}
+.save-c,.cancel-c{padding:4px 8px;border-radius:6px;font-size:12px;font-weight:700;min-height:28px;border:none}
+.save-c{background:var(--grn);color:#0a0a0a}
+.cancel-c{background:rgba(255,255,255,.08);color:var(--m1)}
 
-/* Admin action buttons */
-.adm-act-btn{padding:6px 12px;border-radius:8px;border:1px solid var(--bd);background:transparent;color:var(--m2);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap}
-.adm-act-btn:hover{border-color:var(--bd2);color:var(--txt)}
-.adm-act-btn.danger{color:var(--red);border-color:rgba(232,85,85,.3)}
-.adm-act-btn.danger:hover{background:rgba(232,85,85,.1)}
-.adm-act-btn.success{color:var(--grn);border-color:rgba(62,201,122,.3)}
-.adm-act-btn.success:hover{background:rgba(62,201,122,.08)}
+/* Cat footer */
+.cat-footer{padding:1.5rem 1rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;border-top:1px solid var(--bd)}
 
-/* Credit edit inline */
-.credit-edit{display:none;gap:4px;align-items:center}
-.credit-edit input{width:70px;background:var(--s2);border:1px solid rgba(232,164,48,.4);border-radius:7px;padding:4px 8px;color:var(--txt);font-size:13px;font-weight:700;outline:none;text-align:center}
-.credit-edit button{padding:4px 9px;border-radius:7px;border:none;font-size:12px;font-weight:700;cursor:pointer}
-.credit-edit .save-c{background:var(--gold);color:#0a0a0a}
-.credit-edit .cancel-c{background:var(--s3);color:var(--m2)}
-
-/* ═══════════════════════════════════════
-   TOAST
-═══════════════════════════════════════ */
-#toast{position:fixed;bottom:calc(var(--bnav-h) + 8px);left:10px;right:10px;z-index:9999;background:var(--s2);border:1px solid var(--bd2);border-radius:13px;padding:.8rem 1rem;font-size:14px;font-weight:500;box-shadow:0 8px 30px rgba(0,0,0,.5);transition:all .3s ease;transform:translateY(20px);opacity:0;display:flex;align-items:center;gap:8px;pointer-events:none}
-#toast.show{transform:translateY(0);opacity:1}
-#toast.ok{border-color:rgba(62,201,122,.3)}
-#toast.err{border-color:rgba(232,85,85,.3)}
-
-/* ═══════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════ */
-.cat-footer{padding:.875rem 1.125rem;border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:4px}
-
-/* ═══════════════════════════════════════
-   OFFLINE BANNER
-═══════════════════════════════════════ */
-#offline-bar{display:none;position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--red);color:#fff;text-align:center;padding:8px;font-size:13px;font-weight:600}
-#offline-bar.show{display:block}
-
-/* ═══════════════════════════════════════
-   BOOTSTRAP md+ OVERRIDES (≥768px)
-═══════════════════════════════════════ */
+/* Desktop enhancements */
 @media(min-width:768px){
-  .topbar{height:60px;padding:0 1.75rem;gap:16px}
-  .tb-logo{font-size:18px}
+  body{display:block}
+  #bnav{display:none!important}
   .tb-search-wrap{display:flex}
-  .uname{display:inline}
-  .tbtn{padding:7px 14px;font-size:13px}
-  #bnav{display:none}
-  .cat-strip{display:none}
-  .mob-only{display:none!important}
+  .tb-logo{display:none}
   #desk-tb{display:flex}
-  .cat-body{padding:0 1.75rem 3rem}
-  .cat-page-wrap{padding-bottom:0}
-  .tool-card:hover{border-color:rgba(232,164,48,.28);transform:translateY(-2px)}
-  .tool-card:hover::after{opacity:1}
-  .tool-card:hover .arr{background:var(--gold);border-color:var(--gold);color:#0a0a0a}
-  #grid.lv .tool-card:hover{transform:none}
-  .cname{font-size:16px}
-  .cdesc{font-size:13px}
-  #modal{align-items:center;padding:1.5rem}
-  .m-box{border-radius:18px;max-width:560px;width:100%;max-height:88vh;animation:fadeUp .25s ease;border:1px solid rgba(232,164,48,.14);padding-bottom:0}
-  .m-handle{display:none}
-  .m-head{padding:1.5rem 1.75rem 1.125rem}
-  .m-body{padding:1.125rem 1.75rem;max-height:calc(88vh - 220px);overflow-y:auto;-webkit-overflow-scrolling:touch}
-  .m-foot{padding:1rem 1.75rem;flex-direction:row;gap:10px}
-  .btn-launch,.btn-preview,.btn-sec{width:auto;min-height:auto;padding:12px 18px}
-  .btn-launch{flex:1}
-  #admin-page{padding:2rem 2rem 3rem;max-width:1200px;margin:0 auto;overflow-x:visible}
-  .th-tools,.tr-tools{grid-template-columns:40px 1fr 130px 90px 70px}
-  .th-users,.tr-users{grid-template-columns:40px 1fr 160px 100px 110px}
-  .row-name{white-space:normal}
-  #toast{bottom:20px;left:auto;right:1.5rem;width:320px}
-  .orb1{width:320px;height:320px;top:-80px;right:-60px}
-  .orb2{width:260px;height:260px;bottom:-50px;left:-40px}
-  .adm-tabs{gap:8px}
-  .adm-tab{font-size:13px;padding:10px 14px}
-}
-@media(max-width:360px){
-  .tool-card{padding:.7rem}
-  .cname{font-size:13px}
+  .uname{display:block}
+  .cat-page-wrap{padding-bottom:1.5rem}
+  .auth-panel{display:flex}
+  .auth-form-side{padding:2.5rem 3rem}
+  .m-box{max-width:520px;border-radius:18px;margin:auto;border:1px solid rgba(232,164,48,.12)}
+  #modal.open{align-items:center}
+  .cat-strip{display:none}
+  .mob-only{display:none}
+  #admin-page{padding:.875rem 1.5rem 1.5rem}
+  .th-tools{grid-template-columns:32px 1fr 100px 70px 56px}
+  .th-users{grid-template-columns:32px 1fr 120px 70px 100px}
+  .tr-tools{grid-template-columns:32px 1fr 100px 70px 56px}
+  .tr-users{grid-template-columns:32px 1fr 120px 70px 100px}
 }
 </style>
 </head>
 <body>
 
-<!-- Offline bar -->
-<div id="offline-bar">⚠️ You're offline. Some features may not work.</div>
-
-<!-- Loading screen -->
+<!-- ══════════ LOADING SCREEN ══════════ -->
 <div id="loading-screen">
   <div class="logo">⚡ AI Tools Hub</div>
-  <div class="sub">Your launchpad for the AI era</div>
-  <div class="loader" style="width:20px;height:20px"></div>
+  <div style="width:32px;height:32px;border:3px solid rgba(232,164,48,.15);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite"></div>
+  <div class="sub">Loading your AI toolkit…</div>
 </div>
 
 <div class="orb orb1"></div>
@@ -497,155 +448,155 @@ img{max-width:100%}
 
 <!-- ══════════ AUTH PAGE ══════════ -->
 <div id="auth-page" class="page hidden">
-  <div class="container-fluid p-0">
-    <div class="row g-0 min-vh-100">
-      <div class="col-md-5 d-none d-md-flex auth-panel">
-        <div class="panel-grid"></div>
-        <div class="panel-glow"></div>
-        <div>
-          <div class="panel-logo">⚡ AI Tools Hub</div>
-          <div class="panel-logo-sub">Your launchpad for the AI era</div>
-        </div>
-        <div class="panel-quote">
-          <blockquote>"Stop Googling for hours. Every AI tool you need for assignments, projects &amp; beyond — right here."</blockquote>
-          <cite>— Built for curious students, by people who get it</cite>
-        </div>
-        <div class="panel-dots">
-          <div class="panel-dot on"></div><div class="panel-dot"></div><div class="panel-dot"></div>
+  <div class="container-fluid g-0" style="min-height:100vh">
+    <div class="row g-0" style="min-height:100vh">
+      <!-- Left panel (desktop only) -->
+      <div class="col-lg-5 d-none d-lg-flex">
+        <div class="auth-panel w-100">
+          <div class="panel-grid"></div>
+          <div class="panel-glow"></div>
+          <div>
+            <div class="panel-logo">⚡ AI Tools Hub</div>
+            <div class="panel-logo-sub">Your AI toolkit for the student era</div>
+          </div>
+          <div class="panel-quote">
+            <blockquote>"The best way to predict the future is to build it with AI."</blockquote>
+            <cite>— AI Tools Hub</cite>
+            <div class="panel-dots">
+              <div class="panel-dot on"></div>
+              <div class="panel-dot"></div>
+              <div class="panel-dot"></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-12 col-md-7 auth-form-side">
-        <div class="auth-box">
-          <div class="brand-pill d-md-none">
-            <div class="brand-pill-ico">⚡</div>
-            <div class="brand-pill-txt">AI Tools Hub</div>
-          </div>
-          <div class="auth-h" id="auth-h">Welcome back</div>
-          <div class="auth-p" id="auth-p">Your student toolkit for the AI generation</div>
-          <div class="auth-tabs">
-            <button class="auth-tab on" id="tab-si" onclick="switchTab('si')">Sign In</button>
-            <button class="auth-tab" id="tab-su" onclick="switchTab('su')">Sign Up</button>
-          </div>
+      <!-- Right form side -->
+      <div class="col-12 col-lg-7">
+        <div class="auth-form-side">
+          <div class="auth-box">
+            <div class="brand-pill">
+              <div class="brand-pill-ico">⚡</div>
+              <div class="brand-pill-txt">AI Tools Hub</div>
+            </div>
+            <div class="auth-h" id="auth-h">Welcome back</div>
+            <div class="auth-p" id="auth-p">Your student toolkit for the AI generation</div>
 
-          <!-- SIGN IN -->
-          <div id="form-si">
-            <div class="field-wrap">
-              <div class="field-lbl"><label>Email</label></div>
-              <div class="position-relative">
-                <span class="field-icon"><i class="bi bi-envelope"></i></span>
-                <input type="email" id="si-email" class="form-control" placeholder="you@example.com" autocomplete="email" inputmode="email" onkeydown="if(event.key==='Enter')doSignIn()">
-              </div>
+            <!-- Auth Tabs -->
+            <div class="auth-tabs">
+              <button class="auth-tab on" id="tab-si" onclick="switchTab('si')">Sign In</button>
+              <button class="auth-tab" id="tab-su" onclick="switchTab('su')">Sign Up</button>
             </div>
-            <div class="field-wrap">
-              <div class="field-lbl"><label>Password</label><span onclick="showForgot()">Forgot password?</span></div>
-              <div class="position-relative">
-                <span class="field-icon"><i class="bi bi-lock"></i></span>
-                <input type="password" id="si-pass" class="form-control" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doSignIn()">
-                <button class="eye-btn" onclick="toggleEye('si-pass',this)" type="button"><i class="bi bi-eye"></i></button>
-              </div>
-            </div>
-            <button class="btn-submit" id="btn-si" onclick="doSignIn()">Sign In →</button>
-            <div id="msg-si" class="amsg"></div>
-            <div class="bio-divider"><span class="bio-divider-txt">or use biometrics</span></div>
-            <div class="bio-unsupported" id="bio-unsupported">
-              <i class="bi bi-exclamation-circle me-1"></i>
-              Biometric login requires a device with fingerprint or face unlock, and a browser that supports WebAuthn (Chrome, Safari, Edge).
-            </div>
-            <div class="bio-register-hint" id="bio-register-hint">
-              <i class="bi bi-info-circle me-1"></i>
-              <strong>First time?</strong> Enter your email &amp; password above, sign in once, then tap a biometric button to register your fingerprint or face for future logins.
-            </div>
-            <div class="bio-row" id="bio-row">
-              <button class="bio-btn" id="bio-fp-btn" onclick="doBiometric('fingerprint')" type="button">
-                <div class="bio-ico-wrap">
-                  <div class="bio-ico-ring"></div>
-                  <div class="bio-scan-line"></div>
-                  <span class="bio-ico">🫆</span>
-                </div>
-                <div>
-                  <div class="bio-lbl">Fingerprint</div>
-                  <div class="bio-sublbl" id="bio-fp-sub">Touch sensor</div>
-                </div>
-              </button>
-              <button class="bio-btn" id="bio-face-btn" onclick="doBiometric('face')" type="button">
-                <div class="bio-ico-wrap">
-                  <div class="bio-ico-ring"></div>
-                  <span class="bio-ico">🪪</span>
-                </div>
-                <div>
-                  <div class="bio-lbl">Face ID</div>
-                  <div class="bio-sublbl" id="bio-face-sub">Look at camera</div>
-                </div>
-              </button>
-            </div>
-          </div>
 
-          <!-- SIGN UP -->
-          <div id="form-su" class="hidden">
-            <div class="field-wrap">
-              <div class="field-lbl"><label>Full Name</label></div>
-              <div class="position-relative">
-                <span class="field-icon"><i class="bi bi-person"></i></span>
-                <input type="text" id="su-name" class="form-control" placeholder="Your full name" autocomplete="name">
-              </div>
-            </div>
-            <div class="row g-2">
-              <div class="col-12 col-sm-6">
-                <div class="field-wrap">
-                  <div class="field-lbl"><label>Email</label></div>
-                  <div class="position-relative">
-                    <span class="field-icon"><i class="bi bi-envelope"></i></span>
-                    <input type="email" id="su-email" class="form-control" placeholder="you@example.com" autocomplete="email" inputmode="email">
-                  </div>
+            <!-- Sign In Form -->
+            <div id="form-si">
+              <div class="field-wrap">
+                <div class="field-lbl"><label>Email</label></div>
+                <div class="position-relative">
+                  <span class="field-icon"><i class="bi bi-envelope"></i></span>
+                  <input type="email" id="si-email" class="form-control" placeholder="you@example.com" autocomplete="email" inputmode="email">
                 </div>
               </div>
-              <div class="col-12 col-sm-6">
-                <div class="field-wrap">
-                  <div class="field-lbl"><label>Mobile</label></div>
-                  <div class="position-relative">
-                    <span class="field-icon"><i class="bi bi-phone"></i></span>
-                    <input type="tel" id="su-mobile" class="form-control" placeholder="10-digit" autocomplete="tel" inputmode="tel">
-                  </div>
+              <div class="field-wrap">
+                <div class="field-lbl">
+                  <label>Password</label>
+                  <span onclick="showForgot()">Forgot password?</span>
+                </div>
+                <div class="position-relative">
+                  <span class="field-icon"><i class="bi bi-lock"></i></span>
+                  <input type="password" id="si-pass" class="form-control" placeholder="Your password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doSignIn()">
+                  <button class="eye-btn" onclick="toggleEye('si-pass',this)" type="button"><i class="bi bi-eye"></i></button>
                 </div>
               </div>
-            </div>
-            <div class="field-wrap">
-              <div class="field-lbl"><label>Institution</label></div>
-              <div class="position-relative">
-                <span class="field-icon"><i class="bi bi-building"></i></span>
-                <input type="text" id="su-inst" class="form-control" placeholder="College / Organization" autocomplete="organization">
+              <button class="btn-submit" id="btn-si" onclick="doSignIn()">Sign In →</button>
+              <div id="msg-si" class="amsg"></div>
+
+              <!-- Biometric -->
+              <div class="bio-divider"><span class="bio-divider-txt">or use biometrics</span></div>
+              <div class="bio-unsupported" id="bio-unsupported">Biometrics not supported on this device/browser.</div>
+              <div class="bio-row" id="bio-row">
+                <button class="bio-btn" id="bio-fp-btn" onclick="doBiometric('fingerprint')">
+                  <div class="bio-ico-wrap">
+                    <div class="bio-ico-ring"></div>
+                    <span class="bio-ico">🫆</span>
+                    <div class="bio-scan-line"></div>
+                  </div>
+                  <div>
+                    <div class="bio-lbl">Fingerprint</div>
+                    <div class="bio-sublbl" id="bio-fp-sub">Touch sensor</div>
+                  </div>
+                </button>
+                <button class="bio-btn" id="bio-face-btn" onclick="doBiometric('face')">
+                  <div class="bio-ico-wrap">
+                    <div class="bio-ico-ring"></div>
+                    <span class="bio-ico">😶</span>
+                    <div class="bio-scan-line"></div>
+                  </div>
+                  <div>
+                    <div class="bio-lbl">Face ID</div>
+                    <div class="bio-sublbl" id="bio-face-sub">Look at camera</div>
+                  </div>
+                </button>
+              </div>
+              <div class="bio-register-hint" id="bio-register-hint">
+                <strong>Register biometrics:</strong> Enter your email &amp; password above, sign in once, then tap a biometric button to register for faster future logins.
               </div>
             </div>
-            <div class="row g-2">
-              <div class="col-12 col-sm-6">
-                <div class="field-wrap">
-                  <div class="field-lbl"><label>Qualification</label></div>
-                  <div class="position-relative">
-                    <span class="field-icon"><i class="bi bi-mortarboard"></i></span>
-                    <input type="text" id="su-qual" class="form-control" placeholder="e.g. B.Tech CSE">
-                  </div>
+
+            <!-- Sign Up Form -->
+            <div id="form-su" class="hidden">
+              <div class="field-wrap">
+                <div class="field-lbl"><label>Full Name *</label></div>
+                <div class="position-relative">
+                  <span class="field-icon"><i class="bi bi-person"></i></span>
+                  <input type="text" id="su-name" class="form-control" placeholder="Your full name" autocomplete="name">
                 </div>
               </div>
-              <div class="col-12 col-sm-6">
-                <div class="field-wrap">
-                  <div class="field-lbl"><label>Address</label></div>
-                  <div class="position-relative">
-                    <span class="field-icon"><i class="bi bi-geo-alt"></i></span>
-                    <input type="text" id="su-addr" class="form-control" placeholder="City, State" autocomplete="address-level2">
-                  </div>
+              <div class="field-wrap">
+                <div class="field-lbl"><label>Email *</label></div>
+                <div class="position-relative">
+                  <span class="field-icon"><i class="bi bi-envelope"></i></span>
+                  <input type="email" id="su-email" class="form-control" placeholder="you@example.com" autocomplete="email" inputmode="email">
                 </div>
               </div>
-            </div>
-            <div class="field-wrap">
-              <div class="field-lbl"><label>Password</label></div>
-              <div class="position-relative">
-                <span class="field-icon"><i class="bi bi-lock"></i></span>
-                <input type="password" id="su-pass" class="form-control" placeholder="Min 6 characters" autocomplete="new-password">
-                <button class="eye-btn" onclick="toggleEye('su-pass',this)" type="button"><i class="bi bi-eye"></i></button>
+              <div class="field-wrap">
+                <div class="field-lbl"><label>Mobile</label></div>
+                <div class="position-relative">
+                  <span class="field-icon"><i class="bi bi-phone"></i></span>
+                  <input type="tel" id="su-mobile" class="form-control" placeholder="10-digit number" autocomplete="tel" inputmode="tel">
+                </div>
               </div>
+              <div class="field-wrap">
+                <div class="field-lbl"><label>Institution</label></div>
+                <div class="position-relative">
+                  <span class="field-icon"><i class="bi bi-building"></i></span>
+                  <input type="text" id="su-inst" class="form-control" placeholder="Your college / school" autocomplete="organization">
+                </div>
+              </div>
+              <div class="field-wrap">
+                <div class="field-lbl"><label>Qualification</label></div>
+                <div class="position-relative">
+                  <span class="field-icon"><i class="bi bi-mortarboard"></i></span>
+                  <input type="text" id="su-qual" class="form-control" placeholder="e.g. B.Tech CSE 3rd year">
+                </div>
+              </div>
+              <div class="field-wrap">
+                <div class="field-lbl"><label>Address</label></div>
+                <div class="position-relative">
+                  <span class="field-icon"><i class="bi bi-geo-alt"></i></span>
+                  <input type="text" id="su-addr" class="form-control" placeholder="City, State">
+                </div>
+              </div>
+              <div class="field-wrap">
+                <div class="field-lbl"><label>Password *</label></div>
+                <div class="position-relative">
+                  <span class="field-icon"><i class="bi bi-lock"></i></span>
+                  <input type="password" id="su-pass" class="form-control" placeholder="Min 6 characters" autocomplete="new-password">
+                  <button class="eye-btn" onclick="toggleEye('su-pass',this)" type="button"><i class="bi bi-eye"></i></button>
+                </div>
+              </div>
+              <button class="btn-submit" id="btn-su" onclick="doSignUp()">Create Account →</button>
+              <div id="msg-su" class="amsg"></div>
             </div>
-            <button class="btn-submit" id="btn-su" onclick="doSignUp()">Create Account →</button>
-            <div id="msg-su" class="amsg"></div>
           </div>
         </div>
       </div>
@@ -653,23 +604,23 @@ img{max-width:100%}
   </div>
 </div>
 
-<!-- ══════════ FORGOT PASSWORD ══════════ -->
+<!-- ══════════ FORGOT PASSWORD PAGE ══════════ -->
 <div id="forgot-page" class="page hidden">
-  <div class="d-flex align-items-center min-vh-100 px-3 py-5" style="justify-content:center">
+  <div class="auth-form-side">
     <div class="forgot-box">
-      <button class="back-btn" onclick="backToAuth()"><i class="bi bi-arrow-left me-1"></i> Back to Sign In</button>
+      <button class="back-btn" onclick="backToAuth()"><i class="bi bi-arrow-left"></i> Back to Sign In</button>
       <div class="fp-steps">
         <div class="fp-step on" id="fp-s1">1</div>
         <div class="fp-line" id="fp-l1"></div>
         <div class="fp-step" id="fp-s2">2</div>
         <div class="fp-line" id="fp-l2"></div>
-        <div class="fp-step" id="fp-s3">✓</div>
+        <div class="fp-step" id="fp-s3">3</div>
       </div>
       <div id="fp-p1">
-        <div class="auth-h mb-1">Reset Password</div>
-        <div class="auth-p">Enter your registered email to receive a code</div>
+        <div class="auth-h mb-1">Forgot Password?</div>
+        <div class="auth-p">Enter your registered email to receive a reset code.</div>
         <div class="field-wrap">
-          <div class="field-lbl"><label>Email</label></div>
+          <div class="field-lbl"><label>Email Address</label></div>
           <div class="position-relative">
             <span class="field-icon"><i class="bi bi-envelope"></i></span>
             <input type="email" id="fp-email" class="form-control" placeholder="you@example.com" autocomplete="email" inputmode="email">
@@ -794,7 +745,7 @@ img{max-width:100%}
   </div>
 </div>
 
-<!-- ══════════ ADMIN PAGE — FULL REBUILD ══════════ -->
+<!-- ══════════ ADMIN PAGE ══════════ -->
 <div id="admin-page" class="page hidden">
   <div class="adm-top">
     <div>
@@ -1017,7 +968,7 @@ async function doBiometric(type){
       await BIO.authenticate();setBioState(type,'success','Verified ✓');toast('✅ Biometric verified! Signing in…','ok');
       var storedSess=localStorage.getItem('aih_session');var sess=storedSess?JSON.parse(storedSess):null;
       if(sess&&sess.email===BIO.bioEmail){currentEmail=sess.email;userCredits=Number(sess.credits||100);setTimeout(function(){initCatalog({isAdmin:sess.isAdmin,credits:userCredits});},600);}
-      else{currentEmail=BIO.bioEmail;gsr('biometricLogin',{email:BIO.bioEmail}).then(function(r){userCredits=Number(r.credits||100);if(r.success)localStorage.setItem('aih_session',JSON.stringify({email:BIO.bioEmail,credits:userCredits,isAdmin:r.isAdmin}));setTimeout(function(){initCatalog(r.success?r:{isAdmin:false,credits:userCredits});},600);}).catch(function(){userCredits=100;setTimeout(function(){initCatalog({isAdmin:false,credits:userCredits});},600);});}
+      else{currentEmail=BIO.bioEmail;gsr('validateUser',{email:BIO.bioEmail,password:'__bio__'}).then(function(r){userCredits=Number(r.credits||100);if(r.success)localStorage.setItem('aih_session',JSON.stringify({email:BIO.bioEmail,credits:userCredits,isAdmin:r.isAdmin}));setTimeout(function(){initCatalog(r.success?r:{isAdmin:false,credits:userCredits});},600);}).catch(function(){userCredits=100;setTimeout(function(){initCatalog({isAdmin:false,credits:userCredits});},600);});}
     }catch(err){
       var msg=err.name==='NotAllowedError'?'Biometric cancelled or timed out.':(err.name==='InvalidStateError'?'Credential not found. Please sign in with password.':'Biometric failed. Try again.');
       setBioState(type,'error','Failed ✗');setMsg('msg-si',msg,'err');
@@ -1026,50 +977,55 @@ async function doBiometric(type){
   }
   var email=($('si-email').value||'').trim();
   if(!email){setMsg('msg-si','Enter your email above first, then tap a biometric button to register.','inf');$('si-email').focus();return;}
-  if(!/\S+@\S+\.\S+/.test(email)){setMsg('msg-si','Enter a valid email above to register biometrics.','err');return;}
-  setBioState(type,'scanning','Registering…');setMsg('msg-si','Follow the prompt on your device…','inf');
+  var pass=($('si-pass').value||'');
+  if(!pass){setMsg('msg-si','Enter your password first, then tap to register biometrics.','inf');$('si-pass').focus();return;}
+  setBioState(type,'scanning','Registering…');
   try{
-    await BIO.register(email);setBioState(type,'success','Registered ✓');
-    setMsg('msg-si','✓ Biometric registered for '+email+'. You can now use it to sign in!','ok');
-    toast('🫆 Biometric registered! Use it next time to sign in instantly.','ok');
+    await gsr('validateUser',{email:email,password:pass});
+    await BIO.register(email);
+    setBioState(type,'success','Registered ✓');
+    toast('✅ Biometrics registered! Use them next time to sign in.','ok');
+    setMsg('msg-si','Biometrics set up! You can now sign in with touch/face.','ok');
   }catch(err){
-    var regMsg=err.name==='NotAllowedError'?'Registration cancelled. Try again.':(err.name==='InvalidStateError'?'A passkey already exists on this device for this site.':'Registration failed: '+(err.message||err.name));
-    setBioState(type,'error','Failed ✗');setMsg('msg-si',regMsg,'err');
+    var msg2=err.name==='NotAllowedError'?'Biometric registration cancelled.':(err.name==='InvalidStateError'?'Already registered on this device.':'Failed to register: '+err.message);
+    setBioState(type,'error','Failed ✗');setMsg('msg-si',msg2,'err');
   }
 }
 
-/* ══════════════════════════════════════════
-   INIT
-══════════════════════════════════════════ */
-window.addEventListener('DOMContentLoaded', function(){
-  function updateOnline(){$('offline-bar').classList.toggle('show',!navigator.onLine);}
-  window.addEventListener('online',updateOnline);window.addEventListener('offline',updateOnline);updateOnline();
+/* ── LOADING SCREEN ── */
+window.addEventListener('load',function(){
+  var ls=$('loading-screen');
   BIO.init();
-  if(APPS_SCRIPT_URL.indexOf('YOUR_SCRIPT_ID_HERE')!==-1){
-    $('loading-screen').innerHTML='<div style="text-align:center;padding:20px;max-width:380px"><div style="font-size:40px;margin-bottom:16px">⚙️</div><div style="font-family:Playfair Display,serif;font-size:20px;font-weight:800;color:#e8a430;margin-bottom:8px">Setup Required</div><div style="font-size:14px;color:#9a9cb0;line-height:1.6">Open <code style="background:#13151f;padding:2px 6px;border-radius:6px;color:#e8a430">index.html</code> and replace <code style="background:#13151f;padding:2px 6px;border-radius:6px;color:#e8a430">YOUR_SCRIPT_ID_HERE</code> with your deployed Apps Script URL.</div></div>';
-    return;
-  }
+  /* Check for saved session */
   var saved=localStorage.getItem('aih_session');
-  if(saved){try{var sess=JSON.parse(saved);if(sess.email&&sess.credits!=null){currentEmail=sess.email;userCredits=Number(sess.credits);hideLoading();initCatalog({isAdmin:sess.isAdmin,credits:userCredits});return;}}catch(e){}}
-  hideLoading();$('auth-page').classList.remove('hidden');
+  if(saved){
+    try{
+      var s=JSON.parse(saved);
+      if(s&&s.email){
+        currentEmail=s.email;userCredits=Number(s.credits||100);
+        setTimeout(function(){
+          ls.style.opacity='0';ls.style.transition='opacity .3s';
+          setTimeout(function(){ls.remove();initCatalog({isAdmin:s.isAdmin,credits:userCredits});},300);
+        },400);
+        return;
+      }
+    }catch(e){}
+  }
+  setTimeout(function(){
+    ls.style.opacity='0';ls.style.transition='opacity .3s';
+    setTimeout(function(){ls.remove();$('auth-page').classList.remove('hidden');},300);
+  },600);
 });
 
-function hideLoading(){
-  $('loading-screen').style.opacity='0';$('loading-screen').style.transition='opacity .3s';
-  setTimeout(function(){$('loading-screen').style.display='none';},320);
-}
-
-/* ── TOAST ── */
-function toast(msg,type){
-  var t=$('toast'),icons={ok:'✅',err:'❌',inf:'ℹ️'};
-  t.innerHTML=(icons[type]||'ℹ️')+' '+msg;t.className='show'+(type?' '+type:'');
-  clearTimeout(t._t);t._t=setTimeout(function(){t.className='';},3500);
-}
-
 /* ── HELPERS ── */
-function setBtn(id,loading,txt){var b=$(id);b.disabled=loading;b.innerHTML=loading?'<span class="loader"></span>'+txt:txt+' →';}
-function setMsg(id,msg,type){var el=$(id);el.textContent=msg;el.className='amsg'+(type?' '+type:'');}
-function toggleEye(id,btn){var inp=$(id);inp.type=inp.type==='password'?'text':'password';btn.innerHTML=inp.type==='password'?'<i class="bi bi-eye"></i>':'<i class="bi bi-eye-slash"></i>';}
+function toast(msg,type){
+  var t=$('toast');t.textContent=msg;
+  t.style.cssText='position:fixed;bottom:calc(var(--bnav-h,0px) + 12px);left:50%;transform:translateX(-50%);background:'+(type==='err'?'rgba(232,85,85,.95)':type==='ok'?'rgba(62,201,122,.95)':'rgba(232,164,48,.95)')+';color:'+(type==='err'||type==='ok'?'#fff':'#0a0a0a')+';padding:10px 18px;border-radius:100px;font-size:13px;font-weight:600;z-index:9999;white-space:nowrap;max-width:90vw;overflow:hidden;text-overflow:ellipsis;box-shadow:0 4px 20px rgba(0,0,0,.4);animation:fadeUp .3s ease';
+  clearTimeout(t._t);t._t=setTimeout(function(){t.style.cssText='';},3000);
+}
+function setMsg(id,msg,type){var el=$(id);if(!el)return;el.textContent=msg;el.className='amsg'+(type?' '+type:'');}
+function setBtn(id,dis,txt){var b=$(id);if(!b)return;b.disabled=dis;b.innerHTML=dis?'<span class="loader"></span>'+txt:txt;}
+function toggleEye(id,btn){var inp=$(id);if(!inp)return;var show=inp.type==='password';inp.type=show?'text':'password';btn.innerHTML=show?'<i class="bi bi-eye-slash"></i>':'<i class="bi bi-eye"></i>';}
 function esc(s){return String(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function safeJSON(o){return JSON.stringify(o).replace(/'/g,'&#39;');}
 
@@ -1137,7 +1093,6 @@ function loadCatalog(){
 }
 function startCatalog(tools){
   allTools=tools;
-  /* Ensure each tool has its original slNo preserved from sheet */
   allTools.forEach(function(t,i){if(!t.slNo)t.slNo=i+1;});
   fuse=new Fuse(allTools,{keys:['name','category','description','features'],threshold:.38});
   buildChips();applyFilters();
@@ -1175,7 +1130,7 @@ function applyFilters(){
   renderGrid(data);
 }
 
-/* ── RENDER GRID — with Sl. No. ── */
+/* ── RENDER GRID ── */
 function renderGrid(data){
   var g=$('grid');
   if(!data.length){g.className='row';g.innerHTML='<div class="col-12"><div class="empty-state"><div class="empty-ico">🔭</div><p>No tools found. Try different filters.</p></div></div>';return;}
@@ -1215,7 +1170,7 @@ function setView(v){
   applyFilters();
 }
 
-/* ── MODAL — with Sl. No. ── */
+/* ── MODAL ── */
 function openModal(t){
   var feats=(t.features||'').split(',').map(function(f){return f.trim();}).filter(Boolean);
   var hasPPT=t.presentationPath&&t.presentationPath.trim();
@@ -1271,13 +1226,12 @@ function previewPPT(path,name){
 }
 
 /* ══════════════════════════════════════════
-   ADMIN — FULL REBUILD
+   ADMIN — FIXED
 ══════════════════════════════════════════ */
 var _admActiveTab='tools';
 
 function openAdmin(){
   $('catalog-page').classList.add('hidden');$('admin-page').classList.remove('hidden');
-  /* Deactivate bottom nav while on admin */
   document.querySelectorAll('.bnbtn').forEach(function(b){b.classList.remove('on');});
   loadAdminData();
 }
@@ -1296,28 +1250,22 @@ function switchAdmTab(tab){
 
 function loadAdminData(){
   $('adm-ts').textContent='Refreshing…';
-  gsr('getAdminDashboardData',{email:currentEmail})
+  // FIX: send adminEmail (matching the backend parameter name)
+  gsr('getAdminDashboardData',{adminEmail:currentEmail})
     .then(function(d){
-      if(d.error){toast(d.error,'err');$('adm-ts').textContent='Error loading data';return;}
+      if(d.error){toast(d.error,'err');$('adm-ts').textContent='Error: '+d.error;return;}
       $('adm-ts').textContent='Last updated: '+new Date().toLocaleTimeString();
-      // Stats
       var totalLaunches=d.totalClicks||0;
       var lowCredUsers=(d.users||[]).filter(function(u){return Number(u.credits||0)<=10;}).length;
       $('adm-stats').innerHTML=
-        '<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">👤</div><div class="stat-lbl">Users</div><div class="stat-val">'+(d.totalUsers||0)+'</div></div></div>'
-        +'<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">🧰</div><div class="stat-lbl">Tools</div><div class="stat-val">'+((d.tools||[]).length)+'</div></div></div>'
-        +'<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">🚀</div><div class="stat-lbl">Launches</div><div class="stat-val">'+totalLaunches+'</div></div></div>'
-        +'<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">⚠️</div><div class="stat-lbl">Low Credits</div><div class="stat-val">'+lowCredUsers+'</div></div></div>';
-
-      // Store for filtering
+        '<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">👤</div><div><div class="stat-lbl">Users</div><div class="stat-val">'+(d.totalUsers||0)+'</div></div></div></div>'
+        +'<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">🧰</div><div><div class="stat-lbl">Tools</div><div class="stat-val">'+((d.tools||[]).length)+'</div></div></div></div>'
+        +'<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">🚀</div><div><div class="stat-lbl">Launches</div><div class="stat-val">'+totalLaunches+'</div></div></div></div>'
+        +'<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">⚠️</div><div><div class="stat-lbl">Low Credits</div><div class="stat-val">'+lowCredUsers+'</div></div></div></div>';
       _admAllTools=d.tools||[];
       _admAllUsers=d.users||[];
-
-      // Tools table — sorted by slNo (sheet order)
       renderAdmTools(_admAllTools);
-      // Users table
       renderAdmUsers(_admAllUsers);
-      // Low credits panel
       renderLowCredits(_admAllUsers);
     })
     .catch(function(e){toast('Failed to load admin data: '+e.message,'err');$('adm-ts').textContent='Load failed';});
@@ -1328,8 +1276,8 @@ function renderAdmTools(tools){
   var sorted=tools.slice().sort(function(a,b){return(Number(a.slNo)||9999)-(Number(b.slNo)||9999);});
   var isMD=window.innerWidth>=768;
   var head=isMD
-    ?'<div class="adm-thead th-tools"><span>#</span><span>Tool Name</span><span>Category</span><span>Launches</span><span>Sl. No.</span></div>'
-    :'<div class="adm-thead th-tools"><span>#</span><span>Tool</span><span>Launches</span><span>Sl.No</span></div>';
+    ?'<div class="adm-thead th-tools"><span>#</span><span>Tool Name</span><span>Category</span><span>Launches</span><span>Sl.No</span></div>'
+    :'<div class="adm-thead" style="grid-template-columns:24px 1fr 52px 38px"><span>#</span><span>Tool</span><span>Hits</span><span>Sl.</span></div>';
   var rows=sorted.map(function(t,i){
     var rank=i+1;
     if(isMD){
@@ -1341,7 +1289,7 @@ function renderAdmTools(tools){
         +'<span class="badge-c" style="background:rgba(74,108,247,.1);color:#7c9fff;border-color:rgba(74,108,247,.3)">#'+(t.slNo||i+1)+'</span>'
         +'</div>';
     }else{
-      return '<div class="adm-row tr-tools">'
+      return '<div class="adm-row" style="grid-template-columns:24px 1fr 52px 38px">'
         +'<span class="rank'+(rank<=3?' t3':'')+'">'+rank+'</span>'
         +'<div><div class="row-name">'+esc(t.name)+'</div><div class="row-sub">'+esc(t.category||'')+'</div></div>'
         +'<span class="badge-c">'+((t.totalClicks||t.usageCount||0))+'</span>'
@@ -1363,7 +1311,7 @@ function renderAdmUsers(users){
   var isMD=window.innerWidth>=768;
   var head=isMD
     ?'<div class="adm-thead th-users"><span>#</span><span>User</span><span>Institution</span><span>Credits</span><span>Actions</span></div>'
-    :'<div class="adm-thead th-users"><span>#</span><span>User</span><span>Credits</span><span>Edit</span></div>';
+    :'<div class="adm-thead" style="grid-template-columns:24px 1fr 52px 70px"><span>#</span><span>User</span><span>Credits</span><span>Edit</span></div>';
   var rows=users.map(function(u,i){
     var credClass=Number(u.credits||0)<=10?' red':Number(u.credits||0)>=200?' grn':'';
     var uid='uedit_'+i;
@@ -1383,7 +1331,7 @@ function renderAdmUsers(users){
         +'<button class="adm-act-btn" onclick="toggleCreditEdit(\''+uid+'\')"><i class="bi bi-pencil"></i> Credits</button>'
         +'</div>';
     }else{
-      return '<div class="adm-row tr-users" id="row_'+i+'">'
+      return '<div class="adm-row" style="grid-template-columns:24px 1fr 52px 70px" id="row_'+i+'">'
         +'<span class="rank">'+((i+1))+'</span>'
         +'<div><div class="row-name">'+(u.name||u.email||'—')+'</div><div class="row-sub">'+esc(u.email||'')+'</div></div>'
         +'<span class="badge-c'+credClass+'" id="cval_'+i+'">'+(u.credits||0)+'</span>'
@@ -1434,6 +1382,7 @@ function cancelEdit(uid){var el=$(uid);if(el)el.style.display='none';}
 function saveUserCredits(email,inpId,valId,editId){
   var newVal=parseInt($(inpId).value,10);
   if(isNaN(newVal)||newVal<0){toast('Enter a valid credit amount.','err');return;}
+  // FIX: use adminEmail parameter name (matches Code.gs adminSetCredits)
   gsr('adminSetCredits',{adminEmail:currentEmail,targetEmail:email,credits:newVal})
     .then(function(r){
       if(r.success){
@@ -1441,7 +1390,6 @@ function saveUserCredits(email,inpId,valId,editId){
         $(valId).className='badge-c'+(newVal<=10?' red':newVal>=200?' grn':'');
         cancelEdit(editId);
         toast('✅ Credits updated for '+email,'ok');
-        // Update local cache
         _admAllUsers.forEach(function(u){if(u.email===email)u.credits=newVal;});
         renderLowCredits(_admAllUsers);
       }else{toast(r.message||'Failed to update credits.','err');}
@@ -1482,6 +1430,7 @@ function doSetCredits(){
   if(!email){setMsg('bulk-msg','Enter a user email.','err');return;}
   if(isNaN(credits)||credits<0){setMsg('bulk-msg','Enter a valid credit amount.','err');return;}
   setMsg('bulk-msg','Saving…','inf');
+  // FIX: correct param name
   gsr('adminSetCredits',{adminEmail:currentEmail,targetEmail:email,credits:credits})
     .then(function(r){
       if(r.success){
@@ -1569,15 +1518,14 @@ function bnHome(){
 }
 </script>
 
-<!-- ══════════ PWA: Service Worker Registration + Install Prompt (inlined) ══════════ -->
+<!-- ══════════ PWA: Service Worker Registration + Install Prompt ══════════ -->
 <script>
 (function () {
   'use strict';
 
-  /* ── 1. Register Service Worker ── */
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js', { scope: '/' })
+      navigator.serviceWorker.register('sw.js', { scope: './' })
         .then(function (reg) {
           console.log('[PWA] SW registered, scope:', reg.scope);
           reg.addEventListener('updatefound', function () {
@@ -1600,10 +1548,8 @@ function bnHome(){
     });
   }
 
-  /* ── 2. A2HS Install Prompt ── */
   var deferredPrompt = null;
 
-  /* Show/hide the topbar Install button */
   function showTopbarInstallBtn() {
     var btn = document.getElementById('pwa-topbar-btn');
     if (btn) btn.classList.remove('hidden');
@@ -1613,42 +1559,35 @@ function bnHome(){
     if (btn) btn.classList.add('hidden');
   }
 
-  /* Global function called by the topbar Install button */
   window.triggerPWAInstall = function () {
     if (deferredPrompt) {
       deferredPrompt.prompt();
       deferredPrompt.userChoice.then(function (choice) {
-        console.log('[PWA] User choice:', choice.outcome);
         deferredPrompt = null;
         hideTopbarInstallBtn();
       });
     } else {
-      /* If prompt not available (already installed or not eligible), show guidance */
       alert('To install: tap your browser\u2019s Share / menu button and choose \u201cAdd to Home Screen\u201d.');
     }
   };
 
-  /* Check if dismissed within 3 days */
   var dismissed = localStorage.getItem('pwa_banner_dismissed');
   var suppressBanner = dismissed && (Date.now() - parseInt(dismissed, 10)) < 3 * 24 * 60 * 60 * 1000;
 
   window.addEventListener('beforeinstallprompt', function (e) {
     e.preventDefault();
     deferredPrompt = e;
-    /* Always show the topbar button when installable */
     showTopbarInstallBtn();
     if (!suppressBanner) showInstallBanner();
   });
 
   window.addEventListener('appinstalled', function () {
-    console.log('[PWA] App installed \u2713');
     hideInstallBanner();
     hideTopbarInstallBtn();
     deferredPrompt = null;
-    if (typeof toast === 'function') toast('\u2705 AI Tools Hub installed! Find it on your home screen.', 'ok');
+    if (typeof toast === 'function') toast('\u2705 AI Tools Hub installed!', 'ok');
   });
 
-  /* ── Install Banner (bottom sheet) ── */
   var installBanner = null;
   function showInstallBanner() {
     if (installBanner) return;
@@ -1658,12 +1597,12 @@ function bnHome(){
       '<div style="display:flex;align-items:center;gap:12px;flex:1;min-width:0">'
       + '<span style="font-size:26px;flex-shrink:0">\u26a1</span>'
       + '<div style="min-width:0">'
-      + '<div style="font-size:14px;font-weight:700;color:#eeeef5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Install AI Tools Hub</div>'
+      + '<div style="font-size:14px;font-weight:700;color:#eeeef5">Install AI Tools Hub</div>'
       + '<div style="font-size:12px;color:#6b6d80;margin-top:2px">Add to home screen for instant access</div>'
       + '</div></div>'
       + '<div style="display:flex;gap:8px;flex-shrink:0">'
-      + '<button id="pwa-install-yes" style="padding:9px 16px;background:linear-gradient(135deg,#e8a430,#f5c842);border:none;border-radius:9px;color:#0a0a0a;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap">Install</button>'
-      + '<button id="pwa-install-no" style="padding:9px 12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:9px;color:#6b6d80;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap">\xd7</button>'
+      + '<button id="pwa-install-yes" style="padding:9px 16px;background:linear-gradient(135deg,#e8a430,#f5c842);border:none;border-radius:9px;color:#0a0a0a;font-size:13px;font-weight:700;cursor:pointer">Install</button>'
+      + '<button id="pwa-install-no" style="padding:9px 12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:9px;color:#6b6d80;font-size:13px;font-weight:600;cursor:pointer">\xd7</button>'
       + '</div>';
     Object.assign(installBanner.style, {
       position:'fixed', bottom:'calc(var(--bnav-h,60px) + 10px)', left:'10px', right:'10px',
@@ -1676,8 +1615,7 @@ function bnHome(){
     document.getElementById('pwa-install-yes').addEventListener('click', function () {
       if (!deferredPrompt) return;
       deferredPrompt.prompt();
-      deferredPrompt.userChoice.then(function (choice) {
-        if (choice.outcome === 'accepted') console.log('[PWA] User accepted install');
+      deferredPrompt.userChoice.then(function () {
         deferredPrompt = null;
         hideInstallBanner();
         hideTopbarInstallBtn();
@@ -1692,7 +1630,6 @@ function bnHome(){
   function hideInstallBanner() {
     if (installBanner) {
       installBanner.style.opacity = '0';
-      installBanner.style.transform = 'translateY(20px)';
       installBanner.style.transition = 'opacity .25s,transform .25s';
       setTimeout(function () {
         if (installBanner && installBanner.parentNode) installBanner.parentNode.removeChild(installBanner);
@@ -1701,7 +1638,6 @@ function bnHome(){
     }
   }
 
-  /* ── 3. Update toast ── */
   function showUpdateToast() {
     var t = document.createElement('div');
     t.innerHTML = '\ud83d\udd04 A new version is ready. <button id="pwa-update-btn" style="margin-left:8px;padding:4px 10px;background:#e8a430;border:none;border-radius:7px;color:#0a0a0a;font-size:12px;font-weight:700;cursor:pointer">Update</button>';
@@ -1710,7 +1646,7 @@ function bnHome(){
       zIndex:'9991', background:'rgba(13,15,22,0.97)', border:'1px solid rgba(255,255,255,.12)',
       borderRadius:'12px', padding:'12px 14px', fontSize:'14px', fontWeight:'500', color:'#eeeef5',
       boxShadow:'0 8px 24px rgba(0,0,0,.5)', display:'flex', alignItems:'center',
-      animation:'fadeUp .3s ease', maxWidth:'480px', margin:'0 auto',
+      animation:'fadeUp .3s ease', maxWidth:'480px',
     });
     document.body.appendChild(t);
     document.getElementById('pwa-update-btn').addEventListener('click', function () {
@@ -1722,11 +1658,8 @@ function bnHome(){
     setTimeout(function () { if (t.parentNode) t.remove(); }, 12000);
   }
 
-  /* ── 4. Standalone detection ── */
   if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
-    console.log('[PWA] Running in standalone mode');
     document.documentElement.classList.add('pwa-standalone');
-    /* Already installed — no need to show install button */
     hideTopbarInstallBtn();
   }
 
