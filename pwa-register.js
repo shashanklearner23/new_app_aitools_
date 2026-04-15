@@ -1,3 +1,7 @@
+/* ═══════════════════════════════════════════════════════════════
+   PWA Registration & Install Prompt  (pwa-register.js)
+   Include this script in index.html just before </body>
+═══════════════════════════════════════════════════════════════ */
 
 (function () {
   'use strict';
