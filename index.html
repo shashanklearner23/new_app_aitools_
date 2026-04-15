@@ -7,6 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#07080c">
+<meta name="description" content="Your launchpad for the AI era — discover and launch the best AI tools for students.">
 <title>AI Tools Hub</title>
 
 <!-- ══════════ PWA META & ICONS ══════════ -->
@@ -47,8 +48,7 @@
   --sat:env(safe-area-inset-top,0px);
   --sab:env(safe-area-inset-bottom,0px);
   --bnav-h:calc(60px + var(--sab));
-  --bs-body-bg:#07080c;
-  --bs-body-color:#eeeef5;
+  --bs-body-bg:#07080c;--bs-body-color:#eeeef5;
   --bs-border-color:rgba(255,255,255,.07);
   --bs-font-sans-serif:'Outfit',sans-serif;
 }
@@ -76,24 +76,9 @@ img{max-width:100%}
 @keyframes glow{0%,100%{box-shadow:0 0 18px rgba(232,164,48,.15)}50%{box-shadow:0 0 36px rgba(232,164,48,.35)}}
 @keyframes shimmer{from{background-position:-400px 0}to{background-position:400px 0}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-
-/* ── BIOMETRIC ANIMATIONS ── */
-@keyframes bio-ring-pulse{
-  0%{transform:scale(1);opacity:.8}
-  50%{transform:scale(1.12);opacity:1}
-  100%{transform:scale(1);opacity:.8}
-}
-@keyframes bio-scan{
-  0%{top:8px;opacity:0}
-  15%{opacity:1}
-  85%{opacity:1}
-  100%{top:calc(100% - 10px);opacity:0}
-}
-@keyframes bio-success-ring{
-  0%{transform:scale(0.6);opacity:0}
-  60%{transform:scale(1.1);opacity:1}
-  100%{transform:scale(1);opacity:1}
-}
+@keyframes bio-ring-pulse{0%{transform:scale(1);opacity:.8}50%{transform:scale(1.12);opacity:1}100%{transform:scale(1);opacity:.8}}
+@keyframes bio-scan{0%{top:8px;opacity:0}15%{opacity:1}85%{opacity:1}100%{top:calc(100% - 10px);opacity:0}}
+@keyframes bio-success-ring{0%{transform:scale(0.6);opacity:0}60%{transform:scale(1.1);opacity:1}100%{transform:scale(1);opacity:1}}
 
 /* ── UTILS ── */
 .loader{display:inline-block;width:15px;height:15px;border:2px solid rgba(232,164,48,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px;flex-shrink:0}
@@ -136,12 +121,7 @@ img{max-width:100%}
 /* ═══════════════════════════════════════
    AUTH
 ═══════════════════════════════════════ */
-.auth-panel{
-  background:linear-gradient(160deg,#0d0f16,#131726);
-  border-right:1px solid var(--bd);position:relative;overflow:hidden;
-  min-height:100vh;padding:3.5rem 3rem;
-  display:flex;flex-direction:column;justify-content:space-between;
-}
+.auth-panel{background:linear-gradient(160deg,#0d0f16,#131726);border-right:1px solid var(--bd);position:relative;overflow:hidden;min-height:100vh;padding:3.5rem 3rem;display:flex;flex-direction:column;justify-content:space-between;}
 .panel-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(232,164,48,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(232,164,48,.04) 1px,transparent 1px);background-size:48px 48px}
 .panel-glow{position:absolute;width:340px;height:340px;background:radial-gradient(circle,rgba(232,164,48,.1),transparent 70%);bottom:-80px;right:-80px;border-radius:50%}
 .panel-logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:800;background:linear-gradient(135deg,var(--gold),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;z-index:1}
@@ -153,11 +133,7 @@ img{max-width:100%}
 .panel-dot{width:6px;height:6px;border-radius:50%;background:var(--bd2)}
 .panel-dot.on{background:var(--gold);width:20px;border-radius:3px}
 
-.auth-form-side{
-  display:flex;align-items:center;justify-content:center;
-  padding:2.5rem 1.25rem calc(2.5rem + var(--sab));
-  overflow-y:auto;-webkit-overflow-scrolling:touch;min-height:100vh;
-}
+.auth-form-side{display:flex;align-items:center;justify-content:center;padding:2.5rem 1.25rem calc(2.5rem + var(--sab));overflow-y:auto;-webkit-overflow-scrolling:touch;min-height:100vh;}
 .auth-box{width:100%;max-width:420px;animation:fadeUp .5s ease both}
 
 .brand-pill{display:inline-flex;align-items:center;gap:10px;background:var(--gdim);border:1px solid rgba(232,164,48,.22);border-radius:100px;padding:6px 16px 6px 8px;margin-bottom:1.5rem}
@@ -277,7 +253,11 @@ img{max-width:100%}
 .tool-card{background:var(--s1);border:1px solid var(--bd);border-radius:15px;padding:.875rem;cursor:pointer;transition:border-color .25s,transform .18s;position:relative;overflow:hidden;animation:fadeUp .4s ease both;height:100%;min-width:0;display:flex;flex-direction:column;-webkit-tap-highlight-color:transparent}
 .tool-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s}
 .tool-card:active{transform:scale(.97)}
-.cbadge{font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.9px;background:var(--gdim);border:1px solid rgba(232,164,48,.18);padding:3px 8px;border-radius:100px;display:inline-block;margin-bottom:.5rem;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ── Sl. No. Badge ── */
+.sl-no{position:absolute;top:8px;right:8px;background:rgba(232,164,48,.12);border:1px solid rgba(232,164,48,.22);border-radius:6px;font-size:9px;font-weight:700;color:var(--gold);padding:2px 6px;letter-spacing:.5px;line-height:1.4;z-index:2}
+
+.cbadge{font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.9px;background:var(--gdim);border:1px solid rgba(232,164,48,.18);padding:3px 8px;border-radius:100px;display:inline-block;margin-bottom:.5rem;max-width:calc(100% - 44px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cname{font-size:14px;font-weight:700;line-height:1.25;margin-bottom:.3rem;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .cdesc{font-size:12px;color:var(--m2);line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;flex:1}
 .cfoot{margin-top:.625rem;display:flex;align-items:center;justify-content:space-between;gap:6px}
@@ -292,6 +272,7 @@ img{max-width:100%}
 #grid.lv .tool-card .cdesc,
 #grid.lv .tool-card .cfoot{display:none}
 #grid.lv .tool-card .cname{font-size:15px;margin:0;flex:1;-webkit-line-clamp:1;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#grid.lv .tool-card .sl-no{position:static;background:var(--s3);margin-right:2px;font-size:10px;padding:3px 7px;flex-shrink:0}
 
 .empty-state{text-align:center;padding:60px 20px;animation:fadeIn .4s ease}
 .empty-ico{font-size:44px;margin-bottom:12px;opacity:.35}
@@ -320,6 +301,7 @@ img{max-width:100%}
 .msh-item{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;transition:background .15s;min-height:56px}
 .msh-item:active{background:var(--s2)}
 .msh-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.msh-sl{font-size:10px;font-weight:700;color:var(--m1);background:var(--s2);border-radius:5px;padding:2px 5px;flex-shrink:0}
 .msh-name{font-size:15px;font-weight:600;margin-bottom:2px}
 .msh-meta{font-size:12px;color:var(--m1)}
 .msh-arr{color:var(--m1);font-size:18px;margin-left:auto;flex-shrink:0}
@@ -379,7 +361,7 @@ img{max-width:100%}
 .btn-sec{width:100%;padding:13px;background:var(--s2);border:1px solid var(--bd);border-radius:13px;color:var(--m2);font-size:14px;font-weight:600;transition:all .2s;min-height:48px}
 
 /* ═══════════════════════════════════════
-   ADMIN PAGE
+   ADMIN PAGE — FULL REBUILD
 ═══════════════════════════════════════ */
 #admin-page{min-height:100vh;padding:.875rem .75rem var(--bnav-h);overflow-x:hidden;animation:fadeIn .35s ease}
 .adm-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:10px;flex-wrap:wrap}
@@ -389,20 +371,51 @@ img{max-width:100%}
 .stat-ico{font-size:16px;margin-bottom:.4rem}
 .stat-lbl{font-size:10px;color:var(--m1);text-transform:uppercase;letter-spacing:.9px;font-weight:700;margin-bottom:4px}
 .stat-val{font-family:'Playfair Display',serif;font-size:clamp(22px,6vw,36px);font-weight:800;background:linear-gradient(135deg,var(--gold),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
-.sec-hd{display:flex;align-items:center;margin-bottom:.625rem;margin-top:1.1rem}
+.sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:.625rem;margin-top:1.1rem}
 .sec-lbl{font-size:12px;font-weight:700;color:var(--m1);text-transform:uppercase;letter-spacing:.9px}
 .adm-table{background:var(--s1);border:1px solid var(--bd);border-radius:14px;overflow:hidden;margin-bottom:.5rem}
 .adm-thead{display:grid;padding:.625rem .8125rem;border-bottom:1px solid var(--bd);font-size:10px;color:var(--m1);text-transform:uppercase;letter-spacing:.9px;font-weight:700;background:var(--s2);gap:7px}
 .adm-row{display:grid;padding:.75rem .8125rem;border-bottom:1px solid var(--bd);align-items:center;font-size:13px;gap:7px;transition:background .15s}
 .adm-row:last-child{border-bottom:none}
-.th-tools,.tr-tools{grid-template-columns:26px 1fr 54px}
-.th-users,.tr-users{grid-template-columns:26px 1fr 60px}
+.adm-row:hover{background:rgba(255,255,255,.02)}
+.th-tools,.tr-tools{grid-template-columns:36px 1fr 70px 70px}
+.th-users,.tr-users{grid-template-columns:36px 1fr 90px 80px}
 .rank{font-family:'Playfair Display',serif;font-weight:700;color:var(--m1);font-size:14px}
 .rank.t3{color:var(--gold)}
 .row-name{font-weight:500;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .row-sub{font-size:11px;color:var(--m1);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .badge-c{display:inline-flex;align-items:center;justify-content:center;padding:3px 9px;border-radius:100px;font-size:11px;font-weight:700;background:var(--gdim);color:var(--gold);border:1px solid rgba(232,164,48,.2);white-space:nowrap}
 .badge-c.red{color:var(--red);border-color:rgba(232,85,85,.3);background:rgba(232,85,85,.08)}
+.badge-c.grn{color:var(--grn);border-color:rgba(62,201,122,.3);background:rgba(62,201,122,.08)}
+
+/* Admin Tabs */
+.adm-tabs{display:flex;gap:6px;background:var(--s2);border:1px solid var(--bd);border-radius:11px;padding:4px;margin-bottom:1rem}
+.adm-tab{flex:1;padding:9px 10px;border-radius:8px;border:none;background:transparent;color:var(--m1);font-size:12px;font-weight:600;transition:all .2s;cursor:pointer;white-space:nowrap}
+.adm-tab.on{background:var(--s3);color:var(--gold);border:1px solid rgba(232,164,48,.2)}
+.adm-panel{display:none}
+.adm-panel.on{display:block}
+
+/* Admin search */
+.adm-search-wrap{position:relative;margin-bottom:.75rem}
+.adm-search-wrap .bi{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--m1);font-size:13px;pointer-events:none}
+.adm-search{width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:9px;padding:9px 12px 9px 32px;color:var(--txt);font-size:14px;outline:none;-webkit-appearance:none}
+.adm-search:focus{border-color:rgba(232,164,48,.4)}
+.adm-search::placeholder{color:var(--m1)}
+
+/* Admin action buttons */
+.adm-act-btn{padding:6px 12px;border-radius:8px;border:1px solid var(--bd);background:transparent;color:var(--m2);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap}
+.adm-act-btn:hover{border-color:var(--bd2);color:var(--txt)}
+.adm-act-btn.danger{color:var(--red);border-color:rgba(232,85,85,.3)}
+.adm-act-btn.danger:hover{background:rgba(232,85,85,.1)}
+.adm-act-btn.success{color:var(--grn);border-color:rgba(62,201,122,.3)}
+.adm-act-btn.success:hover{background:rgba(62,201,122,.08)}
+
+/* Credit edit inline */
+.credit-edit{display:none;gap:4px;align-items:center}
+.credit-edit input{width:70px;background:var(--s2);border:1px solid rgba(232,164,48,.4);border-radius:7px;padding:4px 8px;color:var(--txt);font-size:13px;font-weight:700;outline:none;text-align:center}
+.credit-edit button{padding:4px 9px;border-radius:7px;border:none;font-size:12px;font-weight:700;cursor:pointer}
+.credit-edit .save-c{background:var(--gold);color:#0a0a0a}
+.credit-edit .cancel-c{background:var(--s3);color:var(--m2)}
 
 /* ═══════════════════════════════════════
    TOAST
@@ -453,12 +466,14 @@ img{max-width:100%}
   .btn-launch,.btn-preview,.btn-sec{width:auto;min-height:auto;padding:12px 18px}
   .btn-launch{flex:1}
   #admin-page{padding:2rem 2rem 3rem;max-width:1200px;margin:0 auto;overflow-x:visible}
-  .th-tools,.tr-tools{grid-template-columns:30px 1fr 120px 80px}
-  .th-users,.tr-users{grid-template-columns:30px 1fr 150px 70px}
+  .th-tools,.tr-tools{grid-template-columns:40px 1fr 120px 100px 90px}
+  .th-users,.tr-users{grid-template-columns:40px 1fr 160px 100px 110px}
   .row-name{white-space:normal}
-  #toast{bottom:20px;left:auto;right:1.5rem;width:300px}
+  #toast{bottom:20px;left:auto;right:1.5rem;width:320px}
   .orb1{width:320px;height:320px;top:-80px;right:-60px}
   .orb2{width:260px;height:260px;bottom:-50px;left:-40px}
+  .adm-tabs{gap:8px}
+  .adm-tab{font-size:13px;padding:10px 14px}
 }
 @media(max-width:360px){
   .tool-card{padding:.7rem}
@@ -485,8 +500,6 @@ img{max-width:100%}
 <div id="auth-page" class="page hidden">
   <div class="container-fluid p-0">
     <div class="row g-0 min-vh-100">
-
-      <!-- Left panel -->
       <div class="col-md-5 d-none d-md-flex auth-panel">
         <div class="panel-grid"></div>
         <div class="panel-glow"></div>
@@ -502,8 +515,6 @@ img{max-width:100%}
           <div class="panel-dot on"></div><div class="panel-dot"></div><div class="panel-dot"></div>
         </div>
       </div>
-
-      <!-- Right form -->
       <div class="col-12 col-md-7 auth-form-side">
         <div class="auth-box">
           <div class="brand-pill d-md-none">
@@ -536,8 +547,6 @@ img{max-width:100%}
             </div>
             <button class="btn-submit" id="btn-si" onclick="doSignIn()">Sign In →</button>
             <div id="msg-si" class="amsg"></div>
-
-            <!-- BIOMETRIC SECTION -->
             <div class="bio-divider"><span class="bio-divider-txt">or use biometrics</span></div>
             <div class="bio-unsupported" id="bio-unsupported">
               <i class="bi bi-exclamation-circle me-1"></i>
@@ -639,7 +648,6 @@ img{max-width:100%}
             <button class="btn-submit" id="btn-su" onclick="doSignUp()">Create Account →</button>
             <div id="msg-su" class="amsg"></div>
           </div>
-
         </div>
       </div>
     </div>
@@ -648,7 +656,7 @@ img{max-width:100%}
 
 <!-- ══════════ FORGOT PASSWORD ══════════ -->
 <div id="forgot-page" class="page hidden">
-  <div class="d-flex align-items-center justify-content:center min-vh-100 px-3 py-5" style="justify-content:center">
+  <div class="d-flex align-items-center min-vh-100 px-3 py-5" style="justify-content:center">
     <div class="forgot-box">
       <button class="back-btn" onclick="backToAuth()"><i class="bi bi-arrow-left me-1"></i> Back to Sign In</button>
       <div class="fp-steps">
@@ -712,7 +720,6 @@ img{max-width:100%}
 
 <!-- ══════════ CATALOG PAGE ══════════ -->
 <div id="catalog-page" class="page hidden">
-
   <div class="topbar">
     <div class="tb-logo">⚡ AI Tools</div>
     <div class="tb-search-wrap">
@@ -785,28 +792,97 @@ img{max-width:100%}
       <span style="font-size:12px;color:var(--m1)">Made for students who build the future 🚀</span>
     </div>
   </div>
-
 </div>
 
-<!-- ══════════ ADMIN PAGE ══════════ -->
+<!-- ══════════ ADMIN PAGE — FULL REBUILD ══════════ -->
 <div id="admin-page" class="page hidden">
   <div class="adm-top">
     <div>
-      <div class="adm-title">Dashboard</div>
+      <div class="adm-title">⚙️ Admin Dashboard</div>
       <div class="adm-sub" id="adm-ts">Loading…</div>
     </div>
-    <button class="tbtn" onclick="backToCatalog()"><i class="bi bi-arrow-left"></i> Catalog</button>
+    <div class="d-flex gap-2">
+      <button class="tbtn" onclick="loadAdminData()"><i class="bi bi-arrow-clockwise"></i> Refresh</button>
+      <button class="tbtn" onclick="backToCatalog()"><i class="bi bi-arrow-left"></i> Catalog</button>
+    </div>
   </div>
+
+  <!-- Stats row -->
   <div class="row g-2 mb-3" id="adm-stats">
     <div class="col-6 col-md-3"><div class="stat-card"><div class="skel" style="height:60px"></div></div></div>
     <div class="col-6 col-md-3"><div class="stat-card"><div class="skel" style="height:60px"></div></div></div>
     <div class="col-6 col-md-3"><div class="stat-card"><div class="skel" style="height:60px"></div></div></div>
     <div class="col-6 col-md-3"><div class="stat-card"><div class="skel" style="height:60px"></div></div></div>
   </div>
-  <div class="sec-hd"><div class="sec-lbl">Top Tools</div></div>
-  <div class="adm-table" id="adm-tools"><div class="p-4 text-center" style="color:var(--m1)"><span class="loader"></span>Loading…</div></div>
-  <div class="sec-hd"><div class="sec-lbl">Users</div></div>
-  <div class="adm-table" id="adm-users"><div class="p-4 text-center" style="color:var(--m1)"><span class="loader"></span>Loading…</div></div>
+
+  <!-- Admin tabs -->
+  <div class="adm-tabs">
+    <button class="adm-tab on" onclick="switchAdmTab('tools')"><i class="bi bi-tools"></i> Tools</button>
+    <button class="adm-tab" onclick="switchAdmTab('users')"><i class="bi bi-people"></i> Users</button>
+    <button class="adm-tab" onclick="switchAdmTab('credits')"><i class="bi bi-lightning-charge"></i> Credits</button>
+  </div>
+
+  <!-- Tools Panel -->
+  <div class="adm-panel on" id="adm-panel-tools">
+    <div class="sec-hd">
+      <div class="sec-lbl">🧰 All Tools (by Sl. No.)</div>
+      <span style="font-size:11px;color:var(--m1)" id="adm-tool-count">—</span>
+    </div>
+    <div class="adm-search-wrap">
+      <i class="bi bi-search"></i>
+      <input class="adm-search" id="adm-tool-search" placeholder="Search tools by name or category…" oninput="filterAdmTools(this.value)">
+    </div>
+    <div class="adm-table" id="adm-tools">
+      <div class="p-4 text-center" style="color:var(--m1)"><span class="loader"></span> Loading tools…</div>
+    </div>
+  </div>
+
+  <!-- Users Panel -->
+  <div class="adm-panel" id="adm-panel-users">
+    <div class="sec-hd">
+      <div class="sec-lbl">👤 All Users</div>
+      <span style="font-size:11px;color:var(--m1)" id="adm-user-count">—</span>
+    </div>
+    <div class="adm-search-wrap">
+      <i class="bi bi-search"></i>
+      <input class="adm-search" id="adm-user-search" placeholder="Search users by name or email…" oninput="filterAdmUsers(this.value)">
+    </div>
+    <div class="adm-table" id="adm-users">
+      <div class="p-4 text-center" style="color:var(--m1)"><span class="loader"></span> Loading users…</div>
+    </div>
+  </div>
+
+  <!-- Credits Panel -->
+  <div class="adm-panel" id="adm-panel-credits">
+    <div class="sec-hd">
+      <div class="sec-lbl">⚡ Credit Management</div>
+    </div>
+    <div style="background:var(--s1);border:1px solid var(--bd);border-radius:14px;padding:1rem;margin-bottom:.75rem">
+      <div style="font-size:13px;font-weight:600;margin-bottom:.75rem;color:var(--m2)">Bulk Credit Assignment</div>
+      <div class="row g-2">
+        <div class="col-12 col-sm-6">
+          <div class="position-relative">
+            <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--m1);font-size:13px;pointer-events:none"><i class="bi bi-envelope"></i></span>
+            <input type="email" id="bulk-email" class="adm-search" style="padding-left:32px" placeholder="User email…" oninput="admLookupUser(this.value)">
+          </div>
+        </div>
+        <div class="col-6 col-sm-3">
+          <input type="number" id="bulk-credits" class="adm-search" placeholder="Credits" min="0" value="100" style="text-align:center">
+        </div>
+        <div class="col-6 col-sm-3">
+          <button class="fd-apply" style="width:100%;padding:9px;font-size:13px;border-radius:9px" onclick="doSetCredits()">Set Credits</button>
+        </div>
+      </div>
+      <div id="bulk-msg" class="amsg mt-2"></div>
+      <div id="bulk-user-preview" style="margin-top:.5rem;font-size:12px;color:var(--m1)"></div>
+    </div>
+    <div class="sec-hd" style="margin-top:.5rem">
+      <div class="sec-lbl">Low Credit Users (≤ 10)</div>
+    </div>
+    <div class="adm-table" id="adm-low-credits">
+      <div class="p-3 text-center" style="color:var(--m1);font-size:13px">Load users tab first to populate this.</div>
+    </div>
+  </div>
 </div>
 
 <!-- ══════════ MODAL ══════════ -->
@@ -880,157 +956,85 @@ function gsr(action, params) {
 /* ── GLOBALS ── */
 var $ = function(id){ return document.getElementById(id); };
 var allTools=[], fuse=null, currentEmail='', activeCat='all', activeView='grid', userCredits=0;
+var _admAllTools=[], _admAllUsers=[];
 
 /* ══════════════════════════════════════════
    BIOMETRIC (WebAuthn)
 ══════════════════════════════════════════ */
 var BIO = {
-  KEY_CRED  : 'aih_bio_cred',
-  KEY_EMAIL : 'aih_bio_email',
-  KEY_RP    : 'aih_bio_rp',
-  supported : false,
-  enrolled  : false,
-  credId    : null,
-  bioEmail  : '',
-
-  init: function() {
-    if (window.PublicKeyCredential && navigator.credentials) this.supported = true;
-    var storedCred  = localStorage.getItem(this.KEY_CRED);
-    var storedEmail = localStorage.getItem(this.KEY_EMAIL);
-    if (storedCred && storedEmail) {
-      this.enrolled = true;
-      this.bioEmail = storedEmail;
-      this.credId   = BIO.b64ToBuffer(storedCred);
-    }
+  KEY_CRED:'aih_bio_cred', KEY_EMAIL:'aih_bio_email', KEY_RP:'aih_bio_rp',
+  supported:false, enrolled:false, credId:null, bioEmail:'',
+  init:function(){
+    if(window.PublicKeyCredential&&navigator.credentials)this.supported=true;
+    var storedCred=localStorage.getItem(this.KEY_CRED);
+    var storedEmail=localStorage.getItem(this.KEY_EMAIL);
+    if(storedCred&&storedEmail){this.enrolled=true;this.bioEmail=storedEmail;this.credId=BIO.b64ToBuffer(storedCred);}
     this.updateUI();
   },
-
-  updateUI: function() {
-    if (!this.supported) {
-      $('bio-unsupported').style.display = 'block';
-      $('bio-row').style.display = 'none';
-      return;
-    }
-    $('bio-unsupported').style.display = 'none';
-    $('bio-row').style.display = 'grid';
-    if (this.enrolled) {
-      var short = this.bioEmail.length > 22 ? this.bioEmail.substring(0,10) + '…' + this.bioEmail.split('@')[1] : this.bioEmail;
-      $('bio-fp-sub').textContent = short;
-      $('bio-face-sub').textContent = short;
-      $('bio-register-hint').style.display = 'none';
-    } else {
-      $('bio-fp-sub').textContent   = 'Touch sensor';
-      $('bio-face-sub').textContent = 'Look at camera';
-      $('bio-register-hint').style.display = 'block';
-    }
+  updateUI:function(){
+    if(!this.supported){$('bio-unsupported').style.display='block';$('bio-row').style.display='none';return;}
+    $('bio-unsupported').style.display='none';$('bio-row').style.display='grid';
+    if(this.enrolled){
+      var short=this.bioEmail.length>22?this.bioEmail.substring(0,10)+'…'+this.bioEmail.split('@')[1]:this.bioEmail;
+      $('bio-fp-sub').textContent=short;$('bio-face-sub').textContent=short;$('bio-register-hint').style.display='none';
+    }else{$('bio-fp-sub').textContent='Touch sensor';$('bio-face-sub').textContent='Look at camera';$('bio-register-hint').style.display='block';}
   },
-
-  register: async function(email) {
-    var rpId = location.hostname || 'localhost';
-    var challenge = crypto.getRandomValues(new Uint8Array(32));
-    var userId    = new TextEncoder().encode(email);
-    var cred = await navigator.credentials.create({
-      publicKey: {
-        challenge, rp: { name: 'AI Tools Hub', id: rpId },
-        user: { id: userId, name: email, displayName: email },
-        pubKeyCredParams: [{ type: 'public-key', alg: -7 }, { type: 'public-key', alg: -257 }],
-        authenticatorSelection: { authenticatorAttachment: 'platform', userVerification: 'required', residentKey: 'preferred' },
-        timeout: 60000, attestation: 'none'
-      }
-    });
-    localStorage.setItem(BIO.KEY_CRED,  BIO.bufferToB64(cred.rawId));
-    localStorage.setItem(BIO.KEY_EMAIL, email);
-    localStorage.setItem(BIO.KEY_RP,    rpId);
-    BIO.enrolled = true; BIO.bioEmail = email; BIO.credId = cred.rawId;
-    BIO.updateUI();
+  register:async function(email){
+    var rpId=location.hostname||'localhost';
+    var challenge=crypto.getRandomValues(new Uint8Array(32));
+    var userId=new TextEncoder().encode(email);
+    var cred=await navigator.credentials.create({publicKey:{challenge,rp:{name:'AI Tools Hub',id:rpId},user:{id:userId,name:email,displayName:email},pubKeyCredParams:[{type:'public-key',alg:-7},{type:'public-key',alg:-257}],authenticatorSelection:{authenticatorAttachment:'platform',userVerification:'required',residentKey:'preferred'},timeout:60000,attestation:'none'}});
+    localStorage.setItem(BIO.KEY_CRED,BIO.bufferToB64(cred.rawId));
+    localStorage.setItem(BIO.KEY_EMAIL,email);localStorage.setItem(BIO.KEY_RP,rpId);
+    BIO.enrolled=true;BIO.bioEmail=email;BIO.credId=cred.rawId;BIO.updateUI();return true;
+  },
+  authenticate:async function(){
+    var rpId=localStorage.getItem(BIO.KEY_RP)||location.hostname||'localhost';
+    var challenge=crypto.getRandomValues(new Uint8Array(32));
+    await navigator.credentials.get({publicKey:{challenge,rpId,allowCredentials:[{type:'public-key',id:BIO.credId,transports:['internal']}],userVerification:'required',timeout:60000}});
     return true;
   },
-
-  authenticate: async function() {
-    var rpId      = localStorage.getItem(BIO.KEY_RP) || location.hostname || 'localhost';
-    var challenge = crypto.getRandomValues(new Uint8Array(32));
-    await navigator.credentials.get({
-      publicKey: {
-        challenge, rpId,
-        allowCredentials: [{ type: 'public-key', id: BIO.credId, transports: ['internal'] }],
-        userVerification: 'required', timeout: 60000
-      }
-    });
-    return true;
-  },
-
-  bufferToB64: function(buf) {
-    var arr = new Uint8Array(buf instanceof ArrayBuffer ? buf : buf);
-    return btoa(String.fromCharCode.apply(null, arr));
-  },
-  b64ToBuffer: function(b64) {
-    var bin = atob(b64), arr = new Uint8Array(bin.length);
-    for (var i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
-    return arr.buffer;
-  }
+  bufferToB64:function(buf){var arr=new Uint8Array(buf instanceof ArrayBuffer?buf:buf);return btoa(String.fromCharCode.apply(null,arr));},
+  b64ToBuffer:function(b64){var bin=atob(b64),arr=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)arr[i]=bin.charCodeAt(i);return arr.buffer;}
 };
 
-function setBioState(type, state, label) {
-  var fpBtn = $('bio-fp-btn'), faceBtn = $('bio-face-btn');
-  var btn   = type === 'fingerprint' ? fpBtn : faceBtn;
-  var subId = type === 'fingerprint' ? 'bio-fp-sub' : 'bio-face-sub';
-  [fpBtn, faceBtn].forEach(function(b){ b.classList.remove('scanning','success','error'); });
-  if (state === 'scanning') { btn.classList.add('scanning'); if (label) $(subId).textContent = label; }
-  else if (state === 'success') {
-    btn.classList.add('success'); if (label) $(subId).textContent = label;
-    setTimeout(function(){ btn.classList.remove('success'); BIO.updateUI(); }, 2200);
-  } else if (state === 'error') {
-    btn.classList.add('error'); if (label) $(subId).textContent = label;
-    setTimeout(function(){ btn.classList.remove('error'); BIO.updateUI(); }, 2500);
-  } else { BIO.updateUI(); }
+function setBioState(type,state,label){
+  var fpBtn=$('bio-fp-btn'),faceBtn=$('bio-face-btn');
+  var btn=type==='fingerprint'?fpBtn:faceBtn;
+  var subId=type==='fingerprint'?'bio-fp-sub':'bio-face-sub';
+  [fpBtn,faceBtn].forEach(function(b){b.classList.remove('scanning','success','error');});
+  if(state==='scanning'){btn.classList.add('scanning');if(label)$(subId).textContent=label;}
+  else if(state==='success'){btn.classList.add('success');if(label)$(subId).textContent=label;setTimeout(function(){btn.classList.remove('success');BIO.updateUI();},2200);}
+  else if(state==='error'){btn.classList.add('error');if(label)$(subId).textContent=label;setTimeout(function(){btn.classList.remove('error');BIO.updateUI();},2500);}
+  else{BIO.updateUI();}
 }
 
-async function doBiometric(type) {
-  if (!BIO.supported) { toast('Biometrics not supported on this device.', 'err'); return; }
-  if (BIO.enrolled && BIO.credId) {
-    setBioState(type, 'scanning', 'Verifying…');
-    try {
-      await BIO.authenticate();
-      setBioState(type, 'success', 'Verified ✓');
-      toast('✅ Biometric verified! Signing in…', 'ok');
-      var storedSess = localStorage.getItem('aih_session');
-      var sess = storedSess ? JSON.parse(storedSess) : null;
-      if (sess && sess.email === BIO.bioEmail) {
-        currentEmail = sess.email; userCredits = Number(sess.credits || 100);
-        setTimeout(function(){ initCatalog({ isAdmin: sess.isAdmin, credits: userCredits }); }, 600);
-      } else {
-        currentEmail = BIO.bioEmail;
-        gsr('biometricLogin', { email: BIO.bioEmail })
-          .then(function(r) {
-            userCredits = Number(r.credits || 100);
-            if (r.success) localStorage.setItem('aih_session', JSON.stringify({ email: BIO.bioEmail, credits: userCredits, isAdmin: r.isAdmin }));
-            setTimeout(function(){ initCatalog(r.success ? r : { isAdmin: false, credits: userCredits }); }, 600);
-          })
-          .catch(function(){ userCredits = 100; setTimeout(function(){ initCatalog({ isAdmin: false, credits: userCredits }); }, 600); });
-      }
-    } catch (err) {
-      var msg = err.name === 'NotAllowedError' ? 'Biometric cancelled or timed out.'
-        : (err.name === 'InvalidStateError' ? 'Credential not found. Please sign in with password.' : 'Biometric failed. Try again.');
-      setBioState(type, 'error', 'Failed ✗');
-      setMsg('msg-si', msg, 'err');
+async function doBiometric(type){
+  if(!BIO.supported){toast('Biometrics not supported on this device.','err');return;}
+  if(BIO.enrolled&&BIO.credId){
+    setBioState(type,'scanning','Verifying…');
+    try{
+      await BIO.authenticate();setBioState(type,'success','Verified ✓');toast('✅ Biometric verified! Signing in…','ok');
+      var storedSess=localStorage.getItem('aih_session');var sess=storedSess?JSON.parse(storedSess):null;
+      if(sess&&sess.email===BIO.bioEmail){currentEmail=sess.email;userCredits=Number(sess.credits||100);setTimeout(function(){initCatalog({isAdmin:sess.isAdmin,credits:userCredits});},600);}
+      else{currentEmail=BIO.bioEmail;gsr('biometricLogin',{email:BIO.bioEmail}).then(function(r){userCredits=Number(r.credits||100);if(r.success)localStorage.setItem('aih_session',JSON.stringify({email:BIO.bioEmail,credits:userCredits,isAdmin:r.isAdmin}));setTimeout(function(){initCatalog(r.success?r:{isAdmin:false,credits:userCredits});},600);}).catch(function(){userCredits=100;setTimeout(function(){initCatalog({isAdmin:false,credits:userCredits});},600);});}
+    }catch(err){
+      var msg=err.name==='NotAllowedError'?'Biometric cancelled or timed out.':(err.name==='InvalidStateError'?'Credential not found. Please sign in with password.':'Biometric failed. Try again.');
+      setBioState(type,'error','Failed ✗');setMsg('msg-si',msg,'err');
     }
     return;
   }
-  var email = ($('si-email').value || '').trim();
-  if (!email) { setMsg('msg-si', 'Enter your email above first, then tap a biometric button to register.', 'inf'); $('si-email').focus(); return; }
-  if (!/\S+@\S+\.\S+/.test(email)) { setMsg('msg-si', 'Enter a valid email above to register biometrics.', 'err'); return; }
-  setBioState(type, 'scanning', 'Registering…');
-  setMsg('msg-si', 'Follow the prompt on your device…', 'inf');
-  try {
-    await BIO.register(email);
-    setBioState(type, 'success', 'Registered ✓');
-    setMsg('msg-si', '✓ Biometric registered for ' + email + '. You can now use it to sign in!', 'ok');
-    toast('🫆 Biometric registered! Use it next time to sign in instantly.', 'ok');
-  } catch (err) {
-    var regMsg = err.name === 'NotAllowedError' ? 'Registration cancelled. Try again.'
-      : (err.name === 'InvalidStateError' ? 'A passkey already exists on this device for this site.' : 'Registration failed: ' + (err.message || err.name));
-    setBioState(type, 'error', 'Failed ✗');
-    setMsg('msg-si', regMsg, 'err');
+  var email=($('si-email').value||'').trim();
+  if(!email){setMsg('msg-si','Enter your email above first, then tap a biometric button to register.','inf');$('si-email').focus();return;}
+  if(!/\S+@\S+\.\S+/.test(email)){setMsg('msg-si','Enter a valid email above to register biometrics.','err');return;}
+  setBioState(type,'scanning','Registering…');setMsg('msg-si','Follow the prompt on your device…','inf');
+  try{
+    await BIO.register(email);setBioState(type,'success','Registered ✓');
+    setMsg('msg-si','✓ Biometric registered for '+email+'. You can now use it to sign in!','ok');
+    toast('🫆 Biometric registered! Use it next time to sign in instantly.','ok');
+  }catch(err){
+    var regMsg=err.name==='NotAllowedError'?'Registration cancelled. Try again.':(err.name==='InvalidStateError'?'A passkey already exists on this device for this site.':'Registration failed: '+(err.message||err.name));
+    setBioState(type,'error','Failed ✗');setMsg('msg-si',regMsg,'err');
   }
 }
 
@@ -1038,121 +1042,88 @@ async function doBiometric(type) {
    INIT
 ══════════════════════════════════════════ */
 window.addEventListener('DOMContentLoaded', function(){
-  function updateOnline(){ $('offline-bar').classList.toggle('show', !navigator.onLine); }
-  window.addEventListener('online', updateOnline);
-  window.addEventListener('offline', updateOnline);
-  updateOnline();
-
+  function updateOnline(){$('offline-bar').classList.toggle('show',!navigator.onLine);}
+  window.addEventListener('online',updateOnline);window.addEventListener('offline',updateOnline);updateOnline();
   BIO.init();
-
-  if (APPS_SCRIPT_URL.indexOf('YOUR_SCRIPT_ID_HERE') !== -1) {
-    $('loading-screen').innerHTML = '<div style="text-align:center;padding:20px;max-width:380px">'
-      + '<div style="font-size:40px;margin-bottom:16px">⚙️</div>'
-      + '<div style="font-family:Playfair Display,serif;font-size:20px;font-weight:800;color:#e8a430;margin-bottom:8px">Setup Required</div>'
-      + '<div style="font-size:14px;color:#9a9cb0;line-height:1.6">Open <code style="background:#13151f;padding:2px 6px;border-radius:6px;color:#e8a430">index.html</code> and replace <code style="background:#13151f;padding:2px 6px;border-radius:6px;color:#e8a430">YOUR_SCRIPT_ID_HERE</code> with your deployed Apps Script URL.</div>'
-      + '</div>';
+  if(APPS_SCRIPT_URL.indexOf('YOUR_SCRIPT_ID_HERE')!==-1){
+    $('loading-screen').innerHTML='<div style="text-align:center;padding:20px;max-width:380px"><div style="font-size:40px;margin-bottom:16px">⚙️</div><div style="font-family:Playfair Display,serif;font-size:20px;font-weight:800;color:#e8a430;margin-bottom:8px">Setup Required</div><div style="font-size:14px;color:#9a9cb0;line-height:1.6">Open <code style="background:#13151f;padding:2px 6px;border-radius:6px;color:#e8a430">index.html</code> and replace <code style="background:#13151f;padding:2px 6px;border-radius:6px;color:#e8a430">YOUR_SCRIPT_ID_HERE</code> with your deployed Apps Script URL.</div></div>';
     return;
   }
-
-  var saved = localStorage.getItem('aih_session');
-  if (saved) {
-    try {
-      var sess = JSON.parse(saved);
-      if (sess.email && sess.credits != null) {
-        currentEmail = sess.email; userCredits = Number(sess.credits);
-        hideLoading(); initCatalog({ isAdmin: sess.isAdmin, credits: userCredits }); return;
-      }
-    } catch(e) {}
-  }
-  hideLoading();
-  $('auth-page').classList.remove('hidden');
+  var saved=localStorage.getItem('aih_session');
+  if(saved){try{var sess=JSON.parse(saved);if(sess.email&&sess.credits!=null){currentEmail=sess.email;userCredits=Number(sess.credits);hideLoading();initCatalog({isAdmin:sess.isAdmin,credits:userCredits});return;}}catch(e){}}
+  hideLoading();$('auth-page').classList.remove('hidden');
 });
 
 function hideLoading(){
-  $('loading-screen').style.opacity = '0';
-  $('loading-screen').style.transition = 'opacity .3s';
-  setTimeout(function(){ $('loading-screen').style.display = 'none'; }, 320);
+  $('loading-screen').style.opacity='0';$('loading-screen').style.transition='opacity .3s';
+  setTimeout(function(){$('loading-screen').style.display='none';},320);
 }
 
 /* ── TOAST ── */
-function toast(msg, type){
-  var t=$('toast'), icons={ok:'✅',err:'❌',inf:'ℹ️'};
-  t.innerHTML=(icons[type]||'ℹ️')+' '+msg;
-  t.className='show'+(type?' '+type:'');
-  clearTimeout(t._t);
-  t._t=setTimeout(function(){t.className='';},3000);
+function toast(msg,type){
+  var t=$('toast'),icons={ok:'✅',err:'❌',inf:'ℹ️'};
+  t.innerHTML=(icons[type]||'ℹ️')+' '+msg;t.className='show'+(type?' '+type:'');
+  clearTimeout(t._t);t._t=setTimeout(function(){t.className='';},3500);
 }
 
 /* ── HELPERS ── */
-function setBtn(id, loading, txt){ var b=$(id); b.disabled=loading; b.innerHTML=loading?'<span class="loader"></span>'+txt:txt+' →'; }
-function setMsg(id, msg, type){ var el=$(id); el.textContent=msg; el.className='amsg'+(type?' '+type:''); }
-function toggleEye(id, btn){ var inp=$(id); inp.type=inp.type==='password'?'text':'password'; btn.innerHTML=inp.type==='password'?'<i class="bi bi-eye"></i>':'<i class="bi bi-eye-slash"></i>'; }
-function esc(s){ return String(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function safeJSON(o){ return JSON.stringify(o).replace(/'/g,'&#39;'); }
+function setBtn(id,loading,txt){var b=$(id);b.disabled=loading;b.innerHTML=loading?'<span class="loader"></span>'+txt:txt+' →';}
+function setMsg(id,msg,type){var el=$(id);el.textContent=msg;el.className='amsg'+(type?' '+type:'');}
+function toggleEye(id,btn){var inp=$(id);inp.type=inp.type==='password'?'text':'password';btn.innerHTML=inp.type==='password'?'<i class="bi bi-eye"></i>':'<i class="bi bi-eye-slash"></i>';}
+function esc(s){return String(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function safeJSON(o){return JSON.stringify(o).replace(/'/g,'&#39;');}
 
 /* ── AUTH TABS ── */
 function switchTab(t){
   var si=t==='si';
-  $('form-si').classList.toggle('hidden',!si);
-  $('form-su').classList.toggle('hidden',si);
-  $('tab-si').classList.toggle('on',si);
-  $('tab-su').classList.toggle('on',!si);
+  $('form-si').classList.toggle('hidden',!si);$('form-su').classList.toggle('hidden',si);
+  $('tab-si').classList.toggle('on',si);$('tab-su').classList.toggle('on',!si);
   $('auth-h').textContent=si?'Welcome back':'Create account';
   $('auth-p').textContent=si?'Your student toolkit for the AI generation':'Join thousands of students exploring AI';
 }
 
 /* ── SIGN IN ── */
 function doSignIn(){
-  var email=$('si-email').value.trim(), pass=$('si-pass').value;
+  var email=$('si-email').value.trim(),pass=$('si-pass').value;
   if(!email||!pass){setMsg('msg-si','Please fill in all fields.','err');return;}
-  setMsg('msg-si','',''); setBtn('btn-si',true,'Signing in…');
+  setMsg('msg-si','');setBtn('btn-si',true,'Signing in…');
   gsr('validateUser',{email:email,password:pass})
     .then(function(r){
       setBtn('btn-si',false,'Sign In');
       if(r.success){
-        currentEmail=email; userCredits=r.credits!=null?Number(r.credits):100;
+        currentEmail=email;userCredits=r.credits!=null?Number(r.credits):100;
         localStorage.setItem('aih_session',JSON.stringify({email:email,credits:userCredits,isAdmin:r.isAdmin}));
-        if(BIO.supported && !BIO.enrolled) setMsg('msg-si','Signed in! Tip: tap a biometric button below to register for faster future logins.','inf');
+        if(BIO.supported&&!BIO.enrolled)setMsg('msg-si','Signed in! Tip: tap a biometric button below to register for faster future logins.','inf');
         initCatalog(r);
-      } else { setMsg('msg-si','Invalid email or password.','err'); }
-    })
-    .catch(function(){setBtn('btn-si',false,'Sign In');setMsg('msg-si','Connection error. Please try again.','err');});
+      }else{setMsg('msg-si','Invalid email or password.','err');}
+    }).catch(function(){setBtn('btn-si',false,'Sign In');setMsg('msg-si','Connection error. Please try again.','err');});
 }
 
 /* ── SIGN UP ── */
 function doSignUp(){
-  var name=$('su-name').value.trim(), email=$('su-email').value.trim(),
-      mob=$('su-mobile').value.trim(), inst=$('su-inst').value.trim(),
-      qual=$('su-qual').value.trim(), addr=$('su-addr').value.trim(),
-      pass=$('su-pass').value;
+  var name=$('su-name').value.trim(),email=$('su-email').value.trim(),mob=$('su-mobile').value.trim(),
+      inst=$('su-inst').value.trim(),qual=$('su-qual').value.trim(),addr=$('su-addr').value.trim(),pass=$('su-pass').value;
   if(!name||!email||!pass){setMsg('msg-su','Name, email and password required.','err');return;}
   if(pass.length<6){setMsg('msg-su','Password must be at least 6 characters.','err');return;}
-  setMsg('msg-su','',''); setBtn('btn-su',true,'Creating…');
+  setMsg('msg-su','');setBtn('btn-su',true,'Creating…');
   gsr('createAccount',{email:email,password:pass,name:name,mobile:mob,institution:inst,address:addr,qualification:qual})
     .then(function(r){
       setBtn('btn-su',false,'Create Account');
-      if(r.success){
-        setMsg('msg-su','Account created! Signing you in…','ok');
-        setTimeout(function(){$('si-email').value=email;$('si-pass').value=pass;switchTab('si');doSignIn();},900);
-      } else { setMsg('msg-su',r.message||'Registration failed.','err'); }
-    })
-    .catch(function(){setBtn('btn-su',false,'Create Account');setMsg('msg-su','Connection error.','err');});
+      if(r.success){setMsg('msg-su','Account created! Signing you in…','ok');setTimeout(function(){$('si-email').value=email;$('si-pass').value=pass;switchTab('si');doSignIn();},900);}
+      else{setMsg('msg-su',r.message||'Registration failed.','err');}
+    }).catch(function(){setBtn('btn-su',false,'Create Account');setMsg('msg-su','Connection error.','err');});
 }
 
 /* ── INIT CATALOG ── */
 function initCatalog(r){
-  $('auth-page').classList.add('hidden');
-  $('catalog-page').classList.remove('hidden');
-  $('uav').textContent=currentEmail.charAt(0).toUpperCase();
-  $('uname').textContent=currentEmail.split('@')[0];
+  $('auth-page').classList.add('hidden');$('catalog-page').classList.remove('hidden');
+  $('uav').textContent=currentEmail.charAt(0).toUpperCase();$('uname').textContent=currentEmail.split('@')[0];
   if(r.isAdmin)$('adminBtn').classList.remove('hidden');
-  setCredits(userCredits);
-  $('credit-chip').classList.add('show');
+  setCredits(userCredits);$('credit-chip').classList.add('show');
   loadCatalog();
 }
 function setCredits(n){
-  userCredits=Number(n); $('cval').textContent=userCredits;
-  $('credit-chip').classList.toggle('low',userCredits<=10);
+  userCredits=Number(n);$('cval').textContent=userCredits;$('credit-chip').classList.toggle('low',userCredits<=10);
   var saved=localStorage.getItem('aih_session');
   if(saved){try{var s=JSON.parse(saved);s.credits=userCredits;localStorage.setItem('aih_session',JSON.stringify(s));}catch(e){}}
 }
@@ -1164,13 +1135,17 @@ function loadCatalog(){
     $('grid').innerHTML='<div class="col-12 text-center py-5" style="color:var(--red)">⚠️ Failed to load tools. Check your connection and try again.</div>';
   });
 }
-function startCatalog(tools){ allTools=tools; fuse=new Fuse(allTools,{keys:['name','category','description','features'],threshold:.38}); buildChips(); applyFilters(); }
+function startCatalog(tools){
+  allTools=tools;
+  /* Ensure each tool has its original slNo preserved from sheet */
+  allTools.forEach(function(t,i){if(!t.slNo)t.slNo=i+1;});
+  fuse=new Fuse(allTools,{keys:['name','category','description','features'],threshold:.38});
+  buildChips();applyFilters();
+}
 
 /* ── CHIPS ── */
 function buildChips(){
-  var cats=[];
-  allTools.forEach(function(t){if(t.category&&cats.indexOf(t.category)===-1)cats.push(t.category);});
-  cats.sort();
+  var cats=[];allTools.forEach(function(t){if(t.category&&cats.indexOf(t.category)===-1)cats.push(t.category);});cats.sort();
   var mH='<button class="chip on" onclick="filterCat(this,\'all\')">All</button>';
   cats.forEach(function(c){mH+='<button class="chip" onclick="filterCat(this,\''+esc(c)+'\')">'+c+'</button>';});
   $('cat-strip').innerHTML=mH;
@@ -1188,7 +1163,7 @@ function doSearch(){activeCat='all';document.querySelectorAll('.chip,.dt-chip').
 function syncAndFilter(){applyFilters();}
 
 function applyFilters(){
-  var q=$('search').value.trim(), free=$('dt-free').value, sort=$('dt-sort').value||$('m-sort').value;
+  var q=$('search').value.trim(),free=$('dt-free').value,sort=$('dt-sort').value||$('m-sort').value;
   var data=q?fuse.search(q).map(function(r){return r.item;}):allTools.slice();
   if(activeCat!=='all')data=data.filter(function(t){return t.category===activeCat;});
   if(free==='free')data=data.filter(function(t){return/free|yes/i.test(String(t.free));});
@@ -1200,24 +1175,27 @@ function applyFilters(){
   renderGrid(data);
 }
 
-/* ── RENDER GRID ── */
+/* ── RENDER GRID — with Sl. No. ── */
 function renderGrid(data){
   var g=$('grid');
   if(!data.length){g.className='row';g.innerHTML='<div class="col-12"><div class="empty-state"><div class="empty-ico">🔭</div><p>No tools found. Try different filters.</p></div></div>';return;}
   var lv=activeView==='list';
-  g.className=lv?'row g-2':'row g-2 g-md-3';
+  g.className=lv?'row g-2 lv':'row g-2 g-md-3';
   var html='';
   data.forEach(function(t,i){
     var isFree=/free|yes/i.test(String(t.free));
     var fTag=t.free?'<span class="ftag '+(isFree?'free':'paid')+'">'+t.free+'</span>':'';
     var delay='animation-delay:'+(Math.min(i,8)*0.04)+'s';
     var col=lv?'col-12':'col-6 col-md-4 col-lg-3';
+    var slNo=t.slNo||'';
     if(lv){
-      html+='<div class="'+col+'"><div class="tool-card" style="'+delay+';flex-direction:row;align-items:center;gap:10px;" onclick=\'openModal('+safeJSON(t)+')\'>'
-           +'<div class="cname" style="flex:1;min-width:0;-webkit-line-clamp:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;margin:0">'+t.name+'</div>'
-           +'<div class="arr flex-shrink-0">›</div></div></div>';
-    } else {
       html+='<div class="'+col+'"><div class="tool-card" style="'+delay+'" onclick=\'openModal('+safeJSON(t)+')\'>'
+           +'<span class="sl-no">#'+slNo+'</span>'
+           +'<div class="cname" style="flex:1;min-width:0">'+t.name+'</div>'
+           +'<div class="arr flex-shrink-0">›</div></div></div>';
+    }else{
+      html+='<div class="'+col+'"><div class="tool-card" style="'+delay+'" onclick=\'openModal('+safeJSON(t)+')\'>'
+           +'<span class="sl-no">#'+slNo+'</span>'
            +'<span class="cbadge">'+(t.category||'AI')+'</span>'
            +'<div class="cname">'+t.name+'</div>'
            +'<div class="cdesc">'+(t.description||'')+'</div>'
@@ -1231,20 +1209,22 @@ function renderGrid(data){
 function setView(v){
   activeView=v;
   ['gbtn','lbtn','m-gbtn','m-lbtn'].forEach(function(id){
-    var b=$(id); if(!b)return;
+    var b=$(id);if(!b)return;
     b.classList.toggle('on',(id.indexOf('g')>-1&&v==='grid')||(id.indexOf('l')>-1&&v==='list'));
   });
   applyFilters();
 }
 
-/* ── MODAL ── */
+/* ── MODAL — with Sl. No. ── */
 function openModal(t){
   var feats=(t.features||'').split(',').map(function(f){return f.trim();}).filter(Boolean);
   var hasPPT=t.presentationPath&&t.presentationPath.trim();
   var disabled=userCredits<=0?'disabled':'';
+  var slBadge=t.slNo?'<span style="font-size:10px;font-weight:700;color:var(--m1);background:var(--s2);border:1px solid var(--bd);border-radius:6px;padding:2px 7px;margin-left:6px">#'+t.slNo+'</span>':'';
   $('modal-content').innerHTML=
-    '<div class="m-head"><div class="m-head-row"><span class="m-cat">'+(t.category||'AI Tool')+'</span><button class="m-close" onclick="closeModal()">×</button></div><div class="m-title">'+t.name+'</div></div>'
+    '<div class="m-head"><div class="m-head-row"><div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px"><span class="m-cat">'+(t.category||'AI Tool')+'</span>'+slBadge+'</div><button class="m-close" onclick="closeModal()">×</button></div><div class="m-title">'+t.name+'</div></div>'
     +'<div class="m-body"><div class="m-meta">'
+    +'<div><div class="meta-k">Sl. No.</div><div class="meta-v">'+(t.slNo||'—')+'</div></div>'
     +'<div><div class="meta-k">Launches</div><div class="meta-v">'+(t.usageCount||0)+'</div></div>'
     +'<div><div class="meta-k">Pricing</div><div class="meta-v">'+(t.free||'See site')+'</div></div>'
     +'<div><div class="meta-k">Category</div><div class="meta-v">'+(t.category||'—')+'</div></div>'
@@ -1257,8 +1237,7 @@ function openModal(t){
     +'<button class="btn-launch" '+disabled+' onclick="launchTool(\''+esc(t.name)+'\',\''+esc(t.url)+'\')">🚀 Launch <span style="font-size:12px;opacity:.7">(1 credit)</span></button>'
     +'<button class="btn-sec" onclick="closeModal()">Close</button>'
     +'</div>';
-  $('modal').classList.add('open');
-  document.body.classList.add('no-scroll');
+  $('modal').classList.add('open');document.body.classList.add('no-scroll');
 }
 function closeModal(){$('modal').classList.remove('open');document.body.classList.remove('no-scroll');}
 
@@ -1274,79 +1253,258 @@ function launchTool(name,url){
 
 /* ── PREVIEW PPT ── */
 function previewPPT(path,name){
-  var url=path.trim(), match=url.match(/[-\w]{25,}/);
+  var url=path.trim(),match=url.match(/[-\w]{25,}/);
   if(url.indexOf('drive.google.com')!==-1&&match)url='https://drive.google.com/file/d/'+match[0]+'/preview';
   else if(url.indexOf('drive.google.com')===-1){window.open(url,'_blank','noopener,noreferrer');return;}
   var old=document.getElementById('ppt-ov');if(old)old.remove();
-  var ov=document.createElement('div');
-  ov.id='ppt-ov';
+  var ov=document.createElement('div');ov.id='ppt-ov';
   ov.style.cssText='position:fixed;inset:0;z-index:700;background:rgba(0,0,0,.95);display:flex;flex-direction:column;animation:fadeIn .2s ease';
   var hdr=document.createElement('div');
   hdr.style.cssText='display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.1);background:#0d0f16;flex-shrink:0;gap:10px';
-  hdr.innerHTML='<div style="display:flex;align-items:center;gap:10px;min-width:0"><i class="bi bi-file-slides" style="font-size:20px;flex-shrink:0;color:var(--gold)"></i>'
-    +'<div style="min-width:0"><div style="font-size:14px;font-weight:700;color:#eeeef5;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+name+'</div>'
-    +'<div style="font-size:11px;color:#6b6d80;margin-top:2px">Presentation Preview</div></div></div>'
-    +'<div style="display:flex;gap:8px;align-items:center;flex-shrink:0">'
-    +'<a href="'+path+'" target="_blank" rel="noopener" style="padding:7px 12px;background:rgba(232,164,48,.15);border:1px solid rgba(232,164,48,.3);border-radius:8px;color:#e8a430;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap">Open ↗</a>'
-    +'<button id="ppt-cls" style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);color:#eeeef5;font-size:20px;display:flex;align-items:center;justify-content:center;cursor:pointer;line-height:1;flex-shrink:0">×</button></div>';
-  var iframe=document.createElement('iframe');
-  iframe.src=url; iframe.style.cssText='flex:1;border:none;width:100%'; iframe.allowFullscreen=true;
-  ov.appendChild(hdr); ov.appendChild(iframe); document.body.appendChild(ov);
+  hdr.innerHTML='<div style="display:flex;align-items:center;gap:10px;min-width:0"><i class="bi bi-file-slides" style="font-size:20px;flex-shrink:0;color:var(--gold)"></i><div style="min-width:0"><div style="font-size:14px;font-weight:700;color:#eeeef5;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+name+'</div><div style="font-size:11px;color:#6b6d80;margin-top:2px">Presentation Preview</div></div></div>'
+    +'<div style="display:flex;gap:8px;align-items:center;flex-shrink:0"><a href="'+path+'" target="_blank" rel="noopener" style="padding:7px 12px;background:rgba(232,164,48,.15);border:1px solid rgba(232,164,48,.3);border-radius:8px;color:#e8a430;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap">Open ↗</a><button id="ppt-cls" style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);color:#eeeef5;font-size:20px;display:flex;align-items:center;justify-content:center;cursor:pointer;line-height:1;flex-shrink:0">×</button></div>';
+  var iframe=document.createElement('iframe');iframe.src=url;iframe.style.cssText='flex:1;border:none;width:100%';iframe.allowFullscreen=true;
+  ov.appendChild(hdr);ov.appendChild(iframe);document.body.appendChild(ov);
   document.getElementById('ppt-cls').onclick=function(){ov.remove();};
   var escFn=function(e){if(e.key==='Escape'){ov.remove();document.removeEventListener('keydown',escFn);}};
   document.addEventListener('keydown',escFn);
 }
 
-/* ── ADMIN ── */
-function openAdmin(){ $('catalog-page').classList.add('hidden'); $('admin-page').classList.remove('hidden'); loadAdminData(); }
-function backToCatalog(){ $('admin-page').classList.add('hidden'); $('catalog-page').classList.remove('hidden'); }
+/* ══════════════════════════════════════════
+   ADMIN — FULL REBUILD
+══════════════════════════════════════════ */
+var _admActiveTab='tools';
+
+function openAdmin(){
+  $('catalog-page').classList.add('hidden');$('admin-page').classList.remove('hidden');
+  loadAdminData();
+}
+function backToCatalog(){$('admin-page').classList.add('hidden');$('catalog-page').classList.remove('hidden');}
+
+function switchAdmTab(tab){
+  _admActiveTab=tab;
+  document.querySelectorAll('.adm-tab').forEach(function(b,i){b.classList.toggle('on',['tools','users','credits'][i]===tab);});
+  document.querySelectorAll('.adm-panel').forEach(function(p){p.classList.remove('on');});
+  $('adm-panel-'+tab).classList.add('on');
+}
+
 function loadAdminData(){
+  $('adm-ts').textContent='Refreshing…';
   gsr('getAdminDashboardData',{email:currentEmail})
     .then(function(d){
-      if(d.error){toast(d.error,'err');return;}
+      if(d.error){toast(d.error,'err');$('adm-ts').textContent='Error loading data';return;}
       $('adm-ts').textContent='Last updated: '+new Date().toLocaleTimeString();
+      // Stats
+      var totalLaunches=d.totalClicks||0;
+      var lowCredUsers=(d.users||[]).filter(function(u){return Number(u.credits||0)<=10;}).length;
       $('adm-stats').innerHTML=
-        '<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">👤</div><div class="stat-lbl">Users</div><div class="stat-val">'+d.totalUsers+'</div></div></div>'
-        +'<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">🧰</div><div class="stat-lbl">Tools</div><div class="stat-val">'+d.tools.length+'</div></div></div>'
-        +'<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">🚀</div><div class="stat-lbl">Launches</div><div class="stat-val">'+d.totalClicks+'</div></div></div>'
-        +'<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">⚡</div><div class="stat-lbl">Credits Spent</div><div class="stat-val">'+(d.totalClicks||0)+'</div></div></div>';
-      var tH='<div class="adm-thead th-tools"><span>#</span><span>Tool</span><span>Launches</span></div>';
-      d.tools.slice(0,20).forEach(function(t,i){
-        tH+='<div class="adm-row tr-tools"><span class="rank'+(i<3?' t3':'')+'">'+((i+1))+'</span>'
-          +'<div><div class="row-name">'+t.name+'</div><div class="row-sub">'+t.category+'</div></div>'
-          +'<span class="badge-c">'+t.totalClicks+'</span></div>';
-      });
-      $('adm-tools').innerHTML=tH;
-      var uH='<div class="adm-thead th-users"><span>#</span><span>User</span><span>Credits</span></div>';
-      d.users.slice(0,50).forEach(function(u,i){
-        uH+='<div class="adm-row tr-users"><span class="rank">'+((i+1))+'</span>'
-          +'<div><div class="row-name">'+(u.name||u.email)+'</div><div class="row-sub">'+u.email+'</div></div>'
-          +'<span class="badge-c'+(u.credits<=10?' red':'')+'">'+u.credits+'</span></div>';
-      });
-      $('adm-users').innerHTML=uH;
+        '<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">👤</div><div class="stat-lbl">Users</div><div class="stat-val">'+(d.totalUsers||0)+'</div></div></div>'
+        +'<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">🧰</div><div class="stat-lbl">Tools</div><div class="stat-val">'+((d.tools||[]).length)+'</div></div></div>'
+        +'<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">🚀</div><div class="stat-lbl">Launches</div><div class="stat-val">'+totalLaunches+'</div></div></div>'
+        +'<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">⚠️</div><div class="stat-lbl">Low Credits</div><div class="stat-val">'+lowCredUsers+'</div></div></div>';
+
+      // Store for filtering
+      _admAllTools=d.tools||[];
+      _admAllUsers=d.users||[];
+
+      // Tools table — sorted by slNo (sheet order)
+      renderAdmTools(_admAllTools);
+      // Users table
+      renderAdmUsers(_admAllUsers);
+      // Low credits panel
+      renderLowCredits(_admAllUsers);
     })
-    .catch(function(){toast('Failed to load admin data.','err');});
+    .catch(function(e){toast('Failed to load admin data: '+e.message,'err');$('adm-ts').textContent='Load failed';});
+}
+
+function renderAdmTools(tools){
+  $('adm-tool-count').textContent=tools.length+' tools';
+  var sorted=tools.slice().sort(function(a,b){return(Number(a.slNo)||9999)-(Number(b.slNo)||9999);});
+  var isMD=window.innerWidth>=768;
+  var head=isMD
+    ?'<div class="adm-thead th-tools"><span>#</span><span>Tool Name</span><span>Category</span><span>Launches</span><span>Sl. No.</span></div>'
+    :'<div class="adm-thead th-tools"><span>#</span><span>Tool</span><span>Launches</span><span>Sl.No</span></div>';
+  var rows=sorted.map(function(t,i){
+    var rank=i+1;
+    if(isMD){
+      return '<div class="adm-row tr-tools">'
+        +'<span class="rank'+(rank<=3?' t3':'')+'">'+rank+'</span>'
+        +'<div><div class="row-name">'+esc(t.name)+'</div><div class="row-sub">'+esc(t.url||'')+'</div></div>'
+        +'<div><div class="row-name">'+esc(t.category||'—')+'</div></div>'
+        +'<span class="badge-c">'+((t.totalClicks||t.usageCount||0))+'</span>'
+        +'<span class="badge-c" style="background:rgba(74,108,247,.1);color:#7c9fff;border-color:rgba(74,108,247,.3)">#'+(t.slNo||i+1)+'</span>'
+        +'</div>';
+    }else{
+      return '<div class="adm-row tr-tools">'
+        +'<span class="rank'+(rank<=3?' t3':'')+'">'+rank+'</span>'
+        +'<div><div class="row-name">'+esc(t.name)+'</div><div class="row-sub">'+esc(t.category||'')+'</div></div>'
+        +'<span class="badge-c">'+((t.totalClicks||t.usageCount||0))+'</span>'
+        +'<span style="font-size:10px;font-weight:700;color:var(--m1)">#'+(t.slNo||i+1)+'</span>'
+        +'</div>';
+    }
+  }).join('');
+  $('adm-tools').innerHTML=head+rows;
+}
+
+function filterAdmTools(q){
+  if(!q.trim()){renderAdmTools(_admAllTools);return;}
+  var filtered=_admAllTools.filter(function(t){return(t.name||'').toLowerCase().includes(q.toLowerCase())||(t.category||'').toLowerCase().includes(q.toLowerCase());});
+  renderAdmTools(filtered);
+}
+
+function renderAdmUsers(users){
+  $('adm-user-count').textContent=users.length+' users';
+  var isMD=window.innerWidth>=768;
+  var head=isMD
+    ?'<div class="adm-thead th-users"><span>#</span><span>User</span><span>Institution</span><span>Credits</span><span>Actions</span></div>'
+    :'<div class="adm-thead th-users"><span>#</span><span>User</span><span>Credits</span><span>Edit</span></div>';
+  var rows=users.map(function(u,i){
+    var credClass=Number(u.credits||0)<=10?' red':Number(u.credits||0)>=200?' grn':'';
+    var uid='uedit_'+i;
+    if(isMD){
+      return '<div class="adm-row tr-users" id="row_'+i+'">'
+        +'<span class="rank">'+((i+1))+'</span>'
+        +'<div><div class="row-name">'+(u.name||u.email||'—')+'</div><div class="row-sub">'+esc(u.email||'')+'</div></div>'
+        +'<div><div class="row-name" style="font-size:12px;white-space:normal">'+esc(u.institution||'—')+'</div></div>'
+        +'<div style="display:flex;align-items:center;gap:6px">'
+          +'<span class="badge-c'+credClass+'" id="cval_'+i+'">'+(u.credits||0)+'</span>'
+          +'<div class="credit-edit" id="'+uid+'">'
+            +'<input type="number" id="cinp_'+i+'" value="'+(u.credits||0)+'" min="0" max="9999">'
+            +'<button class="save-c" onclick="saveUserCredits(\''+esc(u.email)+'\',\'cinp_'+i+'\',\'cval_'+i+'\',\''+uid+'\')">✓</button>'
+            +'<button class="cancel-c" onclick="cancelEdit(\''+uid+'\')">✗</button>'
+          +'</div>'
+        +'</div>'
+        +'<button class="adm-act-btn" onclick="toggleCreditEdit(\''+uid+'\')"><i class="bi bi-pencil"></i> Credits</button>'
+        +'</div>';
+    }else{
+      return '<div class="adm-row tr-users" id="row_'+i+'">'
+        +'<span class="rank">'+((i+1))+'</span>'
+        +'<div><div class="row-name">'+(u.name||u.email||'—')+'</div><div class="row-sub">'+esc(u.email||'')+'</div></div>'
+        +'<span class="badge-c'+credClass+'" id="cval_'+i+'">'+(u.credits||0)+'</span>'
+        +'<div>'
+          +'<button class="adm-act-btn" onclick="toggleCreditEdit(\''+uid+'\')" style="padding:4px 8px;font-size:11px"><i class="bi bi-pencil"></i></button>'
+          +'<div class="credit-edit" id="'+uid+'" style="flex-direction:column;gap:3px;margin-top:4px">'
+            +'<input type="number" id="cinp_'+i+'" value="'+(u.credits||0)+'" min="0" max="9999" style="width:60px">'
+            +'<div style="display:flex;gap:3px"><button class="save-c" style="flex:1" onclick="saveUserCredits(\''+esc(u.email)+'\',\'cinp_'+i+'\',\'cval_'+i+'\',\''+uid+'\')">✓</button><button class="cancel-c" style="flex:1" onclick="cancelEdit(\''+uid+'\')">✗</button></div>'
+          +'</div>'
+        +'</div>'
+        +'</div>';
+    }
+  }).join('');
+  $('adm-users').innerHTML=head+rows;
+}
+
+function filterAdmUsers(q){
+  if(!q.trim()){renderAdmUsers(_admAllUsers);return;}
+  var filtered=_admAllUsers.filter(function(u){
+    return(u.name||'').toLowerCase().includes(q.toLowerCase())||(u.email||'').toLowerCase().includes(q.toLowerCase());
+  });
+  renderAdmUsers(filtered);
+}
+
+function renderLowCredits(users){
+  var low=users.filter(function(u){return Number(u.credits||0)<=10;});
+  if(!low.length){$('adm-low-credits').innerHTML='<div class="p-3 text-center" style="color:var(--grn);font-size:13px">✅ All users have sufficient credits.</div>';return;}
+  var h='<div class="adm-thead th-users"><span>#</span><span>User</span><span>Institution</span><span>Credits</span><span>Action</span></div>';
+  low.forEach(function(u,i){
+    h+='<div class="adm-row tr-users">'
+      +'<span class="rank">'+((i+1))+'</span>'
+      +'<div><div class="row-name">'+(u.name||u.email||'—')+'</div><div class="row-sub">'+esc(u.email||'')+'</div></div>'
+      +'<div><div class="row-name" style="font-size:12px">'+esc(u.institution||'—')+'</div></div>'
+      +'<span class="badge-c red">'+(u.credits||0)+'</span>'
+      +'<button class="adm-act-btn success" onclick="quickTopup(\''+esc(u.email)+'\')"><i class="bi bi-plus-circle"></i> Top up</button>'
+      +'</div>';
+  });
+  $('adm-low-credits').innerHTML=h;
+}
+
+function toggleCreditEdit(uid){
+  var el=$(uid);if(!el)return;
+  var isOpen=el.style.display==='flex'||el.style.display==='block';
+  el.style.display=isOpen?'none':(window.innerWidth>=768?'flex':'block');
+}
+function cancelEdit(uid){var el=$(uid);if(el)el.style.display='none';}
+
+function saveUserCredits(email,inpId,valId,editId){
+  var newVal=parseInt($(inpId).value,10);
+  if(isNaN(newVal)||newVal<0){toast('Enter a valid credit amount.','err');return;}
+  gsr('adminSetCredits',{adminEmail:currentEmail,targetEmail:email,credits:newVal})
+    .then(function(r){
+      if(r.success){
+        $(valId).textContent=newVal;
+        $(valId).className='badge-c'+(newVal<=10?' red':newVal>=200?' grn':'');
+        cancelEdit(editId);
+        toast('✅ Credits updated for '+email,'ok');
+        // Update local cache
+        _admAllUsers.forEach(function(u){if(u.email===email)u.credits=newVal;});
+        renderLowCredits(_admAllUsers);
+      }else{toast(r.message||'Failed to update credits.','err');}
+    }).catch(function(){toast('Connection error.','err');});
+}
+
+function quickTopup(email){
+  gsr('adminSetCredits',{adminEmail:currentEmail,targetEmail:email,credits:100})
+    .then(function(r){
+      if(r.success){
+        toast('✅ Topped up '+email+' to 100 credits','ok');
+        _admAllUsers.forEach(function(u){if(u.email===email)u.credits=100;});
+        renderLowCredits(_admAllUsers);
+        renderAdmUsers(_admAllUsers);
+      }else{toast(r.message||'Top-up failed.','err');}
+    }).catch(function(){toast('Connection error.','err');});
+}
+
+/* Bulk credit form */
+var _lookupTimer=null;
+function admLookupUser(val){
+  clearTimeout(_lookupTimer);
+  if(!val.trim()||!val.includes('@')){$('bulk-user-preview').textContent='';return;}
+  _lookupTimer=setTimeout(function(){
+    var match=_admAllUsers.find(function(u){return u.email===val.trim();});
+    if(match){
+      $('bulk-user-preview').innerHTML='<span style="color:var(--grn)">✓ Found: '+esc(match.name||match.email)+'</span> — Current credits: <strong>'+match.credits+'</strong>';
+      $('bulk-credits').value=match.credits;
+    }else{
+      $('bulk-user-preview').innerHTML='<span style="color:var(--red)">User not found in loaded data. Proceed anyway.</span>';
+    }
+  },400);
+}
+
+function doSetCredits(){
+  var email=$('bulk-email').value.trim();
+  var credits=parseInt($('bulk-credits').value,10);
+  if(!email){setMsg('bulk-msg','Enter a user email.','err');return;}
+  if(isNaN(credits)||credits<0){setMsg('bulk-msg','Enter a valid credit amount.','err');return;}
+  setMsg('bulk-msg','Saving…','inf');
+  gsr('adminSetCredits',{adminEmail:currentEmail,targetEmail:email,credits:credits})
+    .then(function(r){
+      if(r.success){
+        setMsg('bulk-msg','✅ Credits set to '+credits+' for '+email,'ok');
+        _admAllUsers.forEach(function(u){if(u.email===email)u.credits=credits;});
+        renderLowCredits(_admAllUsers);
+        $('bulk-email').value='';$('bulk-user-preview').textContent='';
+      }else{setMsg('bulk-msg',r.message||'Failed.','err');}
+    }).catch(function(){setMsg('bulk-msg','Connection error.','err');});
 }
 
 /* ── FORGOT PASSWORD ── */
 var fpEmail='';
-function showForgot(){ $('auth-page').classList.add('hidden'); $('forgot-page').classList.remove('hidden'); }
-function backToAuth(){ $('forgot-page').classList.add('hidden'); $('auth-page').classList.remove('hidden'); }
+function showForgot(){$('auth-page').classList.add('hidden');$('forgot-page').classList.remove('hidden');}
+function backToAuth(){$('forgot-page').classList.add('hidden');$('auth-page').classList.remove('hidden');}
 function fpStep(n){
   [$('fp-p1'),$('fp-p2'),$('fp-p3')].forEach(function(p,i){p.classList.toggle('hidden',i+1!==n);});
   [$('fp-s1'),$('fp-s2'),$('fp-s3')].forEach(function(s,i){s.classList.remove('on','done');if(i+1<n)s.classList.add('done');if(i+1===n)s.classList.add('on');});
   [$('fp-l1'),$('fp-l2')].forEach(function(l,i){l.classList.toggle('done',i+1<n);});
 }
 function fpSend(){
-  fpEmail=$('fp-email').value.trim();
-  if(!fpEmail){setMsg('msg-fp1','Enter your email.','err');return;}
+  fpEmail=$('fp-email').value.trim();if(!fpEmail){setMsg('msg-fp1','Enter your email.','err');return;}
   setMsg('msg-fp1','','');setBtn('btn-fp1',true,'Sending…');
   gsr('sendPasswordResetCode',{email:fpEmail})
     .then(function(r){setBtn('btn-fp1',false,'Send Code');if(r.success){$('fp-p2-sub').textContent='Code sent to '+fpEmail;fpStep(2);}else setMsg('msg-fp1',r.message||'Email not found.','err');})
     .catch(function(){setBtn('btn-fp1',false,'Send Code');setMsg('msg-fp1','Connection error.','err');});
 }
 function fpReset(){
-  var code=$('fp-code').value.trim(), np=$('fp-np').value, cp=$('fp-cp').value;
+  var code=$('fp-code').value.trim(),np=$('fp-np').value,cp=$('fp-cp').value;
   if(!code||!np){setMsg('msg-fp2','Fill all fields.','err');return;}
   if(np!==cp){setMsg('msg-fp2','Passwords do not match.','err');return;}
   if(np.length<6){setMsg('msg-fp2','Password must be at least 6 characters.','err');return;}
@@ -1358,31 +1516,26 @@ function fpReset(){
 
 /* ── LOGOUT ── */
 function doLogout(){
-  localStorage.removeItem('aih_session');
-  currentEmail=''; userCredits=0;
-  $('catalog-page').classList.add('hidden');
-  $('admin-page').classList.add('hidden');
-  $('auth-page').classList.remove('hidden');
-  $('credit-chip').classList.remove('show');
-  $('adminBtn').classList.add('hidden');
-  BIO.updateUI();
-  /* Tell SW to clear caches on logout */
-  if (navigator.serviceWorker && navigator.serviceWorker.controller) {
-    navigator.serviceWorker.controller.postMessage({ type: 'CLEAR_CACHES' });
+  localStorage.removeItem('aih_session');currentEmail='';userCredits=0;
+  $('catalog-page').classList.add('hidden');$('admin-page').classList.add('hidden');
+  $('auth-page').classList.remove('hidden');$('credit-chip').classList.remove('show');
+  $('adminBtn').classList.add('hidden');BIO.updateUI();
+  if(navigator.serviceWorker&&navigator.serviceWorker.controller){
+    navigator.serviceWorker.controller.postMessage({type:'CLEAR_CACHES'});
   }
   toast('Signed out.','');
 }
 
 /* ── MOBILE SEARCH ── */
-function openMSearch(){ $('msearch').classList.add('open'); document.body.classList.add('no-scroll'); setTimeout(function(){$('ms-inp').focus();},100); }
-function closeMSearch(){ $('msearch').classList.remove('open'); document.body.classList.remove('no-scroll'); $('ms-inp').value=''; $('msh-body').innerHTML='<div class="msh-empty"><div class="msh-empty-ico"><i class="bi bi-search" style="font-size:40px;opacity:.35"></i></div><p>Start typing to find tools…</p></div>'; }
+function openMSearch(){$('msearch').classList.add('open');document.body.classList.add('no-scroll');setTimeout(function(){$('ms-inp').focus();},100);}
+function closeMSearch(){$('msearch').classList.remove('open');document.body.classList.remove('no-scroll');$('ms-inp').value='';$('msh-body').innerHTML='<div class="msh-empty"><div class="msh-empty-ico"><i class="bi bi-search" style="font-size:40px;opacity:.35"></i></div><p>Start typing to find tools…</p></div>';}
 function doMSearch(q){
   if(!q.trim()||!fuse){$('msh-body').innerHTML='<div class="msh-empty"><div class="msh-empty-ico"><i class="bi bi-search" style="font-size:40px;opacity:.35"></i></div><p>Start typing to find tools…</p></div>';return;}
   var res=fuse.search(q).slice(0,30).map(function(r){return r.item;});
   if(!res.length){$('msh-body').innerHTML='<div class="msh-empty"><div class="msh-empty-ico" style="font-size:40px;opacity:.35">🔭</div><p>No results for "'+q+'"</p></div>';return;}
   $('msh-body').innerHTML=res.map(function(t){
     return '<div class="msh-item" onclick=\'closeMSearch();openModal('+safeJSON(t)+')\' >'
-      +'<div class="msh-dot"></div>'
+      +'<span class="msh-sl">#'+(t.slNo||'?')+'</span>'
       +'<div style="min-width:0;flex:1"><div class="msh-name">'+t.name+'</div><div class="msh-meta">'+(t.category||'AI Tool')+'</div></div>'
       +'<i class="bi bi-arrow-right msh-arr"></i></div>';
   }).join('');
@@ -1393,25 +1546,20 @@ function openFDrawer(){
   var cats=[];allTools.forEach(function(t){if(t.category&&cats.indexOf(t.category)===-1)cats.push(t.category);});cats.sort();
   $('fd-chips').innerHTML='<button class="fd-chip'+(activeCat==='all'?' on':'')+'" onclick="fdCat(this,\'all\')">All</button>'
     +cats.map(function(c){return'<button class="fd-chip'+(activeCat===c?' on':'')+'" onclick="fdCat(this,\''+esc(c)+'\')">'+c+'</button>';}).join('');
-  $('fdrawer').classList.add('open'); document.body.classList.add('no-scroll');
+  $('fdrawer').classList.add('open');document.body.classList.add('no-scroll');
 }
 function closeFDrawer(){$('fdrawer').classList.remove('open');document.body.classList.remove('no-scroll');}
 function fdCat(el,cat){document.querySelectorAll('.fd-chip').forEach(function(b){b.classList.remove('on');});el.classList.add('on');activeCat=cat;}
 function clearDrawer(){activeCat='all';$('fd-free').value='all';$('fd-sort').value='default';$('fd-view').value='grid';document.querySelectorAll('.fd-chip').forEach(function(b,i){b.classList.toggle('on',i===0);});}
 function applyDrawer(){
-  $('dt-free').value=$('fd-free').value;
-  $('dt-sort').value=$('fd-sort').value;
-  setView($('fd-view').value);
-  syncDeskCat();syncMobCat();
-  applyFilters();
-  closeFDrawer();
+  $('dt-free').value=$('fd-free').value;$('dt-sort').value=$('fd-sort').value;
+  setView($('fd-view').value);syncDeskCat();syncMobCat();applyFilters();closeFDrawer();
 }
 
 /* ── BOTTOM NAV ── */
 function bnHome(){
-  $('catalog-page').classList.remove('hidden'); $('admin-page').classList.add('hidden');
-  document.querySelectorAll('.bnbtn').forEach(function(b){b.classList.remove('on');});
-  $('bn-home').classList.add('on');
+  $('catalog-page').classList.remove('hidden');$('admin-page').classList.add('hidden');
+  document.querySelectorAll('.bnbtn').forEach(function(b){b.classList.remove('on');});$('bn-home').classList.add('on');
 }
 </script>
 
