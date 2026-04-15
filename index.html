@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-  
 <html lang="en">
 <head>
 <base target="_top">
@@ -8,19 +7,28 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#07080c">
-<!-- ═══ PWA ═══ -->
-<link rel="manifest" href="manifest.json">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="application-name" content="AI Tools Hub">
-<meta name="apple-touch-fullscreen" content="yes">
-<link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png">
-<link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png">
-<!-- ═══════════ -->
 <title>AI Tools Hub</title>
 
+<!-- ══════════ PWA META & ICONS ══════════ -->
+<link rel="manifest" href="/manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AI Tools">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144.png">
+<link rel="apple-touch-icon" sizes="128x128" href="/icons/icon-128.png">
+<link rel="apple-touch-icon" sizes="96x96"   href="/icons/icon-96.png">
+<link rel="apple-touch-icon" sizes="72x72"   href="/icons/icon-72.png">
+<meta name="msapplication-TileImage" content="/icons/icon-144.png">
+<meta name="msapplication-TileColor" content="#07080c">
+<!-- ══════════ END PWA ══════════ -->
+
+<!-- ══════════ STEP 1: Set your deployed Apps Script URL here ══════════ -->
 <script>
-  var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxNfqbO5KjhgE1-rfpgHxC5mQ88BIC-SJ8GQOAkGtJFNevvajSzGUnCso1ptjK5G--z/exec";
+  // PASTE YOUR APPS SCRIPT WEB APP URL BELOW (deploy as "anyone can access")
+  var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyHRHbMbD1_VOMHhYAvmCBJRFsSp4zygoqA-Qo2Ek57kCl2pKmG0VxdVHPjYqK9G2iuLA/exec";
 </script>
+<!-- ═══════════════════════════════════════════════════════════════════ -->
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -28,6 +36,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+/* ═══════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════ */
 :root{
   --bg:#07080c;--s1:#0d0f16;--s2:#13151f;--s3:#1c1f2e;
   --bd:rgba(255,255,255,.07);--bd2:rgba(255,255,255,.13);
@@ -41,6 +52,8 @@
   --bs-border-color:rgba(255,255,255,.07);
   --bs-font-sans-serif:'Outfit',sans-serif;
 }
+
+/* ── GLOBAL ── */
 *,*::before,*::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;height:100%}
 body{width:100%;min-height:100%;overflow-x:hidden;overflow-y:auto;background:var(--bg);color:var(--txt);font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased}
@@ -55,6 +68,7 @@ a{color:inherit;text-decoration:none}
 ::-webkit-scrollbar-track{background:transparent}
 img{max-width:100%}
 
+/* ── ANIMATIONS ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -62,10 +76,26 @@ img{max-width:100%}
 @keyframes glow{0%,100%{box-shadow:0 0 18px rgba(232,164,48,.15)}50%{box-shadow:0 0 36px rgba(232,164,48,.35)}}
 @keyframes shimmer{from{background-position:-400px 0}to{background-position:400px 0}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-@keyframes bioPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(232,164,48,.4)}50%{transform:scale(1.04);box-shadow:0 0 0 12px rgba(232,164,48,0)}}
-@keyframes bioSuccess{0%{transform:scale(1)}40%{transform:scale(1.15)}70%{transform:scale(.95)}100%{transform:scale(1)}}
-@keyframes bioFail{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
 
+/* ── BIOMETRIC ANIMATIONS ── */
+@keyframes bio-ring-pulse{
+  0%{transform:scale(1);opacity:.8}
+  50%{transform:scale(1.12);opacity:1}
+  100%{transform:scale(1);opacity:.8}
+}
+@keyframes bio-scan{
+  0%{top:8px;opacity:0}
+  15%{opacity:1}
+  85%{opacity:1}
+  100%{top:calc(100% - 10px);opacity:0}
+}
+@keyframes bio-success-ring{
+  0%{transform:scale(0.6);opacity:0}
+  60%{transform:scale(1.1);opacity:1}
+  100%{transform:scale(1);opacity:1}
+}
+
+/* ── UTILS ── */
 .loader{display:inline-block;width:15px;height:15px;border:2px solid rgba(232,164,48,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px;flex-shrink:0}
 .skel{background:linear-gradient(90deg,var(--s2) 25%,var(--s3) 50%,var(--s2) 75%);background-size:400px 100%;animation:shimmer 1.4s infinite;border-radius:10px}
 .orb{position:fixed;border-radius:50%;pointer-events:none;filter:blur(90px);z-index:0;opacity:.1}
@@ -74,6 +104,7 @@ img{max-width:100%}
 .page{position:relative;z-index:1}
 .gold-txt{background:linear-gradient(135deg,var(--gold),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
+/* Bootstrap form dark theme */
 .form-control,.form-select{
   background-color:var(--s2);border:1px solid var(--bd);
   border-radius:12px;color:var(--txt);
@@ -95,12 +126,16 @@ img{max-width:100%}
 .form-select:focus{background-color:var(--s2);color:var(--m2);box-shadow:none;border-color:rgba(232,164,48,.4)}
 .form-select option{background-color:var(--s2);color:var(--txt)}
 
-/* ── LOADING SCREEN ── */
+/* ═══════════════════════════════════════
+   LOADING SCREEN
+═══════════════════════════════════════ */
 #loading-screen{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
 #loading-screen .logo{font-family:'Playfair Display',serif;font-size:26px;font-weight:800;background:linear-gradient(135deg,var(--gold),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 #loading-screen .sub{font-size:13px;color:var(--m1);font-weight:300}
 
-/* ── AUTH ── */
+/* ═══════════════════════════════════════
+   AUTH
+═══════════════════════════════════════ */
 .auth-panel{
   background:linear-gradient(160deg,#0d0f16,#131726);
   border-right:1px solid var(--bd);position:relative;overflow:hidden;
@@ -150,65 +185,34 @@ img{max-width:100%}
 .amsg.ok{color:var(--grn)}.amsg.inf{color:var(--gold)}
 
 /* ═══════════════════════════════════════
-   BIOMETRIC BUTTON & DIVIDER
+   BIOMETRIC SECTION
 ═══════════════════════════════════════ */
-.bio-divider{display:flex;align-items:center;gap:10px;margin:.9rem 0}
+.bio-divider{display:flex;align-items:center;gap:10px;margin:.85rem 0 .75rem}
 .bio-divider::before,.bio-divider::after{content:'';flex:1;height:1px;background:var(--bd)}
-.bio-divider span{font-size:12px;color:var(--m1);font-weight:500;white-space:nowrap}
+.bio-divider-txt{font-size:11px;font-weight:700;color:var(--m1);text-transform:uppercase;letter-spacing:.8px;white-space:nowrap}
+.bio-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:.85rem}
+.bio-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:14px 10px;background:var(--s2);border:1px solid var(--bd);border-radius:14px;font-size:12px;font-weight:600;color:var(--m2);transition:border-color .25s,background .25s,color .25s,transform .15s;cursor:pointer;position:relative;overflow:hidden;min-height:80px}
+.bio-btn:hover{border-color:rgba(232,164,48,.4);background:rgba(232,164,48,.05);color:var(--gold)}
+.bio-btn:active{transform:scale(.97)}
+.bio-btn.scanning{border-color:rgba(232,164,48,.6);background:rgba(232,164,48,.07);pointer-events:none}
+.bio-btn.success{border-color:rgba(62,201,122,.5);background:rgba(62,201,122,.07);color:var(--grn);pointer-events:none}
+.bio-btn.error{border-color:rgba(232,85,85,.5);background:rgba(232,85,85,.07);color:var(--red)}
+.bio-ico-wrap{position:relative;width:40px;height:40px;display:flex;align-items:center;justify-content:center}
+.bio-ico-ring{position:absolute;inset:0;border-radius:50%;border:1.5px solid transparent;transition:border-color .25s}
+.bio-btn:hover .bio-ico-ring,.bio-btn.scanning .bio-ico-ring{border-color:rgba(232,164,48,.45);animation:bio-ring-pulse 1.4s ease-in-out infinite}
+.bio-btn.success .bio-ico-ring{border-color:rgba(62,201,122,.5);animation:bio-success-ring .4s ease both}
+.bio-ico{font-size:24px;line-height:1;position:relative;z-index:1}
+.bio-scan-line{position:absolute;left:6px;right:6px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);border-radius:1px;top:8px;opacity:0;display:none}
+.bio-btn.scanning .bio-scan-line{display:block;animation:bio-scan 1.2s ease-in-out infinite}
+.bio-lbl{font-size:11px;font-weight:600;line-height:1.2;text-align:center}
+.bio-sublbl{font-size:10px;opacity:.65;margin-top:2px}
+.bio-unsupported{text-align:center;font-size:12px;color:var(--m1);background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:10px;padding:10px 14px;margin-bottom:.85rem;display:none}
+.bio-register-hint{background:rgba(232,164,48,.07);border:1px solid rgba(232,164,48,.2);border-radius:10px;padding:10px 14px;font-size:12px;color:var(--m2);line-height:1.5;margin-bottom:.85rem;display:none}
+.bio-register-hint strong{color:var(--gold)}
 
-.btn-bio{
-  width:100%;padding:13px 16px;
-  background:var(--s2);border:1px solid var(--bd2);
-  border-radius:13px;color:var(--txt);font-size:15px;font-weight:600;
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  transition:border-color .2s,background .2s,transform .15s;
-  min-height:52px;cursor:pointer;position:relative;overflow:hidden;
-}
-.btn-bio:hover{border-color:rgba(232,164,48,.4);background:var(--s3)}
-.btn-bio:active{transform:scale(.98)}
-.btn-bio:disabled{opacity:.4;cursor:not-allowed}
-.btn-bio.scanning{border-color:rgba(232,164,48,.5);animation:bioPulse 1.4s ease-in-out infinite}
-.btn-bio.success{border-color:rgba(62,201,122,.6);background:rgba(62,201,122,.08);animation:bioSuccess .5s ease}
-.btn-bio.fail{border-color:rgba(232,85,85,.6);animation:bioFail .4s ease}
-
-.bio-icon{font-size:22px;line-height:1;flex-shrink:0;transition:transform .3s}
-.bio-label{font-size:14px}
-.bio-sub{font-size:11px;color:var(--m1);margin-top:2px}
-
-/* Quick-login biometric screen */
-#bio-quick{
-  position:fixed;inset:0;z-index:9998;
-  background:var(--bg);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:0;padding:2rem;
-  animation:fadeIn .3s ease;
-}
-.bq-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,var(--gold),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:2rem}
-.bq-av{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--g2));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:#0a0a0a;margin-bottom:.75rem;flex-shrink:0}
-.bq-name{font-size:18px;font-weight:700;margin-bottom:.25rem}
-.bq-email{font-size:13px;color:var(--m1);margin-bottom:2.5rem}
-.bq-ring{
-  width:110px;height:110px;border-radius:50%;
-  border:2px solid rgba(232,164,48,.25);
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:2.5rem;position:relative;cursor:pointer;
-  transition:border-color .3s;
-}
-.bq-ring::before{
-  content:'';position:absolute;inset:-6px;border-radius:50%;
-  border:1.5px solid rgba(232,164,48,.1);
-}
-.bq-ring.scanning{border-color:rgba(232,164,48,.7);animation:bioPulse 1.4s ease-in-out infinite}
-.bq-ring.success{border-color:rgba(62,201,122,.7)}
-.bq-ring.fail{border-color:rgba(232,85,85,.7);animation:bioFail .45s ease}
-.bq-icon{font-size:48px;line-height:1;user-select:none}
-.bq-status{font-size:14px;color:var(--m1);margin-bottom:2rem;min-height:20px;text-align:center;transition:color .2s}
-.bq-status.ok{color:var(--grn)}.bq-status.err{color:var(--red)}
-.bq-switch{background:transparent;border:none;color:var(--m1);font-size:13px;font-weight:500;padding:10px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
-.bq-switch:hover{color:var(--txt)}
-.bq-hint{font-size:11px;color:var(--m1);margin-top:1rem;text-align:center;opacity:.7}
-
-/* ── FORGOT PASSWORD ── */
+/* ═══════════════════════════════════════
+   FORGOT PASSWORD
+═══════════════════════════════════════ */
 .forgot-box{width:100%;max-width:420px;animation:fadeUp .5s ease both}
 .back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--m2);font-size:14px;font-weight:500;border:none;background:transparent;padding:8px 0;margin-bottom:1.25rem;min-height:44px}
 .back-btn:hover{color:var(--txt)}
@@ -219,7 +223,9 @@ img{max-width:100%}
 .fp-line{flex:1;height:1px;background:var(--bd);transition:background .3s}
 .fp-line.done{background:var(--grn)}
 
-/* ── TOPBAR ── */
+/* ═══════════════════════════════════════
+   TOPBAR
+═══════════════════════════════════════ */
 .topbar{position:sticky;top:0;z-index:200;background:rgba(7,8,12,.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--bd);height:54px;padding:0 .875rem;display:flex;align-items:center;gap:8px}
 .tb-logo{font-family:'Playfair Display',serif;font-size:15px;font-weight:800;white-space:nowrap;flex-shrink:0;background:linear-gradient(135deg,var(--gold),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .tb-search-wrap{display:none;flex:1;position:relative;align-items:center}
@@ -239,47 +245,39 @@ img{max-width:100%}
 .credit-chip.low .cval{color:var(--red)}
 .cval{font-size:12px;font-weight:700;color:var(--gold)}
 
-/* ── DESKTOP FILTER TOOLBAR ── */
+/* ═══════════════════════════════════════
+   DESKTOP FILTER TOOLBAR
+═══════════════════════════════════════ */
 #desk-tb{display:none;align-items:center;gap:10px;padding:.6rem 1.75rem;flex-wrap:wrap;border-bottom:1px solid var(--bd);background:rgba(13,15,22,.85)}
 .dtlbl{font-size:11px;font-weight:700;color:var(--m1);text-transform:uppercase;letter-spacing:.9px;flex-shrink:0}
 #dt-chips{display:flex;gap:7px;flex-wrap:wrap;flex:1}
 .vbtn{padding:6px 11px;background:transparent;color:var(--m1);font-size:14px;border:none;transition:all .2s;min-height:36px}
 .vbtn.on{background:var(--s3);color:var(--gold)}
 
-/* ── CATEGORY STRIP ── */
+/* ═══════════════════════════════════════
+   CATEGORY STRIP (mobile)
+═══════════════════════════════════════ */
 .cat-strip{display:flex;gap:7px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:.6rem .875rem;border-bottom:1px solid var(--bd);background:rgba(13,15,22,.85);scrollbar-width:none;width:100%}
 .cat-strip::-webkit-scrollbar{display:none}
 .chip,.dt-chip{flex-shrink:0;padding:7px 14px;border-radius:100px;border:1px solid var(--bd);background:transparent;font-size:13px;font-weight:600;color:var(--m1);white-space:nowrap;transition:all .2s;min-height:36px;display:inline-flex;align-items:center}
 .chip.on,.chip:active,.dt-chip.on,.dt-chip:hover{border-color:var(--gold);color:var(--gold);background:var(--gdim)}
 
-/* ── RESULTS BAR ── */
+/* ═══════════════════════════════════════
+   RESULTS BAR
+═══════════════════════════════════════ */
 .rbar{padding:.5rem .875rem;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--m1);flex-wrap:wrap;gap:5px}
 .rbar strong{color:var(--txt)}
 
-/* ── SERIAL NUMBER BADGE ── */
-.slno{
-  position:absolute;top:8px;right:8px;
-  width:22px;height:22px;border-radius:50%;
-  background:var(--s3);border:1px solid var(--bd2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:9px;font-weight:800;color:var(--m1);
-  letter-spacing:0;font-family:'Outfit',sans-serif;
-  line-height:1;flex-shrink:0;
-  pointer-events:none;z-index:2;
-}
-.tool-card:hover .slno,.tool-card:active .slno{
-  border-color:rgba(232,164,48,.4);color:var(--gold);
-  background:var(--gdim);
-}
-#grid.lv .slno{display:none}
-
-/* ── TOOL CARDS ── */
+/* ═══════════════════════════════════════
+   TOOL CARDS
+═══════════════════════════════════════ */
 .cat-page-wrap{padding-bottom:var(--bnav-h);width:100%}
 .cat-body{padding:.625rem .5rem 1rem;width:100%}
+
 .tool-card{background:var(--s1);border:1px solid var(--bd);border-radius:15px;padding:.875rem;cursor:pointer;transition:border-color .25s,transform .18s;position:relative;overflow:hidden;animation:fadeUp .4s ease both;height:100%;min-width:0;display:flex;flex-direction:column;-webkit-tap-highlight-color:transparent}
 .tool-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s}
 .tool-card:active{transform:scale(.97)}
-.cbadge{font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.9px;background:var(--gdim);border:1px solid rgba(232,164,48,.18);padding:3px 8px;border-radius:100px;display:inline-block;margin-bottom:.5rem;max-width:calc(100% - 30px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cbadge{font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.9px;background:var(--gdim);border:1px solid rgba(232,164,48,.18);padding:3px 8px;border-radius:100px;display:inline-block;margin-bottom:.5rem;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cname{font-size:14px;font-weight:700;line-height:1.25;margin-bottom:.3rem;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .cdesc{font-size:12px;color:var(--m2);line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;flex:1}
 .cfoot{margin-top:.625rem;display:flex;align-items:center;justify-content:space-between;gap:6px}
@@ -288,28 +286,27 @@ img{max-width:100%}
 .ftag.paid{background:var(--gdim);color:var(--gold);border:1px solid rgba(232,164,48,.15)}
 .arr{width:26px;height:26px;border-radius:50%;border:1px solid var(--bd);background:transparent;display:flex;align-items:center;justify-content:center;color:var(--m1);font-size:13px;flex-shrink:0;transition:all .25s}
 
+/* List view override */
 #grid.lv .tool-card{flex-direction:row;align-items:center;gap:10px;padding:.75rem .875rem;border-radius:12px}
 #grid.lv .tool-card .cbadge,
 #grid.lv .tool-card .cdesc,
 #grid.lv .tool-card .cfoot{display:none}
 #grid.lv .tool-card .cname{font-size:15px;margin:0;flex:1;-webkit-line-clamp:1;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
-/* In list view, show a compact slno on the left */
-#grid.lv .tool-card .slno{
-  display:flex;position:static;
-  width:24px;height:24px;flex-shrink:0;margin:0;
-}
-
 .empty-state{text-align:center;padding:60px 20px;animation:fadeIn .4s ease}
 .empty-ico{font-size:44px;margin-bottom:12px;opacity:.35}
 
-/* ── BOTTOM NAV ── */
+/* ═══════════════════════════════════════
+   BOTTOM NAV (mobile only)
+═══════════════════════════════════════ */
 #bnav{position:fixed;bottom:0;left:0;right:0;z-index:300;background:rgba(7,8,12,.98);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-top:1px solid var(--bd);display:grid;grid-template-columns:repeat(4,1fr);padding-bottom:var(--sab);height:var(--bnav-h)}
 .bnbtn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--m1);font-size:10px;font-weight:600;letter-spacing:.3px;padding:8px 0;border:none;background:transparent;transition:color .2s;min-height:44px;width:100%}
 .bnbtn .bi{font-size:20px;line-height:1}
 .bnbtn.on{color:var(--gold)}
 
-/* ── MOBILE SEARCH ── */
+/* ═══════════════════════════════════════
+   MOBILE SEARCH
+═══════════════════════════════════════ */
 #msearch{display:none;position:fixed;inset:0;z-index:600;background:var(--bg);flex-direction:column;padding-top:var(--sat)}
 #msearch.open{display:flex;animation:fadeIn .18s ease}
 .msh-head{display:flex;align-items:center;gap:10px;padding:.75rem .875rem;border-bottom:1px solid var(--bd)}
@@ -327,7 +324,9 @@ img{max-width:100%}
 .msh-meta{font-size:12px;color:var(--m1)}
 .msh-arr{color:var(--m1);font-size:18px;margin-left:auto;flex-shrink:0}
 
-/* ── FILTER DRAWER ── */
+/* ═══════════════════════════════════════
+   FILTER DRAWER
+═══════════════════════════════════════ */
 #fdrawer{display:none;position:fixed;inset:0;z-index:600}
 #fdrawer.open{display:block}
 .fd-bg{position:absolute;inset:0;background:rgba(0,0,0,.72)}
@@ -349,7 +348,9 @@ img{max-width:100%}
 .fd-clear{flex:1;padding:14px;background:var(--s2);border:1px solid var(--bd);border-radius:12px;color:var(--m2);font-size:15px;font-weight:600;min-height:52px}
 .fd-apply{flex:2;padding:14px;background:linear-gradient(135deg,var(--gold),var(--g2));border-radius:12px;color:#0a0a0a;font-size:15px;font-weight:700;min-height:52px;border:none}
 
-/* ── MODAL ── */
+/* ═══════════════════════════════════════
+   MODAL
+═══════════════════════════════════════ */
 #modal{display:none;position:fixed;inset:0;z-index:500;align-items:flex-end;justify-content:center}
 #modal.open{display:flex}
 .m-bg{position:absolute;inset:0;background:rgba(0,0,0,.78);backdrop-filter:blur(4px)}
@@ -377,7 +378,9 @@ img{max-width:100%}
 .btn-preview:hover{background:var(--gdim)}
 .btn-sec{width:100%;padding:13px;background:var(--s2);border:1px solid var(--bd);border-radius:13px;color:var(--m2);font-size:14px;font-weight:600;transition:all .2s;min-height:48px}
 
-/* ── ADMIN ── */
+/* ═══════════════════════════════════════
+   ADMIN PAGE
+═══════════════════════════════════════ */
 #admin-page{min-height:100vh;padding:.875rem .75rem var(--bnav-h);overflow-x:hidden;animation:fadeIn .35s ease}
 .adm-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;gap:10px;flex-wrap:wrap}
 .adm-title{font-size:clamp(18px,5vw,28px);font-weight:800;background:linear-gradient(135deg,var(--gold),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -401,16 +404,28 @@ img{max-width:100%}
 .badge-c{display:inline-flex;align-items:center;justify-content:center;padding:3px 9px;border-radius:100px;font-size:11px;font-weight:700;background:var(--gdim);color:var(--gold);border:1px solid rgba(232,164,48,.2);white-space:nowrap}
 .badge-c.red{color:var(--red);border-color:rgba(232,85,85,.3);background:rgba(232,85,85,.08)}
 
-/* ── TOAST ── */
+/* ═══════════════════════════════════════
+   TOAST
+═══════════════════════════════════════ */
 #toast{position:fixed;bottom:calc(var(--bnav-h) + 8px);left:10px;right:10px;z-index:9999;background:var(--s2);border:1px solid var(--bd2);border-radius:13px;padding:.8rem 1rem;font-size:14px;font-weight:500;box-shadow:0 8px 30px rgba(0,0,0,.5);transition:all .3s ease;transform:translateY(20px);opacity:0;display:flex;align-items:center;gap:8px;pointer-events:none}
 #toast.show{transform:translateY(0);opacity:1}
 #toast.ok{border-color:rgba(62,201,122,.3)}
 #toast.err{border-color:rgba(232,85,85,.3)}
 
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
 .cat-footer{padding:.875rem 1.125rem;border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:4px}
+
+/* ═══════════════════════════════════════
+   OFFLINE BANNER
+═══════════════════════════════════════ */
 #offline-bar{display:none;position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--red);color:#fff;text-align:center;padding:8px;font-size:13px;font-weight:600}
 #offline-bar.show{display:block}
 
+/* ═══════════════════════════════════════
+   BOOTSTRAP md+ OVERRIDES (≥768px)
+═══════════════════════════════════════ */
 @media(min-width:768px){
   .topbar{height:60px;padding:0 1.75rem;gap:16px}
   .tb-logo{font-size:18px}
@@ -444,7 +459,6 @@ img{max-width:100%}
   #toast{bottom:20px;left:auto;right:1.5rem;width:300px}
   .orb1{width:320px;height:320px;top:-80px;right:-60px}
   .orb2{width:260px;height:260px;bottom:-50px;left:-40px}
-  #bio-quick{padding:3rem}
 }
 @media(max-width:360px){
   .tool-card{padding:.7rem}
@@ -454,6 +468,7 @@ img{max-width:100%}
 </head>
 <body>
 
+<!-- Offline bar -->
 <div id="offline-bar">⚠️ You're offline. Some features may not work.</div>
 
 <!-- Loading screen -->
@@ -465,20 +480,6 @@ img{max-width:100%}
 
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
-
-<!-- ══════════ BIOMETRIC QUICK LOGIN SCREEN ══════════ -->
-<div id="bio-quick" class="hidden">
-  <div class="bq-logo">⚡ AI Tools Hub</div>
-  <div class="bq-av" id="bq-av">U</div>
-  <div class="bq-name" id="bq-name">Welcome back</div>
-  <div class="bq-email" id="bq-email"></div>
-  <div class="bq-ring" id="bq-ring" onclick="triggerBio()">
-    <span class="bq-icon" id="bq-icon">🔒</span>
-  </div>
-  <div class="bq-status" id="bq-status">Tap to authenticate</div>
-  <button class="bq-switch" onclick="switchToPassword()">Use password instead</button>
-  <div class="bq-hint" id="bq-hint"></div>
-</div>
 
 <!-- ══════════ AUTH PAGE ══════════ -->
 <div id="auth-page" class="page hidden">
@@ -536,17 +537,38 @@ img{max-width:100%}
             <button class="btn-submit" id="btn-si" onclick="doSignIn()">Sign In →</button>
             <div id="msg-si" class="amsg"></div>
 
-            <!-- BIOMETRIC SECTION (Sign In only) -->
-            <div id="bio-section" class="hidden">
-              <div class="bio-divider"><span>or</span></div>
-              <button class="btn-bio" id="btn-bio" onclick="startBioRegisterOrLogin()">
-                <span class="bio-icon" id="bio-icon-btn">🔒</span>
+            <!-- BIOMETRIC SECTION -->
+            <div class="bio-divider"><span class="bio-divider-txt">or use biometrics</span></div>
+            <div class="bio-unsupported" id="bio-unsupported">
+              <i class="bi bi-exclamation-circle me-1"></i>
+              Biometric login requires a device with fingerprint or face unlock, and a browser that supports WebAuthn (Chrome, Safari, Edge).
+            </div>
+            <div class="bio-register-hint" id="bio-register-hint">
+              <i class="bi bi-info-circle me-1"></i>
+              <strong>First time?</strong> Enter your email &amp; password above, sign in once, then tap a biometric button to register your fingerprint or face for future logins.
+            </div>
+            <div class="bio-row" id="bio-row">
+              <button class="bio-btn" id="bio-fp-btn" onclick="doBiometric('fingerprint')" type="button">
+                <div class="bio-ico-wrap">
+                  <div class="bio-ico-ring"></div>
+                  <div class="bio-scan-line"></div>
+                  <span class="bio-ico">🫆</span>
+                </div>
                 <div>
-                  <div class="bio-label" id="bio-label-txt">Use Biometrics</div>
-                  <div class="bio-sub" id="bio-sub-txt">Face ID · Touch ID · Fingerprint</div>
+                  <div class="bio-lbl">Fingerprint</div>
+                  <div class="bio-sublbl" id="bio-fp-sub">Touch sensor</div>
                 </div>
               </button>
-              <div id="msg-bio" class="amsg" style="margin-top:6px"></div>
+              <button class="bio-btn" id="bio-face-btn" onclick="doBiometric('face')" type="button">
+                <div class="bio-ico-wrap">
+                  <div class="bio-ico-ring"></div>
+                  <span class="bio-ico">🪪</span>
+                </div>
+                <div>
+                  <div class="bio-lbl">Face ID</div>
+                  <div class="bio-sublbl" id="bio-face-sub">Look at camera</div>
+                </div>
+              </button>
             </div>
           </div>
 
@@ -626,7 +648,7 @@ img{max-width:100%}
 
 <!-- ══════════ FORGOT PASSWORD ══════════ -->
 <div id="forgot-page" class="page hidden">
-  <div class="d-flex align-items-center min-vh-100 px-3 py-5" style="justify-content:center">
+  <div class="d-flex align-items-center justify-content:center min-vh-100 px-3 py-5" style="justify-content:center">
     <div class="forgot-box">
       <button class="back-btn" onclick="backToAuth()"><i class="bi bi-arrow-left me-1"></i> Back to Sign In</button>
       <div class="fp-steps">
@@ -690,6 +712,7 @@ img{max-width:100%}
 
 <!-- ══════════ CATALOG PAGE ══════════ -->
 <div id="catalog-page" class="page hidden">
+
   <div class="topbar">
     <div class="tb-logo">⚡ AI Tools</div>
     <div class="tb-search-wrap">
@@ -708,6 +731,7 @@ img{max-width:100%}
     </div>
   </div>
 
+  <!-- Desktop filter toolbar -->
   <div id="desk-tb">
     <span class="dtlbl">Filter:</span>
     <div id="dt-chips"></div>
@@ -730,10 +754,12 @@ img{max-width:100%}
     </div>
   </div>
 
+  <!-- Mobile category strip -->
   <div class="cat-strip d-md-none" id="cat-strip">
     <button class="chip on" onclick="filterCat(this,'all')">All</button>
   </div>
 
+  <!-- Results bar -->
   <div class="rbar">
     <div id="res-count"><strong>—</strong> tools</div>
     <div class="d-flex gap-2 align-items-center mob-only">
@@ -759,6 +785,7 @@ img{max-width:100%}
       <span style="font-size:12px;color:var(--m1)">Made for students who build the future 🚀</span>
     </div>
   </div>
+
 </div>
 
 <!-- ══════════ ADMIN PAGE ══════════ -->
@@ -855,128 +882,168 @@ var $ = function(id){ return document.getElementById(id); };
 var allTools=[], fuse=null, currentEmail='', activeCat='all', activeView='grid', userCredits=0;
 
 /* ══════════════════════════════════════════
-   BIOMETRIC (WebAuthn) MODULE
+   BIOMETRIC (WebAuthn)
 ══════════════════════════════════════════ */
-
 var BIO = {
-  CRED_KEY  : 'aih_bio_cred',
-  EMAIL_KEY : 'aih_bio_email',
-  RP_ID     : location.hostname || 'localhost',
-  RP_NAME   : 'AI Tools Hub',
+  KEY_CRED  : 'aih_bio_cred',
+  KEY_EMAIL : 'aih_bio_email',
+  KEY_RP    : 'aih_bio_rp',
+  supported : false,
+  enrolled  : false,
+  credId    : null,
+  bioEmail  : '',
 
-  isSupported: function() {
-    return !!(window.PublicKeyCredential &&
-              navigator.credentials &&
-              navigator.credentials.create &&
-              navigator.credentials.get);
+  init: function() {
+    if (window.PublicKeyCredential && navigator.credentials) this.supported = true;
+    var storedCred  = localStorage.getItem(this.KEY_CRED);
+    var storedEmail = localStorage.getItem(this.KEY_EMAIL);
+    if (storedCred && storedEmail) {
+      this.enrolled = true;
+      this.bioEmail = storedEmail;
+      this.credId   = BIO.b64ToBuffer(storedCred);
+    }
+    this.updateUI();
   },
 
-  icon: function() {
-    var ua = navigator.userAgent;
-    if (/iPhone|iPad|iPod/i.test(ua)) return '🫦';
-    if (/Android/i.test(ua))          return '👆';
-    if (/Windows/i.test(ua))          return '🪟';
-    if (/Mac/i.test(ua))              return '🫦';
-    return '🔒';
+  updateUI: function() {
+    if (!this.supported) {
+      $('bio-unsupported').style.display = 'block';
+      $('bio-row').style.display = 'none';
+      return;
+    }
+    $('bio-unsupported').style.display = 'none';
+    $('bio-row').style.display = 'grid';
+    if (this.enrolled) {
+      var short = this.bioEmail.length > 22 ? this.bioEmail.substring(0,10) + '…' + this.bioEmail.split('@')[1] : this.bioEmail;
+      $('bio-fp-sub').textContent = short;
+      $('bio-face-sub').textContent = short;
+      $('bio-register-hint').style.display = 'none';
+    } else {
+      $('bio-fp-sub').textContent   = 'Touch sensor';
+      $('bio-face-sub').textContent = 'Look at camera';
+      $('bio-register-hint').style.display = 'block';
+    }
   },
 
-  hint: function() {
-    var ua = navigator.userAgent;
-    if (/iPhone|iPad/i.test(ua))  return 'Face ID or Touch ID';
-    if (/Android/i.test(ua))      return 'Fingerprint or Face Unlock';
-    if (/Windows/i.test(ua))      return 'Windows Hello (PIN / Face / Fingerprint)';
-    if (/Mac/i.test(ua))          return 'Touch ID';
-    return 'Device biometrics';
-  },
-
-  b64uEncode: function(buf) {
-    return btoa(String.fromCharCode.apply(null, new Uint8Array(buf)))
-      .replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'');
-  },
-  b64uDecode: function(str) {
-    str = str.replace(/-/g,'+').replace(/_/g,'/');
-    while (str.length % 4) str += '=';
-    var bin = atob(str), buf = new Uint8Array(bin.length);
-    for (var i=0;i<bin.length;i++) buf[i]=bin.charCodeAt(i);
-    return buf.buffer;
-  },
-
-  challenge: function() {
-    var arr = new Uint8Array(32);
-    crypto.getRandomValues(arr);
-    return arr;
-  },
-
-  register: function(email) {
-    var self = this;
-    if (!this.isSupported()) return Promise.reject(new Error('WebAuthn not supported'));
-
-    var userId = new TextEncoder().encode(email);
-    var opts = {
+  register: async function(email) {
+    var rpId = location.hostname || 'localhost';
+    var challenge = crypto.getRandomValues(new Uint8Array(32));
+    var userId    = new TextEncoder().encode(email);
+    var cred = await navigator.credentials.create({
       publicKey: {
-        challenge          : self.challenge(),
-        rp                 : { id: self.RP_ID, name: self.RP_NAME },
-        user               : { id: userId, name: email, displayName: email.split('@')[0] },
-        pubKeyCredParams   : [{ type:'public-key', alg:-7 },{ type:'public-key', alg:-257 }],
-        authenticatorSelection: {
-          authenticatorAttachment : 'platform',
-          userVerification        : 'required',
-          residentKey             : 'preferred'
-        },
-        timeout  : 60000,
-        attestation: 'none'
+        challenge, rp: { name: 'AI Tools Hub', id: rpId },
+        user: { id: userId, name: email, displayName: email },
+        pubKeyCredParams: [{ type: 'public-key', alg: -7 }, { type: 'public-key', alg: -257 }],
+        authenticatorSelection: { authenticatorAttachment: 'platform', userVerification: 'required', residentKey: 'preferred' },
+        timeout: 60000, attestation: 'none'
       }
-    };
-
-    return navigator.credentials.create(opts).then(function(cred) {
-      var credId = self.b64uEncode(cred.rawId);
-      localStorage.setItem(self.CRED_KEY,  credId);
-      localStorage.setItem(self.EMAIL_KEY, email);
-      return credId;
     });
+    localStorage.setItem(BIO.KEY_CRED,  BIO.bufferToB64(cred.rawId));
+    localStorage.setItem(BIO.KEY_EMAIL, email);
+    localStorage.setItem(BIO.KEY_RP,    rpId);
+    BIO.enrolled = true; BIO.bioEmail = email; BIO.credId = cred.rawId;
+    BIO.updateUI();
+    return true;
   },
 
-  authenticate: function() {
-    var self = this;
-    if (!this.isSupported()) return Promise.reject(new Error('WebAuthn not supported'));
-    var credId = localStorage.getItem(self.CRED_KEY);
-    if (!credId) return Promise.reject(new Error('No passkey registered'));
-
-    var opts = {
+  authenticate: async function() {
+    var rpId      = localStorage.getItem(BIO.KEY_RP) || location.hostname || 'localhost';
+    var challenge = crypto.getRandomValues(new Uint8Array(32));
+    await navigator.credentials.get({
       publicKey: {
-        challenge       : self.challenge(),
-        rpId            : self.RP_ID,
-        allowCredentials: [{ type:'public-key', id: self.b64uDecode(credId), transports:['internal'] }],
-        userVerification: 'required',
-        timeout         : 60000
+        challenge, rpId,
+        allowCredentials: [{ type: 'public-key', id: BIO.credId, transports: ['internal'] }],
+        userVerification: 'required', timeout: 60000
       }
-    };
-
-    return navigator.credentials.get(opts).then(function(assertion) {
-      var returnedId = self.b64uEncode(assertion.rawId);
-      if (returnedId !== credId) throw new Error('Credential mismatch');
-      return localStorage.getItem(self.EMAIL_KEY);
     });
+    return true;
   },
 
-  hasCred: function() {
-    return !!(localStorage.getItem(this.CRED_KEY) && localStorage.getItem(this.EMAIL_KEY));
+  bufferToB64: function(buf) {
+    var arr = new Uint8Array(buf instanceof ArrayBuffer ? buf : buf);
+    return btoa(String.fromCharCode.apply(null, arr));
   },
-
-  clearCred: function() {
-    localStorage.removeItem(this.CRED_KEY);
-    localStorage.removeItem(this.EMAIL_KEY);
+  b64ToBuffer: function(b64) {
+    var bin = atob(b64), arr = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+    return arr.buffer;
   }
 };
 
-/* ── INIT ── */
-window.addEventListener('DOMContentLoaded', function(){
-  function updateOnline(){
-    $('offline-bar').classList.toggle('show', !navigator.onLine);
+function setBioState(type, state, label) {
+  var fpBtn = $('bio-fp-btn'), faceBtn = $('bio-face-btn');
+  var btn   = type === 'fingerprint' ? fpBtn : faceBtn;
+  var subId = type === 'fingerprint' ? 'bio-fp-sub' : 'bio-face-sub';
+  [fpBtn, faceBtn].forEach(function(b){ b.classList.remove('scanning','success','error'); });
+  if (state === 'scanning') { btn.classList.add('scanning'); if (label) $(subId).textContent = label; }
+  else if (state === 'success') {
+    btn.classList.add('success'); if (label) $(subId).textContent = label;
+    setTimeout(function(){ btn.classList.remove('success'); BIO.updateUI(); }, 2200);
+  } else if (state === 'error') {
+    btn.classList.add('error'); if (label) $(subId).textContent = label;
+    setTimeout(function(){ btn.classList.remove('error'); BIO.updateUI(); }, 2500);
+  } else { BIO.updateUI(); }
+}
+
+async function doBiometric(type) {
+  if (!BIO.supported) { toast('Biometrics not supported on this device.', 'err'); return; }
+  if (BIO.enrolled && BIO.credId) {
+    setBioState(type, 'scanning', 'Verifying…');
+    try {
+      await BIO.authenticate();
+      setBioState(type, 'success', 'Verified ✓');
+      toast('✅ Biometric verified! Signing in…', 'ok');
+      var storedSess = localStorage.getItem('aih_session');
+      var sess = storedSess ? JSON.parse(storedSess) : null;
+      if (sess && sess.email === BIO.bioEmail) {
+        currentEmail = sess.email; userCredits = Number(sess.credits || 100);
+        setTimeout(function(){ initCatalog({ isAdmin: sess.isAdmin, credits: userCredits }); }, 600);
+      } else {
+        currentEmail = BIO.bioEmail;
+        gsr('biometricLogin', { email: BIO.bioEmail })
+          .then(function(r) {
+            userCredits = Number(r.credits || 100);
+            if (r.success) localStorage.setItem('aih_session', JSON.stringify({ email: BIO.bioEmail, credits: userCredits, isAdmin: r.isAdmin }));
+            setTimeout(function(){ initCatalog(r.success ? r : { isAdmin: false, credits: userCredits }); }, 600);
+          })
+          .catch(function(){ userCredits = 100; setTimeout(function(){ initCatalog({ isAdmin: false, credits: userCredits }); }, 600); });
+      }
+    } catch (err) {
+      var msg = err.name === 'NotAllowedError' ? 'Biometric cancelled or timed out.'
+        : (err.name === 'InvalidStateError' ? 'Credential not found. Please sign in with password.' : 'Biometric failed. Try again.');
+      setBioState(type, 'error', 'Failed ✗');
+      setMsg('msg-si', msg, 'err');
+    }
+    return;
   }
+  var email = ($('si-email').value || '').trim();
+  if (!email) { setMsg('msg-si', 'Enter your email above first, then tap a biometric button to register.', 'inf'); $('si-email').focus(); return; }
+  if (!/\S+@\S+\.\S+/.test(email)) { setMsg('msg-si', 'Enter a valid email above to register biometrics.', 'err'); return; }
+  setBioState(type, 'scanning', 'Registering…');
+  setMsg('msg-si', 'Follow the prompt on your device…', 'inf');
+  try {
+    await BIO.register(email);
+    setBioState(type, 'success', 'Registered ✓');
+    setMsg('msg-si', '✓ Biometric registered for ' + email + '. You can now use it to sign in!', 'ok');
+    toast('🫆 Biometric registered! Use it next time to sign in instantly.', 'ok');
+  } catch (err) {
+    var regMsg = err.name === 'NotAllowedError' ? 'Registration cancelled. Try again.'
+      : (err.name === 'InvalidStateError' ? 'A passkey already exists on this device for this site.' : 'Registration failed: ' + (err.message || err.name));
+    setBioState(type, 'error', 'Failed ✗');
+    setMsg('msg-si', regMsg, 'err');
+  }
+}
+
+/* ══════════════════════════════════════════
+   INIT
+══════════════════════════════════════════ */
+window.addEventListener('DOMContentLoaded', function(){
+  function updateOnline(){ $('offline-bar').classList.toggle('show', !navigator.onLine); }
   window.addEventListener('online', updateOnline);
   window.addEventListener('offline', updateOnline);
   updateOnline();
+
+  BIO.init();
 
   if (APPS_SCRIPT_URL.indexOf('YOUR_SCRIPT_ID_HERE') !== -1) {
     $('loading-screen').innerHTML = '<div style="text-align:center;padding:20px;max-width:380px">'
@@ -987,193 +1054,24 @@ window.addEventListener('DOMContentLoaded', function(){
     return;
   }
 
-  hideLoading();
-
   var saved = localStorage.getItem('aih_session');
   if (saved) {
     try {
       var sess = JSON.parse(saved);
       if (sess.email && sess.credits != null) {
-        if (BIO.isSupported() && BIO.hasCred() && localStorage.getItem(BIO.EMAIL_KEY) === sess.email) {
-          showBioQuick(sess);
-          return;
-        }
-        currentEmail = sess.email;
-        userCredits  = Number(sess.credits);
-        initCatalog({ isAdmin: sess.isAdmin, credits: userCredits });
-        return;
+        currentEmail = sess.email; userCredits = Number(sess.credits);
+        hideLoading(); initCatalog({ isAdmin: sess.isAdmin, credits: userCredits }); return;
       }
     } catch(e) {}
   }
-
+  hideLoading();
   $('auth-page').classList.remove('hidden');
-  initBioButton();
 });
 
 function hideLoading(){
   $('loading-screen').style.opacity = '0';
   $('loading-screen').style.transition = 'opacity .3s';
   setTimeout(function(){ $('loading-screen').style.display = 'none'; }, 320);
-}
-
-/* ── BIOMETRIC QUICK SCREEN ── */
-function showBioQuick(sess) {
-  var email = sess.email;
-  $('bq-av').textContent    = email.charAt(0).toUpperCase();
-  $('bq-name').textContent  = email.split('@')[0];
-  $('bq-email').textContent = email;
-  $('bq-icon').textContent  = BIO.icon();
-  $('bq-hint').textContent  = BIO.hint();
-  $('bio-quick').classList.remove('hidden');
-  setTimeout(function(){ triggerBio(sess); }, 600);
-}
-
-function triggerBio(sess) {
-  var ring = $('bq-ring'), status = $('bq-status');
-  ring.className = 'bq-ring scanning';
-  status.textContent = 'Verifying…';
-  status.className = 'bq-status';
-
-  var savedSess = sess || (function(){
-    try{ return JSON.parse(localStorage.getItem('aih_session')||'{}'); }catch(e){ return {}; }
-  })();
-
-  BIO.authenticate()
-    .then(function(email) {
-      ring.className = 'bq-ring success';
-      status.textContent = 'Authenticated!';
-      status.className   = 'bq-status ok';
-      $('bq-icon').textContent = '✅';
-
-      setTimeout(function(){
-        $('bio-quick').classList.add('hidden');
-        currentEmail = savedSess.email || email;
-        userCredits  = Number(savedSess.credits) || 0;
-        initCatalog({ isAdmin: savedSess.isAdmin, credits: userCredits });
-      }, 700);
-    })
-    .catch(function(err) {
-      ring.className = 'bq-ring fail';
-      status.textContent = 'Authentication failed. Try again.';
-      status.className   = 'bq-status err';
-      $('bq-icon').textContent = BIO.icon();
-      setTimeout(function(){ ring.className = 'bq-ring'; status.textContent='Tap to authenticate'; status.className='bq-status'; }, 2000);
-    });
-}
-
-function switchToPassword() {
-  $('bio-quick').classList.add('hidden');
-  $('auth-page').classList.remove('hidden');
-  var saved = localStorage.getItem('aih_session');
-  if (saved) {
-    try { $('si-email').value = JSON.parse(saved).email || ''; } catch(e) {}
-  }
-  initBioButton();
-}
-
-/* ── BIOMETRIC BUTTON IN SIGN-IN FORM ── */
-function initBioButton() {
-  if (!BIO.isSupported()) return;
-  var sec = $('bio-section');
-  sec.classList.remove('hidden');
-  updateBioButtonState();
-}
-
-function updateBioButtonState() {
-  var hasCred = BIO.hasCred();
-  var icon    = BIO.icon();
-  $('bio-icon-btn').textContent = icon;
-  if (hasCred) {
-    $('bio-label-txt').textContent = 'Sign in with Biometrics';
-    $('bio-sub-txt').textContent   = BIO.hint();
-  } else {
-    $('bio-label-txt').textContent = 'Enable Biometric Login';
-    $('bio-sub-txt').textContent   = 'Register ' + BIO.hint() + ' for quick access';
-  }
-}
-
-function startBioRegisterOrLogin() {
-  if (!BIO.isSupported()) {
-    setMsg('msg-bio','Biometrics not supported on this device/browser.','err');
-    return;
-  }
-
-  if (BIO.hasCred()) {
-    var saved = localStorage.getItem('aih_session');
-    var sess  = {};
-    try { sess = JSON.parse(saved||'{}'); } catch(e) {}
-
-    if (!sess.email) {
-      setMsg('msg-bio','Please sign in with password first to link biometrics.','inf');
-      return;
-    }
-
-    setBioBtn(true, '🔒', 'Verifying…');
-    BIO.authenticate()
-      .then(function() {
-        setBioBtn(false);
-        $('btn-bio').classList.add('success');
-        toast('Biometric sign-in successful! 🎉','ok');
-        setTimeout(function(){
-          $('btn-bio').classList.remove('success');
-          currentEmail = sess.email;
-          userCredits  = Number(sess.credits)||0;
-          initCatalog({ isAdmin: sess.isAdmin, credits: userCredits });
-        }, 600);
-      })
-      .catch(function(err) {
-        setBioBtn(false);
-        $('btn-bio').classList.add('fail');
-        setMsg('msg-bio','Biometric check failed. Use password instead.','err');
-        setTimeout(function(){ $('btn-bio').classList.remove('fail'); }, 800);
-      });
-  } else {
-    var email = $('si-email').value.trim();
-    if (!email) {
-      setMsg('msg-bio','Enter your email above, then enable biometrics.','inf');
-      return;
-    }
-    var savedStr = localStorage.getItem('aih_session');
-    var sess2    = {};
-    try { sess2 = JSON.parse(savedStr||'{}'); } catch(e) {}
-    if (!sess2.email || sess2.email.toLowerCase() !== email.toLowerCase()) {
-      setMsg('msg-bio','Sign in with your password first, then enable biometrics.','inf');
-      return;
-    }
-
-    setBioBtn(true, '🔒', 'Setting up…');
-    BIO.register(email)
-      .then(function() {
-        setBioBtn(false);
-        $('btn-bio').classList.add('success');
-        setMsg('msg-bio','Biometric login enabled! ✅','ok');
-        updateBioButtonState();
-        setTimeout(function(){ $('btn-bio').classList.remove('success'); }, 1000);
-      })
-      .catch(function(err) {
-        setBioBtn(false);
-        $('btn-bio').classList.add('fail');
-        var msg = err.name === 'NotAllowedError'
-          ? 'Permission denied. Allow biometrics in browser settings.'
-          : 'Could not set up biometrics: ' + (err.message||'Unknown error');
-        setMsg('msg-bio', msg, 'err');
-        setTimeout(function(){ $('btn-bio').classList.remove('fail'); }, 800);
-      });
-  }
-}
-
-function setBioBtn(loading, icon, label) {
-  var btn = $('btn-bio');
-  btn.disabled = loading;
-  if (loading) {
-    btn.classList.add('scanning');
-    $('bio-icon-btn').textContent = icon||'🔒';
-    $('bio-label-txt').textContent = label||'Processing…';
-    $('bio-sub-txt').textContent = '';
-  } else {
-    btn.classList.remove('scanning');
-    updateBioButtonState();
-  }
 }
 
 /* ── TOAST ── */
@@ -1186,22 +1084,10 @@ function toast(msg, type){
 }
 
 /* ── HELPERS ── */
-function setBtn(id, loading, txt){
-  var b=$(id); b.disabled=loading;
-  b.innerHTML=loading?'<span class="loader"></span>'+txt:txt+' →';
-}
-function setMsg(id, msg, type){
-  var el=$(id); el.textContent=msg;
-  el.className='amsg'+(type?' '+type:'');
-}
-function toggleEye(id, btn){
-  var inp=$(id);
-  inp.type=inp.type==='password'?'text':'password';
-  btn.innerHTML=inp.type==='password'?'<i class="bi bi-eye"></i>':'<i class="bi bi-eye-slash"></i>';
-}
-function esc(s){
-  return String(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
+function setBtn(id, loading, txt){ var b=$(id); b.disabled=loading; b.innerHTML=loading?'<span class="loader"></span>'+txt:txt+' →'; }
+function setMsg(id, msg, type){ var el=$(id); el.textContent=msg; el.className='amsg'+(type?' '+type:''); }
+function toggleEye(id, btn){ var inp=$(id); inp.type=inp.type==='password'?'text':'password'; btn.innerHTML=inp.type==='password'?'<i class="bi bi-eye"></i>':'<i class="bi bi-eye-slash"></i>'; }
+function esc(s){ return String(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function safeJSON(o){ return JSON.stringify(o).replace(/'/g,'&#39;'); }
 
 /* ── AUTH TABS ── */
@@ -1226,20 +1112,9 @@ function doSignIn(){
       if(r.success){
         currentEmail=email; userCredits=r.credits!=null?Number(r.credits):100;
         localStorage.setItem('aih_session',JSON.stringify({email:email,credits:userCredits,isAdmin:r.isAdmin}));
-        if(BIO.isSupported()){
-          initBioButton();
-          if(!BIO.hasCred()){
-            setTimeout(function(){
-              if($('bio-section')&&!$('bio-section').classList.contains('hidden')){
-                setMsg('msg-bio','Tip: Enable biometrics below for one-tap login next time! 👆','inf');
-              }
-            }, 800);
-          }
-        }
+        if(BIO.supported && !BIO.enrolled) setMsg('msg-si','Signed in! Tip: tap a biometric button below to register for faster future logins.','inf');
         initCatalog(r);
-      } else {
-        setMsg('msg-si','Invalid email or password.','err');
-      }
+      } else { setMsg('msg-si','Invalid email or password.','err'); }
     })
     .catch(function(){setBtn('btn-si',false,'Sign In');setMsg('msg-si','Connection error. Please try again.','err');});
 }
@@ -1259,9 +1134,7 @@ function doSignUp(){
       if(r.success){
         setMsg('msg-su','Account created! Signing you in…','ok');
         setTimeout(function(){$('si-email').value=email;$('si-pass').value=pass;switchTab('si');doSignIn();},900);
-      } else {
-        setMsg('msg-su',r.message||'Registration failed.','err');
-      }
+      } else { setMsg('msg-su',r.message||'Registration failed.','err'); }
     })
     .catch(function(){setBtn('btn-su',false,'Create Account');setMsg('msg-su','Connection error.','err');});
 }
@@ -1278,28 +1151,20 @@ function initCatalog(r){
   loadCatalog();
 }
 function setCredits(n){
-  userCredits=Number(n);
-  $('cval').textContent=userCredits;
+  userCredits=Number(n); $('cval').textContent=userCredits;
   $('credit-chip').classList.toggle('low',userCredits<=10);
-  var saved = localStorage.getItem('aih_session');
-  if(saved){ try{ var s=JSON.parse(saved); s.credits=userCredits; localStorage.setItem('aih_session',JSON.stringify(s)); }catch(e){} }
+  var saved=localStorage.getItem('aih_session');
+  if(saved){try{var s=JSON.parse(saved);s.credits=userCredits;localStorage.setItem('aih_session',JSON.stringify(s));}catch(e){}}
 }
 
 /* ── LOAD CATALOG ── */
 function loadCatalog(){
   $('grid').innerHTML='<div class="col-12 text-center py-5" style="color:var(--m1)"><span class="loader"></span><p class="mt-2">Loading tools…</p></div>';
-  gsr('getToolsFromSheet',{})
-    .then(startCatalog)
-    .catch(function(){
-      $('grid').innerHTML='<div class="col-12 text-center py-5" style="color:var(--red)">⚠️ Failed to load tools. Check your connection and try again.</div>';
-    });
+  gsr('getToolsFromSheet',{}).then(startCatalog).catch(function(){
+    $('grid').innerHTML='<div class="col-12 text-center py-5" style="color:var(--red)">⚠️ Failed to load tools. Check your connection and try again.</div>';
+  });
 }
-function startCatalog(tools){
-  allTools=tools;
-  fuse=new Fuse(allTools,{keys:['name','category','description','features'],threshold:.38});
-  buildChips();
-  applyFilters();
-}
+function startCatalog(tools){ allTools=tools; fuse=new Fuse(allTools,{keys:['name','category','description','features'],threshold:.38}); buildChips(); applyFilters(); }
 
 /* ── CHIPS ── */
 function buildChips(){
@@ -1318,14 +1183,12 @@ function dtCat(el,cat){activeCat=cat;document.querySelectorAll('.dt-chip').forEa
 function syncDeskCat(){document.querySelectorAll('.dt-chip').forEach(function(b){b.classList.toggle('on',(activeCat==='all'&&b.textContent.trim()==='All')||b.textContent.trim()===activeCat);});}
 function syncMobCat(){document.querySelectorAll('.chip').forEach(function(b){b.classList.toggle('on',(activeCat==='all'&&b.textContent.trim()==='All')||b.textContent.trim()===activeCat);});}
 
-/* ── SEARCH ── */
+/* ── SEARCH & FILTER ── */
 function doSearch(){activeCat='all';document.querySelectorAll('.chip,.dt-chip').forEach(function(b){b.classList.toggle('on',b.textContent.trim()==='All');});applyFilters();}
 function syncAndFilter(){applyFilters();}
 
 function applyFilters(){
-  var q=$('search').value.trim(),
-      free=$('dt-free').value,
-      sort=$('dt-sort').value||$('m-sort').value;
+  var q=$('search').value.trim(), free=$('dt-free').value, sort=$('dt-sort').value||$('m-sort').value;
   var data=q?fuse.search(q).map(function(r){return r.item;}):allTools.slice();
   if(activeCat!=='all')data=data.filter(function(t){return t.category===activeCat;});
   if(free==='free')data=data.filter(function(t){return/free|yes/i.test(String(t.free));});
@@ -1340,11 +1203,7 @@ function applyFilters(){
 /* ── RENDER GRID ── */
 function renderGrid(data){
   var g=$('grid');
-  if(!data.length){
-    g.className='row';
-    g.innerHTML='<div class="col-12"><div class="empty-state"><div class="empty-ico">🔭</div><p>No tools found. Try different filters.</p></div></div>';
-    return;
-  }
+  if(!data.length){g.className='row';g.innerHTML='<div class="col-12"><div class="empty-state"><div class="empty-ico">🔭</div><p>No tools found. Try different filters.</p></div></div>';return;}
   var lv=activeView==='list';
   g.className=lv?'row g-2':'row g-2 g-md-3';
   var html='';
@@ -1353,21 +1212,16 @@ function renderGrid(data){
     var fTag=t.free?'<span class="ftag '+(isFree?'free':'paid')+'">'+t.free+'</span>':'';
     var delay='animation-delay:'+(Math.min(i,8)*0.04)+'s';
     var col=lv?'col-12':'col-6 col-md-4 col-lg-3';
-    var slNo=t.slNo||'';
     if(lv){
       html+='<div class="'+col+'"><div class="tool-card" style="'+delay+';flex-direction:row;align-items:center;gap:10px;" onclick=\'openModal('+safeJSON(t)+')\'>'
-           +'<span class="slno">'+slNo+'</span>'
            +'<div class="cname" style="flex:1;min-width:0;-webkit-line-clamp:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;margin:0">'+t.name+'</div>'
-           +'<div class="arr flex-shrink-0">›</div>'
-           +'</div></div>';
+           +'<div class="arr flex-shrink-0">›</div></div></div>';
     } else {
       html+='<div class="'+col+'"><div class="tool-card" style="'+delay+'" onclick=\'openModal('+safeJSON(t)+')\'>'
-           +'<span class="slno">'+slNo+'</span>'
            +'<span class="cbadge">'+(t.category||'AI')+'</span>'
            +'<div class="cname">'+t.name+'</div>'
            +'<div class="cdesc">'+(t.description||'')+'</div>'
-           +'<div class="cfoot">'+fTag+'<div class="arr">↗</div></div>'
-           +'</div></div>';
+           +'<div class="cfoot">'+fTag+'<div class="arr">↗</div></div></div></div>';
     }
   });
   g.innerHTML=html;
@@ -1388,11 +1242,9 @@ function openModal(t){
   var feats=(t.features||'').split(',').map(function(f){return f.trim();}).filter(Boolean);
   var hasPPT=t.presentationPath&&t.presentationPath.trim();
   var disabled=userCredits<=0?'disabled':'';
-  var slLabel=t.slNo?'<span style="font-size:11px;color:var(--m1);font-weight:700;background:var(--s3);border:1px solid var(--bd2);padding:2px 8px;border-radius:100px;margin-right:6px">#'+t.slNo+'</span>':'';
   $('modal-content').innerHTML=
-    '<div class="m-head"><div class="m-head-row"><div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">'+slLabel+'<span class="m-cat">'+(t.category||'AI Tool')+'</span></div><button class="m-close" onclick="closeModal()">×</button></div><div class="m-title">'+t.name+'</div></div>'
+    '<div class="m-head"><div class="m-head-row"><span class="m-cat">'+(t.category||'AI Tool')+'</span><button class="m-close" onclick="closeModal()">×</button></div><div class="m-title">'+t.name+'</div></div>'
     +'<div class="m-body"><div class="m-meta">'
-    +'<div><div class="meta-k">Sl. No.</div><div class="meta-v">'+(t.slNo||'—')+'</div></div>'
     +'<div><div class="meta-k">Launches</div><div class="meta-v">'+(t.usageCount||0)+'</div></div>'
     +'<div><div class="meta-k">Pricing</div><div class="meta-v">'+(t.free||'See site')+'</div></div>'
     +'<div><div class="meta-k">Category</div><div class="meta-v">'+(t.category||'—')+'</div></div>'
@@ -1416,10 +1268,7 @@ function launchTool(name,url){
   window.open(url,'_blank','noopener,noreferrer');
   toast('Launching '+name+'… (1 credit used)','ok');
   gsr('recordToolClick',{email:currentEmail,toolName:name})
-    .then(function(r){
-      if(r.success)setCredits(r.credits);
-      else if(r.message)toast(r.message,'err');
-    })
+    .then(function(r){if(r.success)setCredits(r.credits);else if(r.message)toast(r.message,'err');})
     .catch(function(){});
 }
 
@@ -1441,189 +1290,132 @@ function previewPPT(path,name){
     +'<a href="'+path+'" target="_blank" rel="noopener" style="padding:7px 12px;background:rgba(232,164,48,.15);border:1px solid rgba(232,164,48,.3);border-radius:8px;color:#e8a430;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap">Open ↗</a>'
     +'<button id="ppt-cls" style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);color:#eeeef5;font-size:20px;display:flex;align-items:center;justify-content:center;cursor:pointer;line-height:1;flex-shrink:0">×</button></div>';
   var iframe=document.createElement('iframe');
-  iframe.src=url;
-  iframe.style.cssText='flex:1;border:none;width:100%';
-  iframe.allowFullscreen=true;
-  ov.appendChild(hdr);ov.appendChild(iframe);document.body.appendChild(ov);
+  iframe.src=url; iframe.style.cssText='flex:1;border:none;width:100%'; iframe.allowFullscreen=true;
+  ov.appendChild(hdr); ov.appendChild(iframe); document.body.appendChild(ov);
   document.getElementById('ppt-cls').onclick=function(){ov.remove();};
   var escFn=function(e){if(e.key==='Escape'){ov.remove();document.removeEventListener('keydown',escFn);}};
   document.addEventListener('keydown',escFn);
 }
 
 /* ── ADMIN ── */
-function openAdmin(){
-  $('catalog-page').classList.add('hidden');
-  $('admin-page').classList.remove('hidden');
-  gsr('getAdminDashboardData',{adminEmail:currentEmail})
-    .then(loadAdmin)
-    .catch(function(){$('adm-stats').innerHTML='<div class="col-12" style="color:var(--red);padding:16px">Failed to load dashboard.</div>';});
-}
-function loadAdmin(d){
-  if(d.error){$('adm-stats').innerHTML='<div class="col-12" style="color:var(--red);padding:16px">'+d.error+'</div>';return;}
-  $('adm-ts').textContent='Updated: '+new Date().toLocaleString('en-IN',{dateStyle:'short',timeStyle:'short'});
-  $('adm-stats').innerHTML=
-    '<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">👥</div><div class="stat-lbl">Users</div><div class="stat-val">'+d.totalUsers+'</div></div></div>'
-    +'<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">🚀</div><div class="stat-lbl">Launches</div><div class="stat-val">'+d.totalClicks+'</div></div></div>'
-    +'<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">🛠</div><div class="stat-lbl">Tools</div><div class="stat-val">'+d.tools.length+'</div></div></div>'
-    +'<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">📋</div><div class="stat-lbl">Events</div><div class="stat-val">'+(d.totalUsageEvents||0)+'</div></div></div>';
-  var tR=d.tools.map(function(t,i){
-    return'<div class="adm-row tr-tools"><span class="rank '+(i<3?'t3':'')+'">'+( i+1)+'</span>'
-    +'<div style="min-width:0"><div class="row-name">'+t.name+'</div><div class="row-sub">'+(t.category||'')+'</div></div>'
-    +'<span class="badge-c">'+t.totalClicks+'</span></div>';
-  }).join('');
-  $('adm-tools').innerHTML='<div class="adm-thead th-tools"><span>#</span><span>Tool</span><span>Hits</span></div>'+tR;
-  var uR=d.users.map(function(u,i){
-    var c=u.credits<=10?'badge-c red':'badge-c';
-    return'<div class="adm-row tr-users"><span class="rank '+(i<3?'t3':'')+'">'+( i+1)+'</span>'
-    +'<div style="min-width:0"><div class="row-name">'+u.email+'</div>'+(u.name?'<div class="row-sub">'+u.name+'</div>':'')+'</div>'
-    +'<span class="'+c+'">'+u.credits+'⚡</span></div>';
-  }).join('');
-  $('adm-users').innerHTML='<div class="adm-thead th-users"><span>#</span><span>User</span><span>Credits</span></div>'+uR;
-}
-function backToCatalog(){$('admin-page').classList.add('hidden');$('catalog-page').classList.remove('hidden');}
-
-/* ── LOGOUT ── */
-function doLogout(){
-  currentEmail='';allTools=[];userCredits=0;
-  BIO.clearCred();
-  localStorage.removeItem('aih_session');
-  ['catalog-page','admin-page'].forEach(function(id){$(id).classList.add('hidden');});
-  $('adminBtn').classList.add('hidden');
-  $('credit-chip').classList.remove('show');
-  $('auth-page').classList.remove('hidden');
-  $('si-email').value='';$('si-pass').value='';
-  switchTab('si');bnSet('bn-home');
-  initBioButton();
+function openAdmin(){ $('catalog-page').classList.add('hidden'); $('admin-page').classList.remove('hidden'); loadAdminData(); }
+function backToCatalog(){ $('admin-page').classList.add('hidden'); $('catalog-page').classList.remove('hidden'); }
+function loadAdminData(){
+  gsr('getAdminDashboardData',{email:currentEmail})
+    .then(function(d){
+      if(d.error){toast(d.error,'err');return;}
+      $('adm-ts').textContent='Last updated: '+new Date().toLocaleTimeString();
+      $('adm-stats').innerHTML=
+        '<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">👤</div><div class="stat-lbl">Users</div><div class="stat-val">'+d.totalUsers+'</div></div></div>'
+        +'<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">🧰</div><div class="stat-lbl">Tools</div><div class="stat-val">'+d.tools.length+'</div></div></div>'
+        +'<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">🚀</div><div class="stat-lbl">Launches</div><div class="stat-val">'+d.totalClicks+'</div></div></div>'
+        +'<div class="col-6 col-md-3"><div class="stat-card"><div class="stat-ico">⚡</div><div class="stat-lbl">Credits Spent</div><div class="stat-val">'+(d.totalClicks||0)+'</div></div></div>';
+      var tH='<div class="adm-thead th-tools"><span>#</span><span>Tool</span><span>Launches</span></div>';
+      d.tools.slice(0,20).forEach(function(t,i){
+        tH+='<div class="adm-row tr-tools"><span class="rank'+(i<3?' t3':'')+'">'+((i+1))+'</span>'
+          +'<div><div class="row-name">'+t.name+'</div><div class="row-sub">'+t.category+'</div></div>'
+          +'<span class="badge-c">'+t.totalClicks+'</span></div>';
+      });
+      $('adm-tools').innerHTML=tH;
+      var uH='<div class="adm-thead th-users"><span>#</span><span>User</span><span>Credits</span></div>';
+      d.users.slice(0,50).forEach(function(u,i){
+        uH+='<div class="adm-row tr-users"><span class="rank">'+((i+1))+'</span>'
+          +'<div><div class="row-name">'+(u.name||u.email)+'</div><div class="row-sub">'+u.email+'</div></div>'
+          +'<span class="badge-c'+(u.credits<=10?' red':'')+'">'+u.credits+'</span></div>';
+      });
+      $('adm-users').innerHTML=uH;
+    })
+    .catch(function(){toast('Failed to load admin data.','err');});
 }
 
 /* ── FORGOT PASSWORD ── */
-function showForgot(){
-  $('auth-page').classList.add('hidden');
-  $('forgot-page').classList.remove('hidden');
-  $('fp-p1').classList.remove('hidden');
-  $('fp-p2').classList.add('hidden');
-  $('fp-p3').classList.add('hidden');
-  $('fp-email').value='';
-  fpStep(1);setMsg('msg-fp1','','');
-}
-function backToAuth(){$('forgot-page').classList.add('hidden');$('auth-page').classList.remove('hidden');}
+var fpEmail='';
+function showForgot(){ $('auth-page').classList.add('hidden'); $('forgot-page').classList.remove('hidden'); }
+function backToAuth(){ $('forgot-page').classList.add('hidden'); $('auth-page').classList.remove('hidden'); }
 function fpStep(n){
-  [1,2,3].forEach(function(i){
-    var s=$('fp-s'+i);
-    if(i<n){s.className='fp-step done';s.textContent='✓';}
-    else if(i===n){s.className='fp-step on';s.textContent=i;}
-    else{s.className='fp-step';s.textContent=i;}
-    if(i<3)$('fp-l'+i).className='fp-line'+(i<n?' done':'');
-  });
+  [$('fp-p1'),$('fp-p2'),$('fp-p3')].forEach(function(p,i){p.classList.toggle('hidden',i+1!==n);});
+  [$('fp-s1'),$('fp-s2'),$('fp-s3')].forEach(function(s,i){s.classList.remove('on','done');if(i+1<n)s.classList.add('done');if(i+1===n)s.classList.add('on');});
+  [$('fp-l1'),$('fp-l2')].forEach(function(l,i){l.classList.toggle('done',i+1<n);});
 }
 function fpSend(){
-  var email=$('fp-email').value.trim();
-  if(!email){setMsg('msg-fp1','Enter your email.','err');return;}
-  setBtn('btn-fp1',true,'Sending…');setMsg('msg-fp1','','');
-  gsr('sendPasswordResetCode',{email:email})
-    .then(function(r){
-      setBtn('btn-fp1',false,'Send Code');
-      if(r.success){$('fp-p2-sub').textContent='Code sent to '+email;$('fp-p1').classList.add('hidden');$('fp-p2').classList.remove('hidden');fpStep(2);setMsg('msg-fp2','','');}
-      else setMsg('msg-fp1',r.message||'Email not found.','err');
-    })
+  fpEmail=$('fp-email').value.trim();
+  if(!fpEmail){setMsg('msg-fp1','Enter your email.','err');return;}
+  setMsg('msg-fp1','','');setBtn('btn-fp1',true,'Sending…');
+  gsr('sendPasswordResetCode',{email:fpEmail})
+    .then(function(r){setBtn('btn-fp1',false,'Send Code');if(r.success){$('fp-p2-sub').textContent='Code sent to '+fpEmail;fpStep(2);}else setMsg('msg-fp1',r.message||'Email not found.','err');})
     .catch(function(){setBtn('btn-fp1',false,'Send Code');setMsg('msg-fp1','Connection error.','err');});
 }
 function fpReset(){
-  var code=$('fp-code').value.trim(), np=$('fp-np').value, cp=$('fp-cp').value, email=$('fp-email').value.trim();
-  if(!code||!np||!cp){setMsg('msg-fp2','All fields required.','err');return;}
+  var code=$('fp-code').value.trim(), np=$('fp-np').value, cp=$('fp-cp').value;
+  if(!code||!np){setMsg('msg-fp2','Fill all fields.','err');return;}
   if(np!==cp){setMsg('msg-fp2','Passwords do not match.','err');return;}
-  if(np.length<6){setMsg('msg-fp2','Min 6 characters.','err');return;}
-  setBtn('btn-fp2',true,'Resetting…');setMsg('msg-fp2','','');
-  gsr('verifyAndResetPassword',{email:email,code:code,newPassword:np})
-    .then(function(r){
-      setBtn('btn-fp2',false,'Reset Password');
-      if(r.success){$('fp-p2').classList.add('hidden');$('fp-p3').classList.remove('hidden');fpStep(3);toast('Password reset successfully!','ok');}
-      else setMsg('msg-fp2',r.message||'Invalid code.','err');
-    })
+  if(np.length<6){setMsg('msg-fp2','Password must be at least 6 characters.','err');return;}
+  setMsg('msg-fp2','','');setBtn('btn-fp2',true,'Resetting…');
+  gsr('verifyAndResetPassword',{email:fpEmail,code:code,newPassword:np})
+    .then(function(r){setBtn('btn-fp2',false,'Reset Password');if(r.success)fpStep(3);else setMsg('msg-fp2',r.message||'Invalid code.','err');})
     .catch(function(){setBtn('btn-fp2',false,'Reset Password');setMsg('msg-fp2','Connection error.','err');});
 }
 
-/* ── BOTTOM NAV ── */
-function bnSet(id){document.querySelectorAll('.bnbtn').forEach(function(b){b.classList.remove('on');});if(id)$(id).classList.add('on');}
-function bnHome(){bnSet('bn-home');window.scrollTo({top:0,behavior:'smooth'});}
+/* ── LOGOUT ── */
+function doLogout(){
+  localStorage.removeItem('aih_session');
+  currentEmail=''; userCredits=0;
+  $('catalog-page').classList.add('hidden');
+  $('admin-page').classList.add('hidden');
+  $('auth-page').classList.remove('hidden');
+  $('credit-chip').classList.remove('show');
+  $('adminBtn').classList.add('hidden');
+  BIO.updateUI();
+  /* Tell SW to clear caches on logout */
+  if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+    navigator.serviceWorker.controller.postMessage({ type: 'CLEAR_CACHES' });
+  }
+  toast('Signed out.','');
+}
 
 /* ── MOBILE SEARCH ── */
-function openMSearch(){
-  $('msearch').classList.add('open');
-  document.body.classList.add('no-scroll');
-  bnSet('bn-search');
-  setTimeout(function(){$('ms-inp').focus();},100);
-}
-function closeMSearch(){
-  $('msearch').classList.remove('open');
-  document.body.classList.remove('no-scroll');
-  $('ms-inp').value='';
-  $('msh-body').innerHTML='<div class="msh-empty"><div class="msh-empty-ico"><i class="bi bi-search" style="font-size:40px;opacity:.35"></i></div><p>Start typing to find tools…</p></div>';
-  bnSet('bn-home');
-}
+function openMSearch(){ $('msearch').classList.add('open'); document.body.classList.add('no-scroll'); setTimeout(function(){$('ms-inp').focus();},100); }
+function closeMSearch(){ $('msearch').classList.remove('open'); document.body.classList.remove('no-scroll'); $('ms-inp').value=''; $('msh-body').innerHTML='<div class="msh-empty"><div class="msh-empty-ico"><i class="bi bi-search" style="font-size:40px;opacity:.35"></i></div><p>Start typing to find tools…</p></div>'; }
 function doMSearch(q){
-  var body=$('msh-body');
-  if(!q.trim()){body.innerHTML='<div class="msh-empty"><div class="msh-empty-ico"><i class="bi bi-search" style="font-size:40px;opacity:.35"></i></div><p>Start typing…</p></div>';return;}
-  var res=fuse?fuse.search(q).map(function(r){return r.item;}).slice(0,25):[];
-  if(!res.length){body.innerHTML='<div class="msh-empty"><div class="msh-empty-ico"><i class="bi bi-question-circle" style="font-size:40px;opacity:.35"></i></div><p>No results for "'+q+'"</p></div>';return;}
-  body.innerHTML=res.map(function(t){
-    return'<div class="msh-item" onclick="closeMSearch();openModal('+safeJSON(t)+')">'
-    +'<div class="msh-dot"></div>'
-    +'<div style="min-width:0"><div class="msh-name">'+t.name+'</div><div class="msh-meta">'+(t.category||'AI')+(t.free?' · '+t.free:'')+'</div></div>'
-    +'<i class="bi bi-chevron-right msh-arr"></i></div>';
+  if(!q.trim()||!fuse){$('msh-body').innerHTML='<div class="msh-empty"><div class="msh-empty-ico"><i class="bi bi-search" style="font-size:40px;opacity:.35"></i></div><p>Start typing to find tools…</p></div>';return;}
+  var res=fuse.search(q).slice(0,30).map(function(r){return r.item;});
+  if(!res.length){$('msh-body').innerHTML='<div class="msh-empty"><div class="msh-empty-ico" style="font-size:40px;opacity:.35">🔭</div><p>No results for "'+q+'"</p></div>';return;}
+  $('msh-body').innerHTML=res.map(function(t){
+    return '<div class="msh-item" onclick=\'closeMSearch();openModal('+safeJSON(t)+')\' >'
+      +'<div class="msh-dot"></div>'
+      +'<div style="min-width:0;flex:1"><div class="msh-name">'+t.name+'</div><div class="msh-meta">'+(t.category||'AI Tool')+'</div></div>'
+      +'<i class="bi bi-arrow-right msh-arr"></i></div>';
   }).join('');
 }
 
 /* ── FILTER DRAWER ── */
-function openFDrawer(){buildFdChips();$('fd-free').value=$('dt-free').value;$('fd-sort').value=$('dt-sort').value;$('fd-view').value=activeView;$('fdrawer').classList.add('open');document.body.classList.add('no-scroll');bnSet('bn-filter');}
-function closeFDrawer(){$('fdrawer').classList.remove('open');document.body.classList.remove('no-scroll');bnSet('bn-home');}
-function buildFdChips(){
-  var cats=[];
-  allTools.forEach(function(t){if(t.category&&cats.indexOf(t.category)===-1)cats.push(t.category);});
-  cats.sort();
-  var h='<button class="fd-chip '+(activeCat==='all'?'on':'')+'" onclick="fdCat(this,\'all\')">All</button>';
-  cats.forEach(function(c){h+='<button class="fd-chip '+(activeCat===c?'on':'')+'" onclick="fdCat(this,\''+esc(c)+'\')">'+c+'</button>';});
-  $('fd-chips').innerHTML=h;
+function openFDrawer(){
+  var cats=[];allTools.forEach(function(t){if(t.category&&cats.indexOf(t.category)===-1)cats.push(t.category);});cats.sort();
+  $('fd-chips').innerHTML='<button class="fd-chip'+(activeCat==='all'?' on':'')+'" onclick="fdCat(this,\'all\')">All</button>'
+    +cats.map(function(c){return'<button class="fd-chip'+(activeCat===c?' on':'')+'" onclick="fdCat(this,\''+esc(c)+'\')">'+c+'</button>';}).join('');
+  $('fdrawer').classList.add('open'); document.body.classList.add('no-scroll');
 }
+function closeFDrawer(){$('fdrawer').classList.remove('open');document.body.classList.remove('no-scroll');}
 function fdCat(el,cat){document.querySelectorAll('.fd-chip').forEach(function(b){b.classList.remove('on');});el.classList.add('on');activeCat=cat;}
-function clearDrawer(){activeCat='all';$('fd-free').value='all';$('fd-sort').value='default';document.querySelectorAll('.fd-chip').forEach(function(b,i){b.classList.toggle('on',i===0);});}
-function applyDrawer(){$('dt-free').value=$('fd-free').value;$('dt-sort').value=$('fd-sort').value;setView($('fd-view').value);$('search').value='';syncMobCat();syncDeskCat();applyFilters();closeFDrawer();toast('Filters applied','ok');}
-
-/* ── KEYBOARD ── */
-document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeMSearch();closeFDrawer();}});
-</script>
-
-<!-- ══ PWA: Service Worker Registration ══ -->
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register('./sw.js')
-      .then(function (reg) {
-        console.log('[SW] Registered, scope:', reg.scope);
-        reg.addEventListener('updatefound', function () {
-          var newWorker = reg.installing;
-          newWorker.addEventListener('statechange', function () {
-            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              toast('Update available — reload to get the latest version! 🔄', 'inf');
-            }
-          });
-        });
-      })
-      .catch(function (err) { console.warn('[SW] Registration failed:', err); });
-  });
+function clearDrawer(){activeCat='all';$('fd-free').value='all';$('fd-sort').value='default';$('fd-view').value='grid';document.querySelectorAll('.fd-chip').forEach(function(b,i){b.classList.toggle('on',i===0);});}
+function applyDrawer(){
+  $('dt-free').value=$('fd-free').value;
+  $('dt-sort').value=$('fd-sort').value;
+  setView($('fd-view').value);
+  syncDeskCat();syncMobCat();
+  applyFilters();
+  closeFDrawer();
 }
-  if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register('/new_app_aitools_/sw.js')
-      .then(function (reg) {
-        console.log('✅ SW registered:', reg.scope);
-      })
-      .catch(function (err) {
-        console.log('❌ SW failed:', err);
-      });
-  });
+
+/* ── BOTTOM NAV ── */
+function bnHome(){
+  $('catalog-page').classList.remove('hidden'); $('admin-page').classList.add('hidden');
+  document.querySelectorAll('.bnbtn').forEach(function(b){b.classList.remove('on');});
+  $('bn-home').classList.add('on');
 }
 </script>
 
+<!-- ══════════ PWA: Service Worker Registration + Install Prompt ══════════ -->
+<script src="/pwa-register.js" defer></script>
 </body>
 </html>
