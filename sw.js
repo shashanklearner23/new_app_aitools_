@@ -2,13 +2,13 @@
    AI TOOLS HUB — Service Worker  (sw.js)
 ═══════════════════════════════════════════════════════════════ */
 
-const APP_VERSION   = 'v1.0.0';
+const APP_VERSION   = 'v1.1.0';
 const SHELL_CACHE   = 'aih-shell-'   + APP_VERSION;
 const CDN_CACHE     = 'aih-cdn-'     + APP_VERSION;
 const API_CACHE     = 'aih-api-'     + APP_VERSION;
 const FONT_CACHE    = 'aih-fonts-'   + APP_VERSION;
 
-const SHELL_ASSETS = ['/', '/index.html', '/manifest.json', '/icons/icon-192.png', '/icons/icon-512.png'];
+const SHELL_ASSETS = ['/', '/index.html', '/manifest.json', '/pwa-register.js', '/icons/icon-192.png', '/icons/icon-512.png'];
 const CDN_ORIGINS  = ['cdn.jsdelivr.net', 'unpkg.com'];
 const FONT_ORIGINS = ['fonts.googleapis.com', 'fonts.gstatic.com'];
 const API_ORIGIN   = 'script.google.com';
