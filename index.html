@@ -268,9 +268,9 @@ img{max-width:100%}
 /* List view override */
 #grid.lv .tool-card{flex-direction:row;align-items:center;gap:10px;padding:.75rem .875rem;border-radius:12px}
 #grid.lv .tool-card .cbadge,
-#grid.lv .tool-card .cdesc,
 #grid.lv .tool-card .cfoot{display:none}
-#grid.lv .tool-card .cname{font-size:15px;margin:0;flex:1;-webkit-line-clamp:1;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#grid.lv .tool-card .cdesc{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;font-size:11px;color:var(--m1);margin-top:2px;flex:none}
+#grid.lv .tool-card .cname{font-size:15px;margin:0;-webkit-line-clamp:1;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #grid.lv .tool-card .sl-no{position:static;background:var(--s3);margin-right:2px;font-size:10px;padding:3px 7px;flex-shrink:0}
 
 .empty-state{text-align:center;padding:60px 20px;animation:fadeIn .4s ease}
@@ -1146,7 +1146,10 @@ function renderGrid(data){
     if(lv){
       html+='<div class="'+col+'"><div class="tool-card" style="'+delay+'" onclick=\'openModal('+safeJSON(t)+')\'>'
            +'<span class="sl-no">#'+slNo+'</span>'
-           +'<div class="cname" style="flex:1;min-width:0">'+t.name+'</div>'
+           +'<div style="flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center">'
+           +'<div class="cname" style="margin-bottom:0">'+t.name+'</div>'
+           +'<div class="cdesc">'+(t.description||'')+'</div>'
+           +'</div>'
            +'<div class="arr flex-shrink-0">›</div></div></div>';
     }else{
       html+='<div class="'+col+'"><div class="tool-card" style="'+delay+'" onclick=\'openModal('+safeJSON(t)+')\'>'
